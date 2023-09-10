@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>neko0xff blog</title>
+  <icon>https://neko0xff.github.io/icon.png</icon>
+  
+  <link href="https://neko0xff.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://neko0xff.github.io/"/>
+  <updated>2023-09-10T09:13:01.715Z</updated>
+  <id>https://neko0xff.github.io/</id>
+  
+  <author>
+    <name>neko0xff</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Arch/Manjaro 優化 - preload(預加載)</title>
+    <link href="https://neko0xff.github.io/2023/09/10/arch-preload/"/>
+    <id>https://neko0xff.github.io/2023/09/10/arch-preload/</id>
+    <published>2023-09-10T05:08:02.000Z</published>
+    <updated>2023-09-10T09:13:01.715Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;緒論&quot;&gt;00</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ArchLinux" scheme="https://neko0xff.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Linux上改變網卡的Mac Address</title>
+    <link href="https://neko0xff.github.io/2023/09/10/linux-macAddress/"/>
+    <id>https://neko0xff.github.io/2023/09/10/linux-macAddress/</id>
+    <published>2023-09-10T04:30:04.000Z</published>
+    <updated>2023-09-10T09:21:19.230Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前置&quot;&gt;00 前置&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;檢視網卡正在使用的Mac Address: &lt;code&gt;$ iw dev&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;主要會動到的部分
+&lt;ol</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://neko0xff.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux設置DNS解析和測試</title>
+    <link href="https://neko0xff.github.io/2023/09/10/linux-DNStest/"/>
+    <id>https://neko0xff.github.io/2023/09/10/linux-DNStest/</id>
+    <published>2023-09-10T00:08:50.000Z</published>
+    <updated>2023-09-10T08:56:22.089Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;加入用於解析的dns-server&quot;&gt;00 加入用於解析的DNS Server&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;resolv.conf : 用於管理多個DNS設定檔的框架
+&lt;ul&gt;
+&lt;li&gt;設定檔: &lt;code&gt;/etc/resolv.conf&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://neko0xff.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何使用AUR(Arch User Repository)上套件包</title>
+    <link href="https://neko0xff.github.io/2023/09/10/arch-AUR/"/>
+    <id>https://neko0xff.github.io/2023/09/10/arch-AUR/</id>
+    <published>2023-09-09T23:52:36.000Z</published>
+    <updated>2023-09-10T09:24:08.565Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前置&quot;&gt;00 前置&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;安裝編譯時必要項目:
+&lt;code&gt;$ sudo pacman -S -needed base-devel git&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;第一種-手動取得方式&quot;&gt;01 第一種:</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ArchLinux" scheme="https://neko0xff.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Linux下連線到Forticlient VPN</title>
+    <link href="https://neko0xff.github.io/2023/09/10/Forticlien-VPN-Linux/"/>
+    <id>https://neko0xff.github.io/2023/09/10/Forticlien-VPN-Linux/</id>
+    <published>2023-09-09T23:43:47.000Z</published>
+    <updated>2023-09-10T09:13:14.537Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;使用到的相関工具條件&quot;&gt;00 使用到的相関工具&amp;amp;條件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;網路管理: Network Manager&lt;/li&gt;
+&lt;li&gt;學校: 亞東科技大學&lt;/li&gt;
+&lt;li&gt;安裝相關套件
+&lt;ul&gt;
+&lt;li&gt;Arch:
+&lt;code&gt;$ sudo</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://neko0xff.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在pacman中加入第三方己編譯的套件包倉庫源</title>
+    <link href="https://neko0xff.github.io/2023/09/10/pacman-package/"/>
+    <id>https://neko0xff.github.io/2023/09/10/pacman-package/</id>
+    <published>2023-09-09T23:33:09.000Z</published>
+    <updated>2023-09-10T09:25:09.712Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;加入新來源&quot;&gt;01 加入新來源&lt;/h2&gt;
+&lt;h3 id=&quot;來源鏡像伺服器&quot;&gt;1-1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ArchLinux" scheme="https://neko0xff.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Arch Linux安裝MS SQL Server</title>
+    <link href="https://neko0xff.github.io/2023/09/10/arch-MSSQLServer/"/>
+    <id>https://neko0xff.github.io/2023/09/10/arch-MSSQLServer/</id>
+    <published>2023-09-09T23:12:20.000Z</published>
+    <updated>2023-09-10T09:26:11.418Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前置&quot;&gt;00 前置&lt;/h2&gt;
+&lt;h3 id=&quot;安裝相関環境&quot;&gt;0-1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ArchLinux" scheme="https://neko0xff.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小黃鴨除錯法(Rubber Duck Debugging)</title>
+    <link href="https://neko0xff.github.io/2023/09/10/Rubber-Duck-Debugging/"/>
+    <id>https://neko0xff.github.io/2023/09/10/Rubber-Duck-Debugging/</id>
+    <published>2023-09-09T22:53:16.000Z</published>
+    <updated>2023-09-10T09:13:56.516Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;緒論&quot;&gt;00 緒論&lt;/h2&gt;
+&lt;p&gt;小黃鴨除錯法(Rubber Duck
+Debugging)是指在程式的除錯/測試過程中，&lt;font color=red&gt;耐心的向小黃鴨&lt;/font&gt;解釋每一行程式的功能，以此來激發靈感&amp;amp;發現自己的矛盾。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="軟體開發" scheme="https://neko0xff.github.io/tags/%E8%BB%9F%E9%AB%94%E9%96%8B%E7%99%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何在Windows7以上的系統運行16位元以下的老程式</title>
+    <link href="https://neko0xff.github.io/2023/09/10/windows7-16bit/"/>
+    <id>https://neko0xff.github.io/2023/09/10/windows7-16bit/</id>
+    <published>2023-09-09T22:22:44.000Z</published>
+    <updated>2023-09-10T09:12:45.604Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;緒論&quot;&gt;00 緒論&lt;/h2&gt;
+&lt;p&gt;由於萬惡的微軟在Windows
+7後拿掉16位元相容性的支持(提升系統本身的安全性)，則需要自行手動啟用/加入相關的支緩，使得一些在&lt;code&gt;M$-DOS&lt;/code&gt;/&lt;code&gt;Windows</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://neko0xff.github.io/tags/Windows/"/>
+    
+  </entry>
+  
+</feed>
