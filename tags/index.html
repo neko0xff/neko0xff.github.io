@@ -20,20 +20,18 @@
     var CONFIG = {"hostname":"neko0xff.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="00 緒論 podman是由RedHat開發的一個無背景程序(Daemonless)的容器引擎，其中提供了和docker類似的功能&amp;相容的服務。  提供的功能  可管理&amp;運行任何符合 OCI（Open Container Initiative）規範的容器和容器鏡像 提供了一個與 Docker 兼容的命令行前端&amp;功能來管理 Docker 鏡像 不需要啟用任何背景(daemon">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Podman-入門">
-<meta property="og:url" content="https://neko0xff.github.io/2023/09/11/podman-001/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="標籤">
+<meta property="og:url" content="https://neko0xff.github.io/tags/index.html">
 <meta property="og:site_name" content="neko0xff blog">
-<meta property="og:description" content="00 緒論 podman是由RedHat開發的一個無背景程序(Daemonless)的容器引擎，其中提供了和docker類似的功能&amp;相容的服務。  提供的功能  可管理&amp;運行任何符合 OCI（Open Container Initiative）規範的容器和容器鏡像 提供了一個與 Docker 兼容的命令行前端&amp;功能來管理 Docker 鏡像 不需要啟用任何背景(daemon">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-09-11T01:41:29.000Z">
-<meta property="article:modified_time" content="2023-09-11T07:38:31.646Z">
+<meta property="article:published_time" content="2023-09-11T08:58:03.000Z">
+<meta property="article:modified_time" content="2023-09-11T09:00:26.819Z">
 <meta property="article:author" content="neko0xff">
-<meta property="article:tag" content="Podman">
+<meta property="article:tag" content="Linux,IT">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://neko0xff.github.io/2023/09/11/podman-001/">
+<link rel="canonical" href="https://neko0xff.github.io/tags/">
 
 
 <script id="page-configurations">
@@ -41,12 +39,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>Podman-入門 | neko0xff blog</title>
+  <title>標籤 | neko0xff blog
+</title>
   
 
 
@@ -190,228 +189,51 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+  
+  
 
-          <div class="content post posts-expand">
+          <div class="content page posts-expand">
             
 
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://neko0xff.github.io/2023/09/11/podman-001/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="neko0xff">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="neko0xff blog">
-    </span>
+    
+    
+    <div class="post-block" lang="zh-TW">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Podman-入門
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-              
+<h1 class="post-title" itemprop="name headline">標籤
+</h1>
 
-              <time title="創建時間：2023-09-11 09:41:29 / 修改時間：15:38:31" itemprop="dateCreated datePublished" datetime="2023-09-11T09:41:29+08:00">2023-09-11</time>
-            </span>
+<div class="post-meta">
+  
 
-          
+</div>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
-        <h2 id="緒論">00 緒論</h2>
-<p>podman是由RedHat開發的一個無背景程序(Daemonless)的容器引擎，其中提供了和docker類似的功能&amp;相容的服務。</p>
-<ul>
-<li>提供的功能
-<ol type="1">
-<li>可管理&amp;運行任何符合 OCI（Open Container
-Initiative）規範的容器和容器鏡像</li>
-<li>提供了一個與 Docker 兼容的命令行前端&amp;功能來管理 Docker 鏡像</li>
-<li>不需要啟用任何背景(daemon)程序，且可在沒有root(管理者)權限的情況下運作
-<ul>
-<li>相對的容器在運行/構建容器鏡像時，可提升系統本身的安全性(減少系統安全性漏洞)</li>
-<li>原理:
-通過<code>runC runtime process</code>直接跟Linux核心構通+運行容器（Container）</li>
-</ul></li>
-</ol></li>
-<li>己有內建的發行版
-<ul>
-<li>Red Hat系
-<ol type="1">
-<li>Fedora</li>
-<li>CentOS Stream</li>
-<li>RHEL(包含Rocky等變體)</li>
-</ol></li>
-<li>Debian系
-<ol type="1">
-<li>Debian</li>
-<li>Ubuntu</li>
-</ol></li>
-<li>其它
-<ol type="1">
-<li>Arch Linux</li>
-</ol></li>
-</ul></li>
-</ul>
-<h2 id="前置">01 前置</h2>
-<ol type="1">
-<li>使用者權限設置 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 zangmenhsu</span><br></pre></td></tr></table></figure></li>
-<li>安裝相關套件
-<ul>
-<li>arch: <code>$ sudo pacman -S podman slirp4netns</code></li>
-<li>fedora/rhel: <code>$ sudo dnf install podman</code></li>
-<li>ubuntu/debian: <code>$ sudo apt install podman</code></li>
-</ul></li>
-<li>啟用相關服務: <code>$sudo systemctl enable --now podman</code></li>
-</ol>
-<h2 id="指令">02 指令</h2>
-<table>
-<tr>
-<td bgcolor="0000FF">
-<font color="white">大部分和<code>docker</code>指令操作一致</font>
-</td>
-</tr>
-</table>
-<ul>
-<li>run: Pull image + Create container <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">╭─zangmenhsu@Host-02 ~  </span><br><span class="line">╰─➤  podman run quay.io/podman/hello         </span><br><span class="line">   !... Hello Podman World ...!</span><br><span class="line"></span><br><span class="line">           .--&quot;--.           </span><br><span class="line">         / -     - \         </span><br><span class="line">        / (O)   (O) \        </span><br><span class="line">     ~~~| -=(,Y,)=- |         </span><br><span class="line">      .---. /`  \   |~~      </span><br><span class="line">       ~/  o  o \~~~~.----. ~~   </span><br><span class="line">        | =(X)= |~  / (O (O) \   </span><br><span class="line">          ~~~~~~~  ~| =(Y_)=- |   </span><br><span class="line">         ~~~~    ~~~|   U     |~~ </span><br><span class="line"></span><br><span class="line">Project:   https://github.com/containers/podman</span><br><span class="line">Website:   https://podman.io</span><br><span class="line">Documents: https://docs.podman.io</span><br><span class="line">Twitter:   @Podman_io</span><br></pre></td></tr></table></figure></li>
-<li>重啟podman: <code>$ podman system reset</code></li>
-</ul>
-<h2 id="管理工具">03 管理工具</h2>
-<p>podman提供了一些管理Container&amp;Image的工具</p>
-<ul>
-<li>終端命令列: <code>podman-tui</code>
-<ul>
-<li>Arch: <a
-target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/podman-tui">AUR</a></li>
-</ul></li>
-<li>桌面端: <code>podman-desktop</code>
-<ul>
-<li>Arch: <a
-target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/podman-desktop">AUR</a></li>
-</ul></li>
-<li>Cockpit: <code>cockpit-podman</code></li>
-</ul>
-<h2 id="打包成容器">04 打包成容器</h2>
-<h3 id="安裝">4-1 安裝</h3>
-<table>
-<tr>
-<td bgcolor="0000FF">
-<font color=white> 請確認是否安裝<code>python3</code> </font>
-</td>
-</tr>
-</table>
-<ul>
-<li>arch: <code>$ sudo pacman -S podman-compose</code></li>
-<li>pip: <code>$ sudo pip3 install podman-compose</code></li>
-</ul>
-<h3 id="指令操作">4-2 指令操作</h3>
-<p><code>podman-compose</code>與<code>docker-compose</code>操作大致相同，且可使用<code>docker-compose.yaml</code>+<code>Dockerfile</code>來建置podman容器</p>
-<ul>
-<li>指令
-<ul>
-<li>建置: <code>$ podman-compose up -d</code></li>
-<li>停止: <code>$ podman-compose down</code></li>
-<li>檢視運行的容器: <code>$ podman-compose ps</code></li>
-<li>檢視容器內的運行過程: <code>$ podman-compose logs</code></li>
-<li>檢視版本: <code>$ podman-compose version</code></li>
-<li>檢視相關指令說明: <code>$ podman-compose --help</code></li>
-</ul></li>
-</ul>
-<h3 id="注意部分">4-3 注意部分</h3>
-若<code>podman-compose</code>&amp;<code>docker-compose</code>都已安裝在相同的系統上，請務必注意無法以交替方式呼叫
-<table>
-<tr>
-<td bgcolor="0000FF">
-<font color=white>
-容器若是由<code>podman-compose</code>啟動，相對的則無法使用
-<code>docker-compose</code>來查詢或停止</font>
-</td>
-</tr>
-</table>
-<h2 id="ref">REF</h2>
-<ul>
-<li>https://blog.while-true-do.io/podman-graphical-interfaces/</li>
-<li>https://wiki.archlinux.org/title/Podman</li>
-<li>https://docs.oracle.com/zh-tw/learn/podman-compose/index.html#confirm-podman-compose-is-working</li>
-<li>https://dywang.csie.cyut.edu.tw/dywang/download/pdf/docker-podman.pdf</li>
-<li>https://ithelp.ithome.com.tw/articles/10238749</li>
-</ul>
-
-    </div>
-
-    
-    
-    
-        
-
-  <div class="followme">
-    <p>歡迎關注我的其它發布管道</p>
-
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://twitter.com/neko0xff">
-            <span class="icon">
-              <i class="fab fa-twitter"></i>
-            </span>
-
-            <span class="label">Twitter</span>
-          </a>
-        </div>
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://t.me/neko_0xff">
-            <span class="icon">
-              <i class="fab fa-telegram"></i>
-            </span>
-
-            <span class="label">Telegram</span>
-          </a>
-        </div>
-    </div>
-  </div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Podman/" rel="tag"># Podman</a>
+      
+      
+      <div class="post-body">
+          <div class="tag-cloud">
+            <div class="tag-cloud-title">
+              目前共有 5 個標籤
+            </div>
+            <div class="tag-cloud-tags">
+              <a href="/tags/ArchLinux/" style="font-size: 30px; color: #111">ArchLinux</a> <a href="/tags/Linux/" style="font-size: 21px; color: #6f6f6f">Linux</a> <a href="/tags/Podman/" style="font-size: 12px; color: #ccc">Podman</a> <a href="/tags/Windows/" style="font-size: 12px; color: #ccc">Windows</a> <a href="/tags/%E8%BB%9F%E9%AB%94%E9%96%8B%E7%99%BC/" style="font-size: 12px; color: #ccc">軟體開發</a>
+            </div>
           </div>
-
         
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/09/10/arch-preload/" rel="prev" title="Arch/Manjaro 優化 - preload(預加載)">
-      <i class="fa fa-chevron-left"></i> Arch/Manjaro 優化 - preload(預加載)
-    </a></div>
-      <div class="post-nav-item"></div>
+      </div>
+      
+      
+      
     </div>
-      </footer>
     
-  </article>
-  
-  
-  
 
+    
+    
+    
 
 
           </div>
@@ -462,7 +284,6 @@ target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/podman-d
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B7%92%E8%AB%96"><span class="nav-number">1.</span> <span class="nav-text">00 緒論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">01 前置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">02 指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">03 管理工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E6%88%90%E5%AE%B9%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">04 打包成容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">5.1.</span> <span class="nav-text">4-1 安裝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">5.2.</span> <span class="nav-text">4-2 指令操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E9%83%A8%E5%88%86"><span class="nav-number">5.3.</span> <span class="nav-text">4-3 注意部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ref"><span class="nav-number">6.</span> <span class="nav-text">REF</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
