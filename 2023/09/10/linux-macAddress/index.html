@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"neko0xff.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="00 前置  檢視網卡正在使用的Mac Address: $ iw dev 主要會動到的部分  修改NetworkManager設定檔: &#x2F;etc&#x2F;NetworkManager&#x2F;conf.d&#x2F;mac.conf 修改完成後，請重啟NetworkManager，使設定生效: $ sudo systemctl restart NetworkManager    01 使用隨機產生Mac Address">
+  <meta name="description" content="00 前置  檢視網卡正在使用的Mac Address: $ iw dev 主要會動到的部分  修改NetworkManager設定檔: &#x2F;etc&#x2F;NetworkManager&#x2F;conf.d&#x2F;mac.conf 修改完成後，請重啟NetworkManager，使設定生效: $ sudo systemctl restart NetworkManager   01 使用隨機產生Mac Address 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Linux上改變網卡的Mac Address">
 <meta property="og:url" content="https://neko0xff.github.io/2023/09/10/linux-macAddress/index.html">
 <meta property="og:site_name" content="neko0xff blog">
-<meta property="og:description" content="00 前置  檢視網卡正在使用的Mac Address: $ iw dev 主要會動到的部分  修改NetworkManager設定檔: &#x2F;etc&#x2F;NetworkManager&#x2F;conf.d&#x2F;mac.conf 修改完成後，請重啟NetworkManager，使設定生效: $ sudo systemctl restart NetworkManager    01 使用隨機產生Mac Address">
+<meta property="og:description" content="00 前置  檢視網卡正在使用的Mac Address: $ iw dev 主要會動到的部分  修改NetworkManager設定檔: &#x2F;etc&#x2F;NetworkManager&#x2F;conf.d&#x2F;mac.conf 修改完成後，請重啟NetworkManager，使設定生效: $ sudo systemctl restart NetworkManager   01 使用隨機產生Mac Address 1">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-09-10T04:30:04.000Z">
-<meta property="article:modified_time" content="2023-09-10T09:21:19.230Z">
+<meta property="article:modified_time" content="2023-09-11T07:38:31.646Z">
 <meta property="article:author" content="neko0xff">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'zh-tw'
+    lang   : 'zh-TW'
   };
 </script>
 
@@ -87,7 +87,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切換導航欄">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -117,16 +117,26 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="about fa-fw"></i>關於</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="link fa-fw"></i>友站鏈結</a>
 
   </li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
         </a>
       </li>
   </ul>
@@ -142,7 +152,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
+           placeholder="搜尋..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -182,7 +192,7 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://neko0xff.github.io/2023/09/10/linux-macAddress/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -204,11 +214,17 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">發表於</span>
 
-              <time title="Created: 2023-09-10 12:30:04 / Modified: 17:21:19" itemprop="dateCreated datePublished" datetime="2023-09-10T12:30:04+08:00">2023-09-10</time>
+              <time title="創建時間：2023-09-10 12:30:04" itemprop="dateCreated datePublished" datetime="2023-09-10T12:30:04+08:00">2023-09-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-09-11 15:38:31" itemprop="dateModified" datetime="2023-09-11T15:38:31+08:00">2023-09-11</time>
+              </span>
 
           
 
@@ -232,14 +248,13 @@
 <code>$ sudo systemctl restart NetworkManager</code></li>
 </ol></li>
 </ul>
-<hr />
 <h2 id="使用隨機產生mac-address">01 使用隨機產生Mac Address</h2>
-<h2 id="section"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=yes</span><br><span class="line">ethernet.scan-rand-mac-address=yes</span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line">ethernet.cloned-mac-address=random</span><br><span class="line">wifi.cloned-mac-address=random </span><br></pre></td></tr></table></figure></h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=yes</span><br><span class="line">ethernet.scan-rand-mac-address=yes</span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line">ethernet.cloned-mac-address=random</span><br><span class="line">wifi.cloned-mac-address=random </span><br></pre></td></tr></table></figure>
 <h2 id="使用特定mac-address">02 使用特定Mac Address</h2>
-<h2 id="section-1"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=no</span><br><span class="line">ethernet.scan-rand-mac-address=no</span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line">ethernet.cloned-mac-address=[NEW_MAC1]</span><br><span class="line">wifi.cloned-mac-address=[NEW_MAC2]</span><br></pre></td></tr></table></figure></h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=no</span><br><span class="line">ethernet.scan-rand-mac-address=no</span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line">ethernet.cloned-mac-address=[NEW_MAC1]</span><br><span class="line">wifi.cloned-mac-address=[NEW_MAC2]</span><br></pre></td></tr></table></figure>
 <h2 id="不修改使用原機的mac-address">03 不修改+使用原機的Mac
 Address</h2>
-<h2 id="section-2"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=no</span><br><span class="line">ethernet.scan-rand-mac-address=no</span><br></pre></td></tr></table></figure></h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=no</span><br><span class="line">ethernet.scan-rand-mac-address=no</span><br></pre></td></tr></table></figure>
 <h2 id="ref">REF</h2>
 <ul>
 <li>https://miloserdov.org/?p=6174</li>
@@ -251,6 +266,35 @@ Address</h2>
     
     
     
+        
+
+  <div class="followme">
+    <p>歡迎關注我的其它發布管道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/neko0xff">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/neko_0xff">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -319,17 +363,17 @@ Address</h2>
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目錄
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          本站概要
         </li>
       </ul>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">00 前置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%9A%A8%E6%A9%9F%E7%94%A2%E7%94%9Fmac-address"><span class="nav-number">2.</span> <span class="nav-text">01 使用隨機產生Mac Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section"><span class="nav-number">3.</span> <span class="nav-text">1234567[device]wifi.scan-rand-mac-address&#x3D;yesethernet.scan-rand-mac-address&#x3D;yes[connection]ethernet.cloned-mac-address&#x3D;randomwifi.cloned-mac-address&#x3D;random </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%89%B9%E5%AE%9Amac-address"><span class="nav-number">4.</span> <span class="nav-text">02 使用特定Mac Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-1"><span class="nav-number">5.</span> <span class="nav-text">1234567[device]wifi.scan-rand-mac-address&#x3D;noethernet.scan-rand-mac-address&#x3D;no[connection]ethernet.cloned-mac-address&#x3D;[NEW_MAC1]wifi.cloned-mac-address&#x3D;[NEW_MAC2]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E4%BF%AE%E6%94%B9%E4%BD%BF%E7%94%A8%E5%8E%9F%E6%A9%9F%E7%9A%84mac-address"><span class="nav-number">6.</span> <span class="nav-text">03 不修改+使用原機的Mac
-Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-2"><span class="nav-number">7.</span> <span class="nav-text">123[device]wifi.scan-rand-mac-address&#x3D;noethernet.scan-rand-mac-address&#x3D;no</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ref"><span class="nav-number">8.</span> <span class="nav-text">REF</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">00 前置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%9A%A8%E6%A9%9F%E7%94%A2%E7%94%9Fmac-address"><span class="nav-number">2.</span> <span class="nav-text">01 使用隨機產生Mac Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%89%B9%E5%AE%9Amac-address"><span class="nav-number">3.</span> <span class="nav-text">02 使用特定Mac Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E4%BF%AE%E6%94%B9%E4%BD%BF%E7%94%A8%E5%8E%9F%E6%A9%9F%E7%9A%84mac-address"><span class="nav-number">4.</span> <span class="nav-text">03 不修改+使用原機的Mac
+Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ref"><span class="nav-number">5.</span> <span class="nav-text">REF</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -345,31 +389,31 @@ Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">標籤</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/neko0xff" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;neko0xff" rel="noopener" target="_blank"><i class="neko0xff fa-fw"></i>GitHub</a>
+        <a href="https://github.com/neko0xff" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;neko0xff" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:chzang55@gmail.com" title="E-Mail → mailto:chzang55@gmail.com" rel="noopener" target="_blank"><i class="neko0xff fa-fw"></i>E-Mail</a>
+        <a href="mailto:chzang55@gmail.com" title="E-Mail → mailto:chzang55@gmail.com" rel="noopener" target="_blank"><i class="fab fa-email fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/neko_0xFF" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;neko_0xFF" rel="noopener" target="_blank"><i class="Neko ◣ 0xFF fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/neko_0xFF" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;neko_0xFF" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.youtube.com/channel/UCfBR43eCo07mPWN6K-97TEA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCfBR43eCo07mPWN6K-97TEA" rel="noopener" target="_blank"><i class="neko_0xff ch fa-fw"></i>YouTube</a>
+        <a href="https://www.youtube.com/channel/UCfBR43eCo07mPWN6K-97TEA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCfBR43eCo07mPWN6K-97TEA" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.instagram.com/neko_0xff/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;neko_0xff&#x2F;" rel="noopener" target="_blank"><i class="neko0xff fa-fw"></i>Instagram</a>
+        <a href="https://www.instagram.com/neko_0xff/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;neko_0xff&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
       </span>
   </div>
 
@@ -400,7 +444,7 @@ Address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href
   </span>
   <span class="author" itemprop="copyrightHolder">若要轉載或者引用文章，麻煩請保留原作者名稱&原始連結。</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
   </div>
 
         

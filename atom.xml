@@ -6,7 +6,7 @@
   <link href="https://neko0xff.github.io/atom.xml" rel="self"/>
   
   <link href="https://neko0xff.github.io/"/>
-  <updated>2023-09-10T09:13:01.715Z</updated>
+  <updated>2023-09-11T07:38:31.646Z</updated>
   <id>https://neko0xff.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Podman-入門</title>
+    <link href="https://neko0xff.github.io/2023/09/11/podman-001/"/>
+    <id>https://neko0xff.github.io/2023/09/11/podman-001/</id>
+    <published>2023-09-11T01:41:29.000Z</published>
+    <updated>2023-09-11T07:38:31.646Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;緒論&quot;&gt;00 緒論&lt;/h2&gt;
+&lt;p&gt;podman是由RedHat開發的一個無背景程序(Daemonless)的容器引擎，其中提供了和docker類似的功能&amp;amp;相容的服務。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提供的功能
+&lt;ol</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Podman" scheme="https://neko0xff.github.io/tags/Podman/"/>
+    
+  </entry>
   
   <entry>
     <title>Arch/Manjaro 優化 - preload(預加載)</title>
@@ -44,7 +71,7 @@
     <link href="https://neko0xff.github.io/2023/09/10/linux-macAddress/"/>
     <id>https://neko0xff.github.io/2023/09/10/linux-macAddress/</id>
     <published>2023-09-10T04:30:04.000Z</published>
-    <updated>2023-09-10T09:21:19.230Z</updated>
+    <updated>2023-09-11T07:38:31.646Z</updated>
     
     
       
@@ -71,7 +98,7 @@
     <link href="https://neko0xff.github.io/2023/09/10/linux-DNStest/"/>
     <id>https://neko0xff.github.io/2023/09/10/linux-DNStest/</id>
     <published>2023-09-10T00:08:50.000Z</published>
-    <updated>2023-09-10T08:56:22.089Z</updated>
+    <updated>2023-09-11T07:38:31.645Z</updated>
     
     
       
@@ -98,7 +125,7 @@
     <link href="https://neko0xff.github.io/2023/09/10/arch-AUR/"/>
     <id>https://neko0xff.github.io/2023/09/10/arch-AUR/</id>
     <published>2023-09-09T23:52:36.000Z</published>
-    <updated>2023-09-10T09:24:08.565Z</updated>
+    <updated>2023-09-11T07:38:31.645Z</updated>
     
     
       
@@ -204,7 +231,7 @@
     <link href="https://neko0xff.github.io/2023/09/10/Rubber-Duck-Debugging/"/>
     <id>https://neko0xff.github.io/2023/09/10/Rubber-Duck-Debugging/</id>
     <published>2023-09-09T22:53:16.000Z</published>
-    <updated>2023-09-10T09:13:56.516Z</updated>
+    <updated>2023-09-11T07:38:31.645Z</updated>
     
     
       

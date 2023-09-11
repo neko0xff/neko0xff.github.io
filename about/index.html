@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"neko0xff.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="00 使用到的相関工具&amp;條件  網路管理: Network Manager 學校: 亞東科技大學 安裝相關套件  Arch: $ sudo pacman -S openfortivpn networkmanager-fortisslvpn   01 使用桌面環境下的內建網路設定  設置  加入VPN類型: Fortinet SSLVPN  VPN設定檔  一般  閘道器: sslvpn.a">
-<meta property="og:type" content="article">
-<meta property="og:title" content="在Linux下連線到Forticlient VPN">
-<meta property="og:url" content="https://neko0xff.github.io/2023/09/10/Forticlien-VPN-Linux/index.html">
+  <meta name="description" content="作者自介  真人不實體出道 社交+口語障礙 是只知道一些皮毛的喵。。。。  Blog組成架構  框架: Hexo  相依元件: pandoc 主題: next  可支援輸出結果  在本地環境開發：直接輸出測試結果 CI(持續整合)&#x2F;CD(持續部署): 流程自動化,使整體的開發流程加快完成  把結果包裝成Container&amp;Image,使服務可馬上部署&amp;提供 自動把結果輸出成靜態內容">
+<meta property="og:type" content="website">
+<meta property="og:title" content="關於">
+<meta property="og:url" content="https://neko0xff.github.io/about/index.html">
 <meta property="og:site_name" content="neko0xff blog">
-<meta property="og:description" content="00 使用到的相関工具&amp;條件  網路管理: Network Manager 學校: 亞東科技大學 安裝相關套件  Arch: $ sudo pacman -S openfortivpn networkmanager-fortisslvpn   01 使用桌面環境下的內建網路設定  設置  加入VPN類型: Fortinet SSLVPN  VPN設定檔  一般  閘道器: sslvpn.a">
+<meta property="og:description" content="作者自介  真人不實體出道 社交+口語障礙 是只知道一些皮毛的喵。。。。  Blog組成架構  框架: Hexo  相依元件: pandoc 主題: next  可支援輸出結果  在本地環境開發：直接輸出測試結果 CI(持續整合)&#x2F;CD(持續部署): 流程自動化,使整體的開發流程加快完成  把結果包裝成Container&amp;Image,使服務可馬上部署&amp;提供 自動把結果輸出成靜態內容">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-09-09T23:43:47.000Z">
-<meta property="article:modified_time" content="2023-09-10T09:13:14.537Z">
+<meta property="article:published_time" content="2023-09-10T22:18:18.000Z">
+<meta property="article:modified_time" content="2023-09-11T07:38:31.646Z">
 <meta property="article:author" content="neko0xff">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Linux,IT">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://neko0xff.github.io/2023/09/10/Forticlien-VPN-Linux/">
+<link rel="canonical" href="https://neko0xff.github.io/about/">
 
 
 <script id="page-configurations">
@@ -41,12 +41,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>在Linux下連線到Forticlient VPN | neko0xff blog</title>
+  <title>關於 | neko0xff blog
+</title>
   
 
 
@@ -185,166 +186,76 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+  
+  
 
-          <div class="content post posts-expand">
+          <div class="content page posts-expand">
             
 
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://neko0xff.github.io/2023/09/10/Forticlien-VPN-Linux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="neko0xff">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="neko0xff blog">
-    </span>
+    
+    
+    <div class="post-block" lang="zh-TW">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          在Linux下連線到Forticlient VPN
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-              
+<h1 class="post-title" itemprop="name headline">關於
+</h1>
 
-              <time title="創建時間：2023-09-10 07:43:47 / 修改時間：17:13:14" itemprop="dateCreated datePublished" datetime="2023-09-10T07:43:47+08:00">2023-09-10</time>
-            </span>
+<div class="post-meta">
+  
 
-          
+</div>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
-        <h2 id="使用到的相関工具條件">00 使用到的相関工具&amp;條件</h2>
+      
+      
+      <div class="post-body">
+          <h2 id="作者自介">作者自介</h2>
+<ol type="1">
+<li>真人不實體出道</li>
+<li>社交+口語障礙</li>
+<li>是只知道一些皮毛的喵。。。。</li>
+</ol>
+<h2 id="blog組成架構">Blog組成架構</h2>
 <ul>
-<li>網路管理: Network Manager</li>
-<li>學校: 亞東科技大學</li>
-<li>安裝相關套件
+<li>框架: Hexo
 <ul>
-<li>Arch:
-<code>$ sudo pacman -S openfortivpn networkmanager-fortisslvpn</code></li>
+<li>相依元件: pandoc</li>
+<li>主題: next</li>
+</ul></li>
+<li>可支援輸出結果
+<ul>
+<li>在本地環境開發：直接輸出測試結果</li>
+<li>CI(持續整合)/CD(持續部署): 流程自動化,使整體的開發流程加快完成
+<ul>
+<li>把結果包裝成Container&amp;Image,使服務可馬上部署&amp;提供</li>
+<li>自動把結果輸出成靜態內容後，再發布到GitHub Pages</li>
+</ul></li>
 </ul></li>
 </ul>
-<h2 id="使用桌面環境下的內建網路設定">01
-使用桌面環境下的內建網路設定</h2>
+<h2 id="如何加入友站鏈結">如何加入友站鏈結</h2>
 <ol type="1">
-<li>設置
+<li>向該站管理者私信或者提出Issues到<code>neko0xff/blog_src</code>
 <ul>
-<li>加入VPN類型: Fortinet SSLVPN</li>
+<li>相關倉庫: <a
+target="_blank" rel="noopener" href="https://github.com/neko0xff/blog_src">https://github.com/neko0xff/blog_src</a></li>
 </ul></li>
-<li>VPN設定檔
-<ul>
-<li>一般
-<ul>
-<li>閘道器: <code>sslvpn.aeust.edu.tw</code></li>
-</ul></li>
-<li>認証方式
-<ul>
-<li>使用者名稱: <code>學號</code></li>
-<li>密碼: <code>(使用者自定義)</code></li>
-</ul></li>
-</ul></li>
+<li>加入的格式如下 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">nickname:</span> <span class="string">neko0xff</span>  <span class="comment">#友站名稱</span></span><br><span class="line">  <span class="attr">site:</span> <span class="string">https://neko0xff.github.io/</span>  <span class="comment">#友站鏈結</span></span><br><span class="line">  <span class="attr">info:</span> <span class="string">喵。</span>  <span class="comment">#友站介紹</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">https://neko0xff.github.io/images/avatar.jpg</span>  <span class="comment">#友站頭像</span></span><br></pre></td></tr></table></figure></li>
+<li>管理員收到後，會自己加入提出者的友站鏈結</li>
 </ol>
-<h2 id="cli">02 CLI</h2>
-<h3 id="直接連線">2-1 直接連線</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo openfortivpn sslvpn.aeust.edu.tw --username=[學號] --password=[(使用者自定義)]</span> </span><br></pre></td></tr></table></figure>
-<h3 id="編寫設定檔">2-2 編寫設定檔</h3>
-<table>
-<tr>
-<td bgcolor="#C0FF3E">
-官方範例存放點: <code>/etc/openfortivpn/config</code>
-</td>
-</tr>
-</table>
-<ol type="1">
-<li>編寫設定檔: aeustVPN.conf <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">## configuration file for openfortivpn, see man openfortivpn(1) ###</span></span></span><br><span class="line">host = sslvpn.aeust.edu.tw</span><br><span class="line">port = 443</span><br><span class="line">username = [學號]</span><br><span class="line">password = [(使用者自定義)] </span><br></pre></td></tr></table></figure></li>
-<li>放在openfortivpn存放設定檔的目錄 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo <span class="built_in">cp</span> aeustVPN.conf /etc/openfortivpn</span></span><br></pre></td></tr></table></figure></li>
-<li>進行連線 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo openfortivpn -c /etc/openfortivpn/aeustVPN.conf</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="ref">REF</h2>
-<ul>
-<li>https://ithelp.ithome.com.tw/articles/10298204?sc=iThelpR</li>
-<li>https://hackmd.io/<span class="citation"
-data-cites="stanley2058/ryULFm57D">@stanley2058/ryULFm57D</span></li>
-</ul>
 
+      </div>
+      
+      
+      
     </div>
+    
 
     
     
     
-        
-
-  <div class="followme">
-    <p>歡迎關注我的其它發布管道</p>
-
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://twitter.com/neko0xff">
-            <span class="icon">
-              <i class="fab fa-twitter"></i>
-            </span>
-
-            <span class="label">Twitter</span>
-          </a>
-        </div>
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://t.me/neko_0xff">
-            <span class="icon">
-              <i class="fab fa-telegram"></i>
-            </span>
-
-            <span class="label">Telegram</span>
-          </a>
-        </div>
-    </div>
-  </div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/09/10/pacman-package/" rel="prev" title="在pacman中加入第三方己編譯的套件包倉庫源">
-      <i class="fa fa-chevron-left"></i> 在pacman中加入第三方己編譯的套件包倉庫源
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/09/10/arch-AUR/" rel="next" title="如何使用AUR(Arch User Repository)上套件包">
-      如何使用AUR(Arch User Repository)上套件包 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
 
 
           </div>
@@ -395,8 +306,7 @@ data-cites="stanley2058/ryULFm57D">@stanley2058/ryULFm57D</span></li>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E7%9B%B8%E9%96%A2%E5%B7%A5%E5%85%B7%E6%A2%9D%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">00 使用到的相関工具&amp;條件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%A1%8C%E9%9D%A2%E7%92%B0%E5%A2%83%E4%B8%8B%E7%9A%84%E5%85%A7%E5%BB%BA%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">01
-使用桌面環境下的內建網路設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cli"><span class="nav-number">3.</span> <span class="nav-text">02 CLI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E9%80%A3%E7%B7%9A"><span class="nav-number">3.1.</span> <span class="nav-text">2-1 直接連線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B7%A8%E5%AF%AB%E8%A8%AD%E5%AE%9A%E6%AA%94"><span class="nav-number">3.2.</span> <span class="nav-text">2-2 編寫設定檔</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ref"><span class="nav-number">4.</span> <span class="nav-text">REF</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E8%80%85%E8%87%AA%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">作者自介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blog%E7%B5%84%E6%88%90%E6%9E%B6%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">Blog組成架構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8A%A0%E5%85%A5%E5%8F%8B%E7%AB%99%E9%8F%88%E7%B5%90"><span class="nav-number">3.</span> <span class="nav-text">如何加入友站鏈結</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

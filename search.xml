@@ -108,8 +108,7 @@ Debugging)是指在程式的除錯/測試過程中，<font color=red>耐心的�
 <h3 id="黃色小鴨除錯法---程式初學者-必要的修練mis2000lab">黃色小鴨除錯法
 - 程式初學者 必要的修練,mis2000lab</h3>
 <ul>
-<li>原文:
-https://dotblogs.com.tw/mis2000lab/2023/05/01/Rubber_Duck_Debugging_20230501</li>
+<li>https://dotblogs.com.tw/mis2000lab/2023/05/01/Rubber_Duck_Debugging_20230501</li>
 <li>相關影片: https://www.youtube.com/watch?v=ku61dWC5VvI
 <div class="video-container"><iframe src="https://www.youtube.com/embed/ku61dWC5VvI" frameborder="0" loading="lazy" allowfullscreen></iframe></div></li>
 </ul>
@@ -263,23 +262,26 @@ https://aur.archlinux.org/packages/mssql-tools</li>
 <ul>
 <li>resolv.conf : 用於管理多個DNS設定檔的框架
 <ul>
-<li>設定檔: <code>/etc/resolv.conf</code> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 8.8.4.4</span><br><span class="line">nameserver 1.1.1.1</span><br><span class="line">nameserver 1.0.0.1</span><br></pre></td></tr></table></figure> --- ## 01
-測試正反解是否正常 ### 1-0 安裝相關工具</li>
+<li>設定檔: <code>/etc/resolv.conf</code> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 8.8.4.4</span><br><span class="line">nameserver 1.1.1.1</span><br><span class="line">nameserver 1.0.0.1</span><br></pre></td></tr></table></figure></li>
 </ul></li>
+</ul>
+<h2 id="測試正反解是否正常">01 測試正反解是否正常</h2>
+<h3 id="安裝相關工具">1-0 安裝相關工具</h3>
+<ul>
 <li>arch: <code>$ sudo pacman -S dnsutils</code></li>
 </ul>
 <h3 id="正解">1-1 正解</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ nslookup www.google.com</span><br><span class="line">Server:         192.168.0.1</span><br><span class="line">Address:        192.168.0.1<span class="comment">#53</span></span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">Name:   www.google.com</span><br><span class="line">Address: 142.251.43.4</span><br><span class="line">Name:   www.google.com</span><br><span class="line">Address: 2404:6800:4012:3::2004</span><br></pre></td></tr></table></figure>
 <h3 id="反解">1-2 反解</h3>
-<h2 id="section"><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ nslookup 8.8.8.8</span><br><span class="line">8.8.8.8.in-addr.arpa    name = dns.google.</span><br><span class="line">Authoritative answers can be found from:</span><br></pre></td></tr></table></figure></h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ nslookup 8.8.8.8</span><br><span class="line">8.8.8.8.in-addr.arpa    name = dns.google.</span><br><span class="line">Authoritative answers can be found from:</span><br></pre></td></tr></table></figure>
 <h2 id="查詢dns主機資訊">02 查詢DNS主機資訊</h2>
 <p>WHOIS是用來查詢網際網路中域名的IP以及所有者等資訊的傳輸協定</p>
-<h3 id="安裝相關工具">2-0 安裝相關工具</h3>
+<h3 id="安裝相關工具-1">2-0 安裝相關工具</h3>
 <ul>
 <li>Arch/Manjaro: <code>$ sudo pacman -S whois</code></li>
 </ul>
 <h3 id="檢視">2-1 檢視</h3>
-<h2 id="section-1"><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ whois google.com</span><br><span class="line">  Domain Name: GOOGLE.COM</span><br><span class="line">   Registry Domain ID: 2138514_DOMAIN_COM-VRSN</span><br><span class="line">   Registrar WHOIS Server: whois.markmonitor.com</span><br><span class="line">   Registrar URL: http://www.markmonitor.com</span><br><span class="line">   Updated Date: 2019-09-09T15:39:04Z</span><br><span class="line">   Creation Date: 1997-09-15T04:00:00Z</span><br><span class="line">   Registry Expiry Date: 2028-09-14T04:00:00Z</span><br><span class="line">   Registrar: MarkMonitor Inc.</span><br><span class="line">   Registrar IANA ID: 292</span><br><span class="line">   Registrar Abuse Contact Email: abusecomplaints@markmonitor.com</span><br><span class="line">   Registrar Abuse Contact Phone: +1.2083895740</span><br><span class="line">   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited</span><br><span class="line">   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited</span><br><span class="line">   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited</span><br><span class="line">   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited</span><br><span class="line">   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited</span><br><span class="line">   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited</span><br><span class="line">   Name Server: NS1.GOOGLE.COM</span><br><span class="line">   Name Server: NS2.GOOGLE.COM</span><br><span class="line">   Name Server: NS3.GOOGLE.COM</span><br><span class="line">   Name Server: NS4.GOOGLE.COM</span><br><span class="line">   DNSSEC: unsigned</span><br><span class="line">   URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/</span><br><span class="line">&gt;&gt;&gt; Last update of whois database: 2022-01-17T07:51:46Z &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">For more information on Whois status codes, please visit https://icann.org/epp</span><br><span class="line"></span><br><span class="line">NOTICE: The expiration date displayed in this record is the date the</span><br><span class="line">registrar&#x27;s sponsorship of the domain name registration in the registry is</span><br><span class="line">currently set to expire. This date does not necessarily reflect the expiration</span><br><span class="line">date of the domain name registrant&#x27;s agreement with the sponsoring</span><br><span class="line">registrar.  Users may consult the sponsoring registrar&#x27;s Whois database to</span><br><span class="line">view the registrar&#x27;s reported date of expiration for this registration.</span><br><span class="line"></span><br><span class="line">TERMS OF USE: You are not authorized to access or query our Whois</span><br><span class="line">database through the use of electronic processes that are high-volume and</span><br><span class="line">automated except as reasonably necessary to register domain names or</span><br><span class="line">modify existing registrations; the Data in VeriSign Global Registry</span><br><span class="line">Services&#x27; (&quot;VeriSign&quot;) Whois database is provided by VeriSign for</span><br><span class="line">information purposes only, and to assist persons in obtaining information</span><br><span class="line">about or related to a domain name registration record. VeriSign does not</span><br><span class="line">guarantee its accuracy. By submitting a Whois query, you agree to abide</span><br><span class="line">by the following terms of use: You agree that you may use this Data only</span><br><span class="line">for lawful purposes and that under no circumstances will you use this Data</span><br><span class="line">to: (1) allow, enable, or otherwise support the transmission of mass</span><br><span class="line">unsolicited, commercial advertising or solicitations via e-mail, telephone,</span><br><span class="line">or facsimile; or (2) enable high volume, automated, electronic processes</span><br><span class="line">that apply to VeriSign (or its computer systems). The compilation,</span><br><span class="line">repackaging, dissemination or other use of this Data is expressly</span><br><span class="line">prohibited without the prior written consent of VeriSign. You agree not to</span><br><span class="line">use electronic processes that are automated and high-volume to access or</span><br><span class="line">query the Whois database except as reasonably necessary to register</span><br><span class="line">domain names or modify existing registrations. VeriSign reserves the right</span><br><span class="line">to restrict your access to the Whois database in its sole discretion to ensure</span><br><span class="line">operational stability.  VeriSign may restrict or terminate your access to the</span><br><span class="line">Whois database for failure to abide by these terms of use. VeriSign</span><br><span class="line">reserves the right to modify these terms at any time.</span><br><span class="line"></span><br><span class="line">The Registry database contains ONLY .COM, .NET, .EDU domains and</span><br><span class="line">Registrars.</span><br><span class="line">Domain Name: google.com</span><br><span class="line">Registry Domain ID: 2138514_DOMAIN_COM-VRSN</span><br><span class="line">Registrar WHOIS Server: whois.markmonitor.com</span><br><span class="line">Registrar URL: http://www.markmonitor.com</span><br><span class="line">Updated Date: 2019-09-09T15:39:04+0000</span><br><span class="line">Creation Date: 1997-09-15T07:00:00+0000</span><br><span class="line">Registrar Registration Expiration Date: 2028-09-13T07:00:00+0000</span><br><span class="line">Registrar: MarkMonitor, Inc.</span><br><span class="line">Registrar IANA ID: 292</span><br><span class="line">Registrar Abuse Contact Email: abusecomplaints@markmonitor.com</span><br><span class="line">Registrar Abuse Contact Phone: +1.2083895770</span><br><span class="line">Domain Status: clientUpdateProhibited (https://www.icann.org/epp#clientUpdateProhibited)</span><br><span class="line">Domain Status: clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)</span><br><span class="line">Domain Status: clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)</span><br><span class="line">Domain Status: serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)</span><br><span class="line">Domain Status: serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)</span><br><span class="line">Domain Status: serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)</span><br><span class="line">Registrant Organization: Google LLC</span><br><span class="line">Registrant State/Province: CA</span><br><span class="line">Registrant Country: US</span><br><span class="line">Registrant Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com</span><br><span class="line">Admin Organization: Google LLC</span><br><span class="line">Admin State/Province: CA</span><br><span class="line">Admin Country: US</span><br><span class="line">Admin Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com</span><br><span class="line">Tech Organization: Google LLC</span><br><span class="line">Tech State/Province: CA</span><br><span class="line">Tech Country: US</span><br><span class="line">Tech Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com</span><br><span class="line">Name Server: ns4.google.com</span><br><span class="line">Name Server: ns1.google.com</span><br><span class="line">Name Server: ns2.google.com</span><br><span class="line">Name Server: ns3.google.com</span><br><span class="line">DNSSEC: unsigned</span><br><span class="line">URL of the ICANN WHOIS Data Problem Reporting System: http://wdprs.internic.net/</span><br><span class="line">&gt;&gt;&gt; Last update of WHOIS database: 2022-01-18T04:24:47+0000 &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">For more information on WHOIS status codes, please visit:</span><br><span class="line">  https://www.icann.org/resources/pages/epp-status-codes</span><br><span class="line"></span><br><span class="line">If you wish to contact this domain’s Registrant, Administrative, or Technical</span><br><span class="line">contact, and such email address is not visible above, you may do so via our web</span><br><span class="line">form, pursuant to ICANN’s Temporary Specification. To verify that you are not a</span><br><span class="line">robot, please enter your email address to receive a link to a page that</span><br><span class="line">facilitates email communication with the relevant contact(s).</span><br><span class="line"></span><br><span class="line">Web-based WHOIS:</span><br><span class="line">  https://domains.markmonitor.com/whois</span><br><span class="line"></span><br><span class="line">If you have a legitimate interest in viewing the non-public WHOIS details, send</span><br><span class="line">your request and the reasons for your request to whoisrequest@markmonitor.com</span><br><span class="line">and specify the domain name in the subject line. We will review that request and</span><br><span class="line">may ask for supporting documentation and explanation.</span><br><span class="line"></span><br><span class="line">The data in MarkMonitor’s WHOIS database is provided for information purposes,</span><br><span class="line">and to assist persons in obtaining information about or related to a domain</span><br><span class="line">name’s registration record. While MarkMonitor believes the data to be accurate,</span><br><span class="line">the data is provided &quot;as is&quot; with no guarantee or warranties regarding its</span><br><span class="line">accuracy.</span><br><span class="line"></span><br><span class="line">By submitting a WHOIS query, you agree that you will use this data only for</span><br><span class="line">lawful purposes and that, under no circumstances will you use this data to:</span><br><span class="line">  (1) allow, enable, or otherwise support the transmission by email, telephone,</span><br><span class="line">or facsimile of mass, unsolicited, commercial advertising, or spam; or</span><br><span class="line">  (2) enable high volume, automated, or electronic processes that send queries,</span><br><span class="line">data, or email to MarkMonitor (or its systems) or the domain name contacts (or</span><br><span class="line">its systems).</span><br><span class="line"></span><br><span class="line">MarkMonitor reserves the right to modify these terms at any time.</span><br><span class="line"></span><br><span class="line">By submitting this query, you agree to abide by this policy.</span><br><span class="line"></span><br><span class="line">MarkMonitor Domain Management(TM)</span><br><span class="line">Protecting companies and consumers in a digital world.</span><br><span class="line"></span><br><span class="line">Visit MarkMonitor at https://www.markmonitor.com</span><br><span class="line">Contact us at +1.8007459229</span><br><span class="line">In Europe, at +44.02032062220</span><br><span class="line"></span><br></pre></td></tr></table></figure></h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ whois google.com</span><br><span class="line">  Domain Name: GOOGLE.COM</span><br><span class="line">   Registry Domain ID: 2138514_DOMAIN_COM-VRSN</span><br><span class="line">   Registrar WHOIS Server: whois.markmonitor.com</span><br><span class="line">   Registrar URL: http://www.markmonitor.com</span><br><span class="line">   Updated Date: 2019-09-09T15:39:04Z</span><br><span class="line">   Creation Date: 1997-09-15T04:00:00Z</span><br><span class="line">   Registry Expiry Date: 2028-09-14T04:00:00Z</span><br><span class="line">   Registrar: MarkMonitor Inc.</span><br><span class="line">   Registrar IANA ID: 292</span><br><span class="line">   Registrar Abuse Contact Email: abusecomplaints@markmonitor.com</span><br><span class="line">   Registrar Abuse Contact Phone: +1.2083895740</span><br><span class="line">   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited</span><br><span class="line">   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited</span><br><span class="line">   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited</span><br><span class="line">   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited</span><br><span class="line">   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited</span><br><span class="line">   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited</span><br><span class="line">   Name Server: NS1.GOOGLE.COM</span><br><span class="line">   Name Server: NS2.GOOGLE.COM</span><br><span class="line">   Name Server: NS3.GOOGLE.COM</span><br><span class="line">   Name Server: NS4.GOOGLE.COM</span><br><span class="line">   DNSSEC: unsigned</span><br><span class="line">   URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/</span><br><span class="line">&gt;&gt;&gt; Last update of whois database: 2022-01-17T07:51:46Z &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">For more information on Whois status codes, please visit https://icann.org/epp</span><br><span class="line"></span><br><span class="line">NOTICE: The expiration date displayed in this record is the date the</span><br><span class="line">registrar&#x27;s sponsorship of the domain name registration in the registry is</span><br><span class="line">currently set to expire. This date does not necessarily reflect the expiration</span><br><span class="line">date of the domain name registrant&#x27;s agreement with the sponsoring</span><br><span class="line">registrar.  Users may consult the sponsoring registrar&#x27;s Whois database to</span><br><span class="line">view the registrar&#x27;s reported date of expiration for this registration.</span><br><span class="line"></span><br><span class="line">TERMS OF USE: You are not authorized to access or query our Whois</span><br><span class="line">database through the use of electronic processes that are high-volume and</span><br><span class="line">automated except as reasonably necessary to register domain names or</span><br><span class="line">modify existing registrations; the Data in VeriSign Global Registry</span><br><span class="line">Services&#x27; (&quot;VeriSign&quot;) Whois database is provided by VeriSign for</span><br><span class="line">information purposes only, and to assist persons in obtaining information</span><br><span class="line">about or related to a domain name registration record. VeriSign does not</span><br><span class="line">guarantee its accuracy. By submitting a Whois query, you agree to abide</span><br><span class="line">by the following terms of use: You agree that you may use this Data only</span><br><span class="line">for lawful purposes and that under no circumstances will you use this Data</span><br><span class="line">to: (1) allow, enable, or otherwise support the transmission of mass</span><br><span class="line">unsolicited, commercial advertising or solicitations via e-mail, telephone,</span><br><span class="line">or facsimile; or (2) enable high volume, automated, electronic processes</span><br><span class="line">that apply to VeriSign (or its computer systems). The compilation,</span><br><span class="line">repackaging, dissemination or other use of this Data is expressly</span><br><span class="line">prohibited without the prior written consent of VeriSign. You agree not to</span><br><span class="line">use electronic processes that are automated and high-volume to access or</span><br><span class="line">query the Whois database except as reasonably necessary to register</span><br><span class="line">domain names or modify existing registrations. VeriSign reserves the right</span><br><span class="line">to restrict your access to the Whois database in its sole discretion to ensure</span><br><span class="line">operational stability.  VeriSign may restrict or terminate your access to the</span><br><span class="line">Whois database for failure to abide by these terms of use. VeriSign</span><br><span class="line">reserves the right to modify these terms at any time.</span><br><span class="line"></span><br><span class="line">The Registry database contains ONLY .COM, .NET, .EDU domains and</span><br><span class="line">Registrars.</span><br><span class="line">Domain Name: google.com</span><br><span class="line">Registry Domain ID: 2138514_DOMAIN_COM-VRSN</span><br><span class="line">Registrar WHOIS Server: whois.markmonitor.com</span><br><span class="line">Registrar URL: http://www.markmonitor.com</span><br><span class="line">Updated Date: 2019-09-09T15:39:04+0000</span><br><span class="line">Creation Date: 1997-09-15T07:00:00+0000</span><br><span class="line">Registrar Registration Expiration Date: 2028-09-13T07:00:00+0000</span><br><span class="line">Registrar: MarkMonitor, Inc.</span><br><span class="line">Registrar IANA ID: 292</span><br><span class="line">Registrar Abuse Contact Email: abusecomplaints@markmonitor.com</span><br><span class="line">Registrar Abuse Contact Phone: +1.2083895770</span><br><span class="line">Domain Status: clientUpdateProhibited (https://www.icann.org/epp#clientUpdateProhibited)</span><br><span class="line">Domain Status: clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)</span><br><span class="line">Domain Status: clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)</span><br><span class="line">Domain Status: serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)</span><br><span class="line">Domain Status: serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)</span><br><span class="line">Domain Status: serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)</span><br><span class="line">Registrant Organization: Google LLC</span><br><span class="line">Registrant State/Province: CA</span><br><span class="line">Registrant Country: US</span><br><span class="line">Registrant Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com</span><br><span class="line">Admin Organization: Google LLC</span><br><span class="line">Admin State/Province: CA</span><br><span class="line">Admin Country: US</span><br><span class="line">Admin Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com</span><br><span class="line">Tech Organization: Google LLC</span><br><span class="line">Tech State/Province: CA</span><br><span class="line">Tech Country: US</span><br><span class="line">Tech Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com</span><br><span class="line">Name Server: ns4.google.com</span><br><span class="line">Name Server: ns1.google.com</span><br><span class="line">Name Server: ns2.google.com</span><br><span class="line">Name Server: ns3.google.com</span><br><span class="line">DNSSEC: unsigned</span><br><span class="line">URL of the ICANN WHOIS Data Problem Reporting System: http://wdprs.internic.net/</span><br><span class="line">&gt;&gt;&gt; Last update of WHOIS database: 2022-01-18T04:24:47+0000 &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">For more information on WHOIS status codes, please visit:</span><br><span class="line">  https://www.icann.org/resources/pages/epp-status-codes</span><br><span class="line"></span><br><span class="line">If you wish to contact this domain’s Registrant, Administrative, or Technical</span><br><span class="line">contact, and such email address is not visible above, you may do so via our web</span><br><span class="line">form, pursuant to ICANN’s Temporary Specification. To verify that you are not a</span><br><span class="line">robot, please enter your email address to receive a link to a page that</span><br><span class="line">facilitates email communication with the relevant contact(s).</span><br><span class="line"></span><br><span class="line">Web-based WHOIS:</span><br><span class="line">  https://domains.markmonitor.com/whois</span><br><span class="line"></span><br><span class="line">If you have a legitimate interest in viewing the non-public WHOIS details, send</span><br><span class="line">your request and the reasons for your request to whoisrequest@markmonitor.com</span><br><span class="line">and specify the domain name in the subject line. We will review that request and</span><br><span class="line">may ask for supporting documentation and explanation.</span><br><span class="line"></span><br><span class="line">The data in MarkMonitor’s WHOIS database is provided for information purposes,</span><br><span class="line">and to assist persons in obtaining information about or related to a domain</span><br><span class="line">name’s registration record. While MarkMonitor believes the data to be accurate,</span><br><span class="line">the data is provided &quot;as is&quot; with no guarantee or warranties regarding its</span><br><span class="line">accuracy.</span><br><span class="line"></span><br><span class="line">By submitting a WHOIS query, you agree that you will use this data only for</span><br><span class="line">lawful purposes and that, under no circumstances will you use this data to:</span><br><span class="line">  (1) allow, enable, or otherwise support the transmission by email, telephone,</span><br><span class="line">or facsimile of mass, unsolicited, commercial advertising, or spam; or</span><br><span class="line">  (2) enable high volume, automated, or electronic processes that send queries,</span><br><span class="line">data, or email to MarkMonitor (or its systems) or the domain name contacts (or</span><br><span class="line">its systems).</span><br><span class="line"></span><br><span class="line">MarkMonitor reserves the right to modify these terms at any time.</span><br><span class="line"></span><br><span class="line">By submitting this query, you agree to abide by this policy.</span><br><span class="line"></span><br><span class="line">MarkMonitor Domain Management(TM)</span><br><span class="line">Protecting companies and consumers in a digital world.</span><br><span class="line"></span><br><span class="line">Visit MarkMonitor at https://www.markmonitor.com</span><br><span class="line">Contact us at +1.8007459229</span><br><span class="line">In Europe, at +44.02032062220</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="ref">REF</h2>
 <ul>
 <li>https://man.archlinux.org/man/resolv.conf.5</li>
@@ -306,14 +308,13 @@ https://aur.archlinux.org/packages/mssql-tools</li>
 <code>$ sudo systemctl restart NetworkManager</code></li>
 </ol></li>
 </ul>
-<hr />
 <h2 id="使用隨機產生mac-address">01 使用隨機產生Mac Address</h2>
-<h2 id="section"><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=yes</span><br><span class="line">ethernet.scan-rand-mac-address=yes</span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line">ethernet.cloned-mac-address=random</span><br><span class="line">wifi.cloned-mac-address=random </span><br></pre></td></tr></table></figure></h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=yes</span><br><span class="line">ethernet.scan-rand-mac-address=yes</span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line">ethernet.cloned-mac-address=random</span><br><span class="line">wifi.cloned-mac-address=random </span><br></pre></td></tr></table></figure>
 <h2 id="使用特定mac-address">02 使用特定Mac Address</h2>
-<h2 id="section-1"><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=no</span><br><span class="line">ethernet.scan-rand-mac-address=no</span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line">ethernet.cloned-mac-address=[NEW_MAC1]</span><br><span class="line">wifi.cloned-mac-address=[NEW_MAC2]</span><br></pre></td></tr></table></figure></h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=no</span><br><span class="line">ethernet.scan-rand-mac-address=no</span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line">ethernet.cloned-mac-address=[NEW_MAC1]</span><br><span class="line">wifi.cloned-mac-address=[NEW_MAC2]</span><br></pre></td></tr></table></figure>
 <h2 id="不修改使用原機的mac-address">03 不修改+使用原機的Mac
 Address</h2>
-<h2 id="section-2"><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=no</span><br><span class="line">ethernet.scan-rand-mac-address=no</span><br></pre></td></tr></table></figure></h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[device]</span><br><span class="line">wifi.scan-rand-mac-address=no</span><br><span class="line">ethernet.scan-rand-mac-address=no</span><br></pre></td></tr></table></figure>
 <h2 id="ref">REF</h2>
 <ul>
 <li>https://miloserdov.org/?p=6174</li>
@@ -383,6 +384,131 @@ Address</h2>
 ]]></content>
       <tags>
         <tag>ArchLinux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Podman-入門</title>
+    <url>/2023/09/11/podman-001/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<p>podman是由RedHat開發的一個無背景程序(Daemonless)的容器引擎，其中提供了和docker類似的功能&amp;相容的服務。</p>
+<ul>
+<li>提供的功能
+<ol type="1">
+<li>可管理&amp;運行任何符合 OCI（Open Container
+Initiative）規範的容器和容器鏡像</li>
+<li>提供了一個與 Docker 兼容的命令行前端&amp;功能來管理 Docker 鏡像</li>
+<li>不需要啟用任何背景(daemon)程序，且可在沒有root(管理者)權限的情況下運作
+<ul>
+<li>相對的容器在運行/構建容器鏡像時，可提升系統本身的安全性(減少系統安全性漏洞)</li>
+<li>原理:
+通過<code>runC runtime process</code>直接跟Linux核心構通+運行容器（Container）</li>
+</ul></li>
+</ol></li>
+<li>己有內建的發行版
+<ul>
+<li>Red Hat系
+<ol type="1">
+<li>Fedora</li>
+<li>CentOS Stream</li>
+<li>RHEL(包含Rocky等變體)</li>
+</ol></li>
+<li>Debian系
+<ol type="1">
+<li>Debian</li>
+<li>Ubuntu</li>
+</ol></li>
+<li>其它
+<ol type="1">
+<li>Arch Linux</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="前置">01 前置</h2>
+<ol type="1">
+<li>使用者權限設置 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 zangmenhsu</span><br></pre></td></tr></table></figure></li>
+<li>安裝相關套件
+<ul>
+<li>arch: <code>$ sudo pacman -S podman slirp4netns</code></li>
+<li>fedora/rhel: <code>$ sudo dnf install podman</code></li>
+<li>ubuntu/debian: <code>$ sudo apt install podman</code></li>
+</ul></li>
+<li>啟用相關服務: <code>$sudo systemctl enable --now podman</code></li>
+</ol>
+<h2 id="指令">02 指令</h2>
+<table>
+<tr>
+<td bgcolor="0000FF">
+<font color="white">大部分和<code>docker</code>指令操作一致</font>
+</td>
+</tr>
+</table>
+<ul>
+<li>run: Pull image + Create container <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">╭─zangmenhsu@Host-02 ~  </span><br><span class="line">╰─➤  podman run quay.io/podman/hello         </span><br><span class="line">   !... Hello Podman World ...!</span><br><span class="line"></span><br><span class="line">           .--&quot;--.           </span><br><span class="line">         / -     - \         </span><br><span class="line">        / (O)   (O) \        </span><br><span class="line">     ~~~| -=(,Y,)=- |         </span><br><span class="line">      .---. /`  \   |~~      </span><br><span class="line">       ~/  o  o \~~~~.----. ~~   </span><br><span class="line">        | =(X)= |~  / (O (O) \   </span><br><span class="line">          ~~~~~~~  ~| =(Y_)=- |   </span><br><span class="line">         ~~~~    ~~~|   U     |~~ </span><br><span class="line"></span><br><span class="line">Project:   https://github.com/containers/podman</span><br><span class="line">Website:   https://podman.io</span><br><span class="line">Documents: https://docs.podman.io</span><br><span class="line">Twitter:   @Podman_io</span><br></pre></td></tr></table></figure></li>
+<li>重啟podman: <code>$ podman system reset</code></li>
+</ul>
+<h2 id="管理工具">03 管理工具</h2>
+<p>podman提供了一些管理Container&amp;Image的工具</p>
+<ul>
+<li>終端命令列: <code>podman-tui</code>
+<ul>
+<li>Arch: <a
+href="https://aur.archlinux.org/packages/podman-tui">AUR</a></li>
+</ul></li>
+<li>桌面端: <code>podman-desktop</code>
+<ul>
+<li>Arch: <a
+href="https://aur.archlinux.org/packages/podman-desktop">AUR</a></li>
+</ul></li>
+<li>Cockpit: <code>cockpit-podman</code></li>
+</ul>
+<h2 id="打包成容器">04 打包成容器</h2>
+<h3 id="安裝">4-1 安裝</h3>
+<table>
+<tr>
+<td bgcolor="0000FF">
+<font color=white> 請確認是否安裝<code>python3</code> </font>
+</td>
+</tr>
+</table>
+<ul>
+<li>arch: <code>$ sudo pacman -S podman-compose</code></li>
+<li>pip: <code>$ sudo pip3 install podman-compose</code></li>
+</ul>
+<h3 id="指令操作">4-2 指令操作</h3>
+<p><code>podman-compose</code>與<code>docker-compose</code>操作大致相同，且可使用<code>docker-compose.yaml</code>+<code>Dockerfile</code>來建置podman容器</p>
+<ul>
+<li>指令
+<ul>
+<li>建置: <code>$ podman-compose up -d</code></li>
+<li>停止: <code>$ podman-compose down</code></li>
+<li>檢視運行的容器: <code>$ podman-compose ps</code></li>
+<li>檢視容器內的運行過程: <code>$ podman-compose logs</code></li>
+<li>檢視版本: <code>$ podman-compose version</code></li>
+<li>檢視相關指令說明: <code>$ podman-compose --help</code></li>
+</ul></li>
+</ul>
+<h3 id="注意部分">4-3 注意部分</h3>
+若<code>podman-compose</code>&amp;<code>docker-compose</code>都已安裝在相同的系統上，請務必注意無法以交替方式呼叫
+<table>
+<tr>
+<td bgcolor="0000FF">
+<font color=white>
+容器若是由<code>podman-compose</code>啟動，相對的則無法使用
+<code>docker-compose</code>來查詢或停止</font>
+</td>
+</tr>
+</table>
+<h2 id="ref">REF</h2>
+<ul>
+<li>https://blog.while-true-do.io/podman-graphical-interfaces/</li>
+<li>https://wiki.archlinux.org/title/Podman</li>
+<li>https://docs.oracle.com/zh-tw/learn/podman-compose/index.html#confirm-podman-compose-is-working</li>
+<li>https://dywang.csie.cyut.edu.tw/dywang/download/pdf/docker-podman.pdf</li>
+<li>https://ithelp.ithome.com.tw/articles/10238749</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Podman</tag>
       </tags>
   </entry>
   <entry>
