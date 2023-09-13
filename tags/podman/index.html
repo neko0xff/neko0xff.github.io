@@ -20,22 +20,16 @@
     var CONFIG = {"hostname":"neko0xff.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="00 緒論 當官方套件庫找不到需要的套件時，Arch則提供了AUR(Arch User Repository,AUR)這個由其它使用者維護的倉庫，讓需要的使用者可自行編譯且安裝所需的套件。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Arch-如何使用AUR(Arch User Repository)上套件包">
-<meta property="og:url" content="https://neko0xff.github.io/2023/09/10/arch-AUR/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="neko0xff blog">
+<meta property="og:url" content="https://neko0xff.github.io/tags/podman/index.html">
 <meta property="og:site_name" content="neko0xff blog">
-<meta property="og:description" content="00 緒論 當官方套件庫找不到需要的套件時，Arch則提供了AUR(Arch User Repository,AUR)這個由其它使用者維護的倉庫，讓需要的使用者可自行編譯且安裝所需的套件。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/HyTR9NJ.png">
-<meta property="article:published_time" content="2023-09-09T23:52:36.000Z">
-<meta property="article:modified_time" content="2023-09-13T08:35:31.498Z">
 <meta property="article:author" content="neko0xff">
-<meta property="article:tag" content="ArchLinux">
+<meta property="article:tag" content="Linux,IT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/HyTR9NJ.png">
 
-<link rel="canonical" href="https://neko0xff.github.io/2023/09/10/arch-AUR/">
+<link rel="canonical" href="https://neko0xff.github.io/tags/podman/">
 
 
 <script id="page-configurations">
@@ -43,12 +37,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>Arch-如何使用AUR(Arch User Repository)上套件包 | neko0xff blog</title>
+  <title>標籤: podman | neko0xff blog</title>
   
 
 
@@ -193,171 +187,51 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content tag">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://neko0xff.github.io/2023/09/10/arch-AUR/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="neko0xff">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="neko0xff blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Arch-如何使用AUR(Arch User Repository)上套件包
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2023-09-10 07:52:36" itemprop="dateCreated datePublished" datetime="2023-09-10T07:52:36+08:00">2023-09-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-09-13 16:35:31" itemprop="dateModified" datetime="2023-09-13T16:35:31+08:00">2023-09-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h2 class="collection-header">podman
+          <small>標籤</small>
+        </h2>
+      </div>
 
       
-        <h2 id="緒論">00 緒論</h2>
-<p>當官方套件庫找不到需要的套件時，Arch則提供了AUR(Arch User
-Repository,AUR)這個由其它使用者維護的倉庫，讓需要的使用者可自行編譯且安裝所需的套件。
-<span id="more"></span></p>
-<h2 id="前置">01 前置</h2>
-<ul>
-<li>安裝編譯時必要項目:
-<code>$ sudo pacman -S -needed base-devel git</code></li>
-</ul>
-<h2 id="第一種-手動取得方式">02 第一種: 手動取得方式</h2>
-<ol type="1">
-<li>在AUR找自己需要的包：https://aur.archlinux.org/</li>
-<li>使用AUR倉庫的源且弄到local(ex:android-studio)
-<ul>
-<li>取得:
-<code>$ git clone https://aur.archlinux.org/android-studio.git</code></li>
-<li>更新: <code>$ git pull</code></li>
-</ul></li>
-<li>開始編譯
-<ul>
-<li>到要編譯的AUR源的資料夾:<code>$ cd android-studio</code></li>
-<li>編譯
-<ul>
-<li>直接編譯+安裝: <code>$ makepkg -i</code></li>
-<li>包含安裝相依的套件:<code>$ makepkg -is</code></li>
-<li>安裝己編譯完成的套件包: <code>$ pacman -U [套件包]</code></li>
-</ul></li>
-</ul></li>
-</ol>
-<h2 id="第二種-使用第三方的套件管理">03 第二種:
-使用第三方的套件管理</h2>
-<h3 id="安裝第三方的套件管理yay">3-1 安裝第三方的套件管理(yay)</h3>
-<ul>
-<li>GitHub: <a
-target="_blank" rel="noopener" href="https://github.com/Jguer/yay">https://github.com/Jguer/yay</a>
-<ul>
-<li>官方說明: https://github.com/Jguer/yay#examples-of-custom-operations
-<img src="https://i.imgur.com/HyTR9NJ.png" /></li>
-</ul></li>
-<li>安裝過程
-<ol type="1">
-<li>將原始碼移動到 <code>/opt/</code> 目錄: <code>$ cd /opt/</code></li>
-<li>使用AUR倉庫的源且弄到local <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://aur.archlinux.org/yay-git.git</span><br></pre></td></tr></table></figure></li>
-<li>転到要編譯的AUR源的資料夾: <code>$ cd yay-git</code></li>
-<li>開始編譯: <code>$ makepkg -is</code></li>
-</ol></li>
-</ul>
-<h2 id="ref">REF</h2>
-<h3 id="arch-wiki">Arch wiki</h3>
-<ul>
-<li>https://wiki.archlinux.org/title/Arch_User_Repository_(%E6%AD%A3%E9%AB%94%E4%B8%AD%E6%96%87)</li>
-<li>https://wiki.archlinux.org/title/Makepkg_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</li>
-</ul>
-
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
     </div>
 
-    
-    
-    
-        
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-  <div class="followme">
-    <p>歡迎關注我的其它發布管道</p>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2023-09-11T09:41:29+08:00"
+              content="2023-09-11">
+          09-11
+        </time>
+      </div>
 
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://twitter.com/neko_0xff">
-            <span class="icon">
-              <i class="fab fa-twitter"></i>
-            </span>
-
-            <span class="label">Twitter</span>
+      <div class="post-title">
+          <a class="post-title-link" href="/2023/09/11/podman-001/" itemprop="url">
+            <span itemprop="name">podman-入門使用</span>
           </a>
-        </div>
+      </div>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://t.me/zang_post">
-            <span class="icon">
-              <i class="fab fa-telegram"></i>
-            </span>
+    </header>
+  </article>
 
-            <span class="label">Telegram</span>
-          </a>
-        </div>
     </div>
   </div>
-
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/ArchLinux/" rel="tag"><i class="fa fa-tag"></i> ArchLinux</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/09/10/Forticlien-VPN-Linux/" rel="prev" title="Linux-在Linux下連線到Forticlient VPN">
-      <i class="fa fa-chevron-left"></i> Linux-在Linux下連線到Forticlient VPN
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/09/10/linux-DNStest/" rel="next" title="Linux-設置DNS解析和測試">
-      Linux-設置DNS解析和測試 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
   
   
+  
+
   
 
 
@@ -410,8 +284,6 @@ target="_blank" rel="noopener" href="https://github.com/Jguer/yay">https://githu
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B7%92%E8%AB%96"><span class="nav-number">1.</span> <span class="nav-text">00 緒論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">01 前置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A8%AE-%E6%89%8B%E5%8B%95%E5%8F%96%E5%BE%97%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">02 第一種: 手動取得方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A8%AE-%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E7%9A%84%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">03 第二種:
-使用第三方的套件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E7%AC%AC%E4%B8%89%E6%96%B9%E7%9A%84%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86yay"><span class="nav-number">4.1.</span> <span class="nav-text">3-1 安裝第三方的套件管理(yay)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ref"><span class="nav-number">5.</span> <span class="nav-text">REF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#arch-wiki"><span class="nav-number">5.1.</span> <span class="nav-text">Arch wiki</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
