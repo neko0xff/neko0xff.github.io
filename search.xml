@@ -742,7 +742,7 @@ href="https://github.com/otya128/winevdm/releases">官方戴點</a></li>
 <table>
 <tr>
 <td bgcolor="#FFFF00">
-在運行過程中，部分程式可能報錯或者功能不正常
+<font color=white> 在運行過程中，部分程式可能報錯或者功能不正常</font>
 </td>
 </tr>
 </table></li>
@@ -756,6 +756,493 @@ href="https://github.com/otya128/winevdm/releases">官方戴點</a></li>
 ]]></content>
       <tags>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker-使用make簡化compose指令</title>
+    <url>/2023/09/16/docker-makeCompose/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<p>GNU Make 是一個常用於軟體開發的CLI工具，開發者只需透過自行撰寫的
+<code>Makefile</code>
+檔案來設計相關流程，就能實現執行單一指令就能自動化進行所需的流程(ex:容器的啟動&amp;停止&amp;建置&amp;刪除)，進而簡化其他使用者的執行過程。</p>
+<span id="more"></span>
+<h2 id="在撰寫makefile的注意事項">01 在撰寫makefile的注意事項</h2>
+<ul>
+<li>縮排不能使用<font color=red>空白鍵</font>而是使用<font color=green>Tab鍵</font>，否則容易會出現語法問題</li>
+<li>注解的方式和Shell Scrpit一樣使用<code>#</code></li>
+</ul>
+<h2 id="步驟">02 步驟</h2>
+<ol type="1">
+<li>建立相關檔案: <code>makefile</code>/<code>Makefile</code></li>
+<li>編寫相關指令 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 變數定義</span></span><br><span class="line">CC1:=docker compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># phony: 指令保留字</span></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: build up logs stop clean </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 預設所執行的target</span></span><br><span class="line"><span class="section">all: build</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># target: 指令相關動作</span></span><br><span class="line"><span class="section">build:</span></span><br><span class="line">    @<span class="variable">$(CC1)</span> up --build -d <span class="comment"># 建置容器和相關鏡像檔</span></span><br><span class="line"></span><br><span class="line"><span class="section">up:</span></span><br><span class="line">    @<span class="variable">$(CC1)</span> up -d <span class="comment"># 啟動容器</span></span><br><span class="line"></span><br><span class="line"><span class="section">logs:</span></span><br><span class="line"> @<span class="variable">$(CC1)</span> logs --tail=100 -f <span class="comment"># 檢視容器內的運行過程(輸出未尾的100行)</span></span><br><span class="line"></span><br><span class="line"><span class="section">stop:</span></span><br><span class="line">    @<span class="variable">$(CC1)</span> stop <span class="comment"># 停止容器</span></span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">    @<span class="variable">$(CC1)</span> down <span class="comment"># 停止且刪除容器</span></span><br></pre></td></tr></table></figure></li>
+<li>下指令來驗証自己寫的makefile是否正確: <code>$ make</code></li>
+</ol>
+<h2 id="ref">REF</h2>
+<ul>
+<li>https://segmentfault.com/a/1190000041379546</li>
+<li>https://blog.goodjack.tw/2023/01/use-makefile-to-manage-workflows-for-web-projects.html</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>108工科賽主機設定-vGate-xx(Fedora_1)</title>
+    <url>/2023/09/16/linux-base1In108/</url>
+    <content><![CDATA[<h2 id="前提">00 前提</h2>
+<h3 id="主機間的關係">主機間的關係</h3>
+<ul>
+<li>xx:崗位碼</li>
+<li>Host-xx(192.168.x.1[Eth0]) &lt; == &gt; vGate-xx(192.168.x.254[Eth0]
+&amp; 10.19.x.1[Eth1]) &lt; == &gt; Internet-xx (10.19.x.2[Eth1])</li>
+</ul>
+<h3 id="vgate-xxfedora網卡設定">vGate-xx(Fedora)網卡設定</h3>
+<ul>
+<li>DNS Server:192.168.x.1(Host-xx)</li>
+<li>Eth0(enp0s3)==&gt;Host-xx:
+<ul>
+<li>IP:192.168.x.254</li>
+<li>Network Mask: 255.255.255.0</li>
+<li>Gateway: 192.168.1.254</li>
+</ul></li>
+<li>Eth1(enp0s8)==&gt;Internet-xx:
+<ul>
+<li>IP:10.19.x.1</li>
+<li>Network Mask: 255.255.255.252</li>
+<li>Gateway: 10.19.x.1</li>
+</ul></li>
+</ul>
+<span id="more"></span>
+<h2 id="linux終端機使用方法">01 Linux終端機使用方法</h2>
+<ul>
+<li>nano用法:
+<ul>
+<li>Ctrl+O=<code>save File</code>(存檔)</li>
+<li>Ctrl+X=<code>exit nano</code>(離開 nano)</li>
+</ul></li>
+<li>權限
+<ul>
+<li><code>sudo [需下的指令]</code>: 向系統借用暫時的最高權限</li>
+<li><code>su [username]</code>: 切換使用者</li>
+</ul></li>
+<li>畫面管理部分
+<ul>
+<li>預設呈現部分:
+<code>[目前使用的使用者@目前主機 ~]# (指令)</code></li>
+<li><code>clear</code> :清除終端機畫面</li>
+<li>Ctrl + Alt + F<code>1~7</code> : tty<code>1~7</code>(終端機)</li>
+</ul></li>
+</ul>
+<h2 id="啟用-root-帳戶">02 啟用 root 帳戶</h2>
+<ul>
+<li>輸入時,請輸入要設定的root密碼後,再輸一遍做確認是否有錯
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[user@localhost ~]<span class="comment"># sudo passwd root</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="主機名更改">03 主機名更改</h2>
+<ul>
+<li>使用root帳戶: <code>[user@localhost ~]# su -</code></li>
+<li>更改Hostname:
+<code>[root@localhost ~]# hostnamectl set-hostname vGate-xx</code></li>
+<li>輸出更改後的Hostname: <code>[root@localhost ~]# hostname</code></li>
+</ul>
+<h2 id="新增群組">04 新增群組</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# groupadd Feuser</span><br></pre></td></tr></table></figure>
+<h2 id="大量新增使用者">05 大量新增使用者</h2>
+<ul>
+<li>檔案:useradd.sh <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# nano useradd.sh</span><br></pre></td></tr></table></figure></li>
+<li>內容: <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//username:FsuXX</span><br><span class="line">u=<span class="string">&quot;Fsu&quot;</span> </span><br><span class="line">//範圍:01~50</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(<span class="built_in">seq</span> -f <span class="string">&quot;%02g&quot;</span> 1 1 50)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  useradd -g Feuser -s /bin/bash $u<span class="variable">$i</span></span><br><span class="line">  <span class="built_in">echo</span>  <span class="string">&quot;Fedora@2019&quot;</span> | passwd --stdin $u<span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></li>
+<li>運行批次檔: <code>[root@localhost ~]# bash useradd.sh</code></li>
+</ul>
+<h2 id="限制特定群組或者root不能進去圖形化介面gdm">06
+限制特定群組或者root不能進去圖形化介面(GDM)</h2>
+<ul>
+<li>需修改GDM的設定檔(增加指令):
+<code>[root@localhost ~]# nano /etc/pam.d/gdm-password</code></li>
+</ul>
+<h3 id="加入的內容部分">加入的內容部分</h3>
+<ul>
+<li>如果要限制<font color=green>群組</font> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">auth   required pam_succeed_if.so user notingroup Feuser</span><br></pre></td></tr></table></figure></li>
+<li>如果要限制<font color=red>root</font> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">auth   required pam_succeed_if.so user != root quiet</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="設定-command-history只存5筆記錄">07 設定 "Command
+history"=只存5筆記錄</h2>
+<ul>
+<li>需修改的檔案: /etc/profile.d/custom.sh <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# nano /etc/profile.d/custom.sh</span><br></pre></td></tr></table></figure></li>
+<li>內容: <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">HISTSIZE=5</span><br></pre></td></tr></table></figure></li>
+<li>立即生效 "Command history"=只存5筆記錄:
+<code>[root@localhost ~]# source /etc/profile.d/custom.sh</code></li>
+<li>檢視"Command history"的指令:
+<code>[root@localhost ~]# history</code></li>
+</ul>
+<h2 id="port-forwarding-網路転發設定">08 Port Forwarding
+（網路転發設定）</h2>
+<ul>
+<li>啟用網路転發: <code>[root@localhost ~]# nano /etc/sysctl.conf</code>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//ipv4転發</span><br><span class="line">net.ipv4.ip_forward=1</span><br></pre></td></tr></table></figure></li>
+<li>立即生效: <code>[root@localhost ~]# sysctl -p</code>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">net.ipv4.ip_forward=1</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>工科賽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>109工科賽-Linx-xx(Fedora_1)</title>
+    <url>/2023/09/16/linux-base1In109/</url>
+    <content><![CDATA[<h2 id="前置">00 前置</h2>
+<ul>
+<li>所動到的設定
+<ul>
+<li>SSH Login</li>
+<li>憑証
+<ul>
+<li>HTTPS</li>
+<li>AD網域使用者</li>
+</ul></li>
+<li>SAMBA
+<ul>
+<li>使用者</li>
+</ul></li>
+<li>iptable(nftable)</li>
+</ul></li>
+</ul>
+<span id="more"></span>
+<h2 id="ssh">01 SSH</h2>
+<h3 id="設定檔位置">設定檔位置</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo nano /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+<h3 id="更改或增加連結埠ex2224">更改或增加連結埠(ex:2224)</h3>
+<ul>
+<li>如果不要使用預設的連結埠請註解 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Port 22</span></span><br><span class="line">Port 2224</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="不允許用root登入">不允許用root登入</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PermitRootLogin no</span><br></pre></td></tr></table></figure>
+<h3 id="限制特定使用者登入">限制特定使用者登入</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">AllowUsers Feusr0? Feusr10</span><br></pre></td></tr></table></figure>
+<table>
+<tr>
+<td bgcolor="0000FF">
+<font color=white>上面的AllowUsers
+一旦有設定，未在表列中的用戶就再也無法登入</font>
+</td>
+</tr>
+</table>
+<h4 id="限制使用者的方式">限制使用者的方式</h4>
+<ul>
+<li><code>AllowUsers</code>：由空格分隔的使用者名稱組成，設定允許登入的使用者</li>
+<li><code>AllowGroups</code>：由空格分隔的群組名稱組成，設定允許登入的群組</li>
+<li><code>DenyUsers</code>：由空格分隔的使用者名稱組成，設定拒絕登入的使用者</li>
+<li><code>DenyGroups</code>：由空格分隔的群組名稱組成，設定拒絕登入的群組</li>
+</ul>
+<h3 id="selinux-防火牆設定">SELINUX &amp; 防火牆設定</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo semanage port -a -t ssh_port_t -p tcp 2224</span><br></pre></td></tr></table></figure>
+<h3 id="重新載入-ssh-服務使其生效">重新載入 SSH 服務使其生效</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo systemctl enable --now sshd</span><br></pre></td></tr></table></figure>
+<h2 id="cli顯示完整路徑">02 CLI顯示完整路徑</h2>
+<h3 id="修改-etcbashrc">2-1 修改 /etc/bashrc</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo nano /etc/bashrc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改內容: <code>PS1="[\u@\h\w]\\$"</code>
+<ul>
+<li><code>\u</code>: 目前登入帳戶</li>
+<li><code>\h</code>: 目前的主機名</li>
+<li><code>\$</code> &amp; <code>\#</code> :
+輸出命令行<code>$</code>&amp;<code>#</code></li>
+<li><code>\w</code> &amp;<code>\W</code>: 輸出目前路徑
+<ul>
+<li><code>\w</code>: 最後路徑</li>
+<li><code>\W</code>: 絕対路徑</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="讓設定立即生效">2-2 讓設定立即生效</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> /etc/bashrc </span><br></pre></td></tr></table></figure>
+<h2 id="安裝rpm套件">03 安裝rpm套件</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># rpm -ivh [rpm檔案]</span><br></pre></td></tr></table></figure>
+<h2 id="opensslhttps服務">04 OpenSSL&amp;HTTPS服務</h2>
+<h3 id="安裝">4-1 安裝</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># dnf install openssl mod_ssl -y</span><br></pre></td></tr></table></figure>
+<h3 id="建立金鑰且転成csr檔">4-2 建立金鑰且転成csr檔</h3>
+<ol type="1">
+<li>建立金鑰 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 /etc/httpd]<span class="comment"># cd /etc/pki/tls/certs</span></span><br><span class="line">[root@Linx-10 /etc/pki/tls/certs]<span class="comment"># openssl genrsa -out old.key</span></span><br><span class="line">Generating RSA private key, 2048 bit long modulus (2 primes)</span><br><span class="line">.....................+++++</span><br><span class="line">..........+++++</span><br><span class="line">e is 65537 (0x010001)</span><br></pre></td></tr></table></figure></li>
+<li>把金鑰転成csr檔
+<ul>
+<li>國家: <code>Country Name (2 letter code) [XX]:tw</code></li>
+<li>要啟用的網域:
+<code>Common Name (eg, your name or your server's hostname) []:old.sivs2020.edu</code></li>
+</ul></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 /etc/pki/tls/certs]<span class="comment"># openssl req -new -key old.key -out old.csr</span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter <span class="string">&#x27;.&#x27;</span>, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [XX]:tw</span><br><span class="line">State or Province Name (full name) []:aaa</span><br><span class="line">Locality Name (eg, city) [Default City]:aa</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:aa</span><br><span class="line">Organizational Unit Name (eg, section) []:aa</span><br><span class="line">Common Name (eg, your name or your server<span class="string">&#x27;s hostname) []:old.sivs2020.edu</span></span><br><span class="line"><span class="string">Email Address []: (直接按enter)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Please enter the following &#x27;</span>extra<span class="string">&#x27; attributes</span></span><br><span class="line"><span class="string">to be sent with your certificate request</span></span><br><span class="line"><span class="string">A challenge password []: (直接按enter)</span></span><br><span class="line"><span class="string">An optional company name []: (直接按enter)</span></span><br><span class="line"><span class="string">[root@Linx-10 /etc/pki/tls/certs]# ls</span></span><br><span class="line"><span class="string">ca-bundle.crt        linx.cer  linx.key  localhost.crt  old.csr  old.pem</span></span><br><span class="line"><span class="string">ca-bundle.trust.crt  linx.csr  linx.pem  old.cer        old.key</span></span><br></pre></td></tr></table></figure>
+<h3 id="向網域提交https憑証申請">4-3 向網域提交https憑証申請</h3>
+<ol type="1">
+<li>請打開瀏覧器輸入<code>http://host-xx.sivs2020.edu/certsrv/(網域憑証申請)</code>
+<ul>
+<li>先按下<code>[要求憑証]</code></li>
+<li>再按下<code>[進階憑証要求]</code></li>
+</ul></li>
+<li>把転好的csr檔用文字編輯器開啟且提交</li>
+</ol>
+<ul>
+<li>檢視輸出的csr檔:
+<code>[root@Linx-10]# cat /etc/pki/tls/certs/old.csr</code></li>
+<li>憑証範本: <code>[web伺服器]</code></li>
+</ul>
+<ol start="3" type="1">
+<li>下戴憑証</li>
+</ol>
+<h3 id="把憑証申請匯入本地">4-4 把憑証申請匯入本地</h3>
+<ol type="1">
+<li>把憑証申請複制到<code>/etc/pki/tls/certs</code> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~/下載]# cp certnew.cer /etc/pki/tls/certs/old.cer</span><br></pre></td></tr></table></figure></li>
+<li>把憑証申請匯入本地且転成.pem檔 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 /etc/pki/tls/certs]# openssl x509 -inform der -in old.cer -outform pem -out old.pem</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="httpd">05 httpd</h2>
+<h3 id="http加入驗證機制">5-1 http加入驗證機制</h3>
+<h4 id="建立目錄和網頁">5-1-1 建立目錄和網頁</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo mkdir /var/www/linx</span><br><span class="line">$ sudo nano /var/www/linx/index.html</span><br></pre></td></tr></table></figure>
+<h5 id="內容">內容</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;linx&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;this is linx.sivs2020.edu！&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="設定httpd的虛擬主機対応">5-1-2 設定httpd的虛擬主機対応</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo nano /etc/httpd/conf.d/linx.conf</span><br></pre></td></tr></table></figure>
+<h5 id="內容-1">內容</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">   DocumentRoot /var/www/linx</span><br><span class="line">   ServerName   linx.sivs2020.edu</span><br><span class="line">   SSLEngine    on</span><br><span class="line">   SSLCertificateFile     /etc/pki/tls/certs/linx.pem</span><br><span class="line">   SSLCertificateKeyFile  /etc/pki/tls/certs/linx.key</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory &quot;/var/www/linx&quot;&gt;</span><br><span class="line">   AllowOverride   AuthConfig</span><br><span class="line">   Order   allow,deny</span><br><span class="line">   Allow   from   all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="建立相關檔案">5-1-3 建立相關檔案</h4>
+<ul>
+<li>建立保護目錄下的<code>.htaccess</code>檔 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cd /var/www/linx</span><br><span class="line">$ sudo nano .htaccess</span><br><span class="line">  AuthName     &quot;Login&quot;</span><br><span class="line">  Authtype     Basic</span><br><span class="line">  AuthUserFile /var/www/apache.passwd</span><br><span class="line">  require user root</span><br></pre></td></tr></table></figure></li>
+<li>建立密碼檔:
+<code>$ sudo htpasswd -c /var/www/apache.passwd root</code></li>
+<li>檢視是否成立: <code>$ cat /var/www/apache.passwd</code></li>
+<li>請重啟apache httpd: <code>$ sudo systemctl restart httpd</code></li>
+</ul>
+<h3 id="http自動導向指定的網址">5-2 http自動導向指定的網址</h3>
+<ul>
+<li>建立目錄和網頁 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo mkdir /var/www/old</span><br><span class="line">$ sudo nano /var/www/old/index.html</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="內容-2">內容</h4>
+<ul>
+<li><code>&lt;meta http-equiv="refresh" content="轉跳的時間;url=轉跳的網址" /&gt;</code>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">   &lt;title&gt;old&lt;/title&gt;</span><br><span class="line">   &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;url=https://www.sivs2020.edu&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="設定httpd的虛擬主機対応-1">5-3 設定httpd的虛擬主機対応</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo nano /etc/httpd/conf.d/old.conf</span><br></pre></td></tr></table></figure>
+<h4 id="內容-3">內容</h4>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:443</span>&gt;</span></span><br><span class="line">   DocumentRoot /var/www/old</span><br><span class="line">   ServerName   old.sivs2020.edu</span><br><span class="line">   SSLEngine    on</span><br><span class="line">   SSLCertificateFile     /etc/pki/tls/certs/old.pem</span><br><span class="line">   SSLCertificateKeyFile  /etc/pki/tls/certs/old.key</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Directory</span> &quot;/<span class="attr">var</span>/<span class="attr">www</span>/<span class="attr">old</span>&quot;&gt;</span></span><br><span class="line">   Options FollowSymLinks</span><br><span class="line">   AllowOverride All</span><br><span class="line"><span class="tag">&lt;/<span class="name">Directory</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<tr>
+<td bgcolor="0000FF">
+<font color=white>寫完請重啟apache httpd:
+<code>$ sudo systemctl restart httpd</code></font>
+</td>
+</tr>
+</table>
+<h3 id="設置防火牆">5-4 設置防火牆</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo firewall-cmd --add-service=http --permanent</span><br><span class="line">$ sudo firewall-cmd --add-service=https --permanent</span><br><span class="line">$ sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<h2 id="檢視目前selinux詳細狀態">06 檢視目前SELinux詳細狀態</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 /home/user]<span class="comment"># sestatus</span></span><br><span class="line">SELinux status:                 enabled</span><br><span class="line">SELinuxfs mount:                /sys/fs/selinux</span><br><span class="line">SELinux root directory:         /etc/selinux</span><br><span class="line">Loaded policy name:             targeted</span><br><span class="line">Current mode:                   enforcing</span><br><span class="line">Mode from config file:          enforcing</span><br><span class="line">Policy MLS status:              enabled</span><br><span class="line">Policy deny_unknown status:     allowed</span><br><span class="line">Memory protection checking:     actual (secure)</span><br><span class="line">Max kernel policy version:      33</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SELinux的預設模式: enforcing</li>
+</ul>
+<h2 id="samba">07 SAMBA</h2>
+<h3 id="前置-1">7-1 前置</h3>
+<ul>
+<li>建立目錄 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# mkdir -p /shared/Feusr</span><br><span class="line">[root@Linx-10 ~]# chcon -t samba_share_t /shared/Feusr</span><br><span class="line">[root@Linx-10 ~]# chgrp FeGroups /shared/Feusr</span><br><span class="line">[root@Linx-10 ~]# chmod g=rwx /shared/Feusr</span><br><span class="line">[root@Linx-10 ~]# chmod o= /shared/Feusr</span><br></pre></td></tr></table></figure></li>
+<li>安裝samba:
+<code>$ sudo dnf install samba samba-client -y</code></li>
+</ul>
+<h3 id="設置samba.conf">7-2 設置samba.conf</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# nano /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
+<h4 id="存取日誌設置在golobel">7-2-1 存取日誌設置(在[Golobel])</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Golobel]</span><br><span class="line">syslog = 0</span><br><span class="line">syslog only = yes</span><br></pre></td></tr></table></figure>
+<h4 id="啟用dfs功能">7-2-2 啟用dfs功能</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">        workgroup = SAMBA</span><br><span class="line">        security = user</span><br><span class="line">        netbios name = Linx-xx</span><br><span class="line">        host msdfs = yes</span><br><span class="line"></span><br><span class="line"># 新加部分 [Feusr]</span><br><span class="line">[Feusr]</span><br><span class="line">        path = /shared/Feusr</span><br><span class="line">        msdfs root = yes</span><br><span class="line">        valid users = @FeGroups</span><br><span class="line">        read only = no</span><br><span class="line">        browseable = yes</span><br><span class="line">        create mask = 777</span><br><span class="line">        directory mask = 777</span><br><span class="line">        public = yes</span><br></pre></td></tr></table></figure>
+<h4 id="建立samba使用者和linux內建不同">7-2-3
+建立samba使用者(和Linux內建不同)</h4>
+<table>
+<tr>
+<td bgcolor="0000FF">
+<font color=white>請到Host-XX的"AD使用者和電腦"啟用対応的使用者帳戶</font>
+</td>
+</tr>
+</table>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">u=<span class="string">&quot;Feusr&quot;</span></span><br><span class="line">p=<span class="string">&quot;Fedora@2020&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(<span class="built_in">seq</span> -f <span class="string">&quot;%02g&quot;</span> 1 1 50)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> -ne <span class="string">&quot;<span class="variable">$p</span>\n<span class="variable">$p</span>\n&quot;</span> | smbpasswd -a -s $u<span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h3 id="啟用samba">7-2-4 啟用samba</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# systemctl enable --now smb</span><br><span class="line">Created symlink /etc/systemd/system/multi-user.target.wants/smb.service → /usr/lib/systemd/system/smb.service.</span><br><span class="line">[root@Linx-10 ~]# systemctl enable --now nmb</span><br><span class="line">Created symlink /etc/systemd/system/multi-user.target.wants/nmb.service → /usr/lib/systemd/system/nmb.service.</span><br></pre></td></tr></table></figure>
+<h3 id="防火牆和selinux">7-2-5 防火牆和SELinux</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# sudo firewall-cmd --add-service=samba --permanent</span><br><span class="line">[root@Linx-10 ~]# sudo firewall-cmd --reload</span><br><span class="line">[root@Linx-10 ~]# sudo semanage fcontext --add --type public_content_rw_t &quot;/shared(/.*)?&quot;</span><br><span class="line">[root@Linx-10 ~]# groupadd public_readonly</span><br><span class="line">[root@Linx-10 ~]# groupadd public_readwrite</span><br><span class="line">[root@Linx-10 ~]# getent group public_readonly public_readwrite</span><br></pre></td></tr></table></figure>
+<h2 id="iptablesnftables防火牆">08 iptables(Nftables)防火牆</h2>
+<h3 id="関閉firewalld">8-1 関閉firewalld</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# systemctl stop firewalld</span><br><span class="line">[root@Linx-10 ~]# systemctl disable firewalld</span><br><span class="line">[root@Linx-10 ~]# systemctl mask --now firewalld</span><br></pre></td></tr></table></figure>
+<h3 id="設定iptables-nft清除且輸出目前的規則">8-2
+設定iptables-nft清除且輸出目前的規則</h3>
+<h4 id="清除">清除</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# iptables-nft -F</span><br><span class="line">[root@Linx-10 ~]# iptables-nft -X</span><br><span class="line">[root@Linx-10 ~]# iptables-nft -Z</span><br></pre></td></tr></table></figure>
+<h4 id="輸出目前的規則">輸出目前的規則</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# iptables-nft -nL</span><br><span class="line">Chain INPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination     </span><br><span class="line"></span><br><span class="line">Chain FORWARD (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination   </span><br><span class="line"></span><br><span class="line">Chain OUTPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br></pre></td></tr></table></figure>
+<h3 id="建立対応的防火牆規則">8-3 建立対応的防火牆規則</h3>
+<h4 id="input-chain-drop">INPUT Chain = DROP</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# iptables-nft -P INPUT DROP</span><br><span class="line">[root@Linx-10 ~]# iptables-nft -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h4 id="建立準備開放連線的連結埠">建立準備開放連線的連結埠</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# iptables-nft -A INPUT -p tcp --dport 443 -j ACCEPT</span><br><span class="line">[root@Linx-10 ~]# iptables-nft -A INPUT -p tcp --dport 2224 -j ACCEPT</span><br><span class="line">[root@Linx-10 ~]# iptables-nft -A INPUT -p udp --dport 137 -j ACCEPT</span><br><span class="line">[root@Linx-10 ~]# iptables-nft -A INPUT -p udp --dport 138 -j ACCEPT</span><br><span class="line">[root@Linx-10 ~]# iptables-nft -A INPUT -p tcp --dport 139 -j ACCEPT</span><br><span class="line">[root@Linx-10 ~]# iptables-nft -A INPUT -p tcp --dport 445 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h5 id="檢視己建立的規則">檢視己建立的規則</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# iptables-nft -nL</span><br><span class="line">Chain INPUT (policy DROP)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:443</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:2224</span><br><span class="line">ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:137</span><br><span class="line">ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:138</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:139</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:445</span><br><span class="line"></span><br><span class="line">Chain FORWARD (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain OUTPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br></pre></td></tr></table></figure>
+<h3 id="建立規則檔重開自動套用">8-4 建立規則檔(重開自動套用)</h3>
+<ol type="1">
+<li><p>輸出規則檔的內容 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# nft list ruleset</span><br><span class="line">table ip filter &#123;</span><br><span class="line">	chain INPUT &#123;</span><br><span class="line">		type filter hook input priority filter; policy drop;</span><br><span class="line">		ct state related,established counter packets 16 bytes 1008 accept</span><br><span class="line">		meta l4proto tcp tcp dport 443 counter packets 0 bytes 0 accept</span><br><span class="line">		meta l4proto tcp tcp dport 2224 counter packets 0 bytes 0 accept</span><br><span class="line">		meta l4proto udp udp dport 137 counter packets 0 bytes 0 accept</span><br><span class="line">		meta l4proto udp udp dport 138 counter packets 4 bytes 935 accept</span><br><span class="line">		meta l4proto udp udp dport 139 counter packets 0 bytes 0 accept</span><br><span class="line">		meta l4proto tcp tcp dport 139 counter packets 0 bytes 0 accept</span><br><span class="line">		meta l4proto tcp tcp dport 445 counter packets 0 bytes 0 accept</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<li><p>請另存成"linx.nft":
+<code>[root@Linx-10 ~]# nano /etc/nftables/linx.nft</code></p></li>
+<li><p>在nftables設定檔加入要加戴的規則檔 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# nano /etc/sysconfig/nftables.conf</span><br><span class="line">include  &quot;/etc/nftables/linx.nft&quot;</span><br></pre></td></tr></table></figure></p></li>
+<li><p>啟動Nftables且重新啟動 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@Linx-10 ~]# systemctl enable --now nftables</span><br><span class="line">Created symlink /etc/systemd/system/multi-user.target.wants/nftables.service → /usr/lib/systemd/system/nftables.service.</span><br><span class="line">[root@Linx-10 ~]# reboot</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<h2 id="ref">REF</h2>
+<ul>
+<li>http://n.sfs.tw/content/index/10747</li>
+<li>http://linux.vbird.org/linux_server/0360apache.php</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>工科賽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>108工科賽主機設定-vGate-xx(Fedora_2)</title>
+    <url>/2023/09/16/linux-base2In108/</url>
+    <content><![CDATA[<h2 id="前提">00前提</h2>
+<ul>
+<li>DNS請求部分
+<ul>
+<li>內部 DNS 請求轉送至 <code>Host-xx</code></li>
+<li>外部 DNS 請求則自行建立 <code>nhssc2019.edu</code>
+之解析，並新增一條 A 紀錄供 <code>www</code> 網頁使用</li>
+</ul></li>
+<li>設定 NAT 及必要的 Port
+Forwarding，使內部使用者可以正常與外部電腦通訊，外部使用者可正確瀏覽網頁內容</li>
+</ul>
+<span id="more"></span>
+<h2 id="firewalld防火牆設定">01 Firewalld(防火牆)設定</h2>
+<h3 id="設定">設定</h3>
+<ol type="1">
+<li>網卡指向区域設定
+<ul>
+<li>Eth0:<code>internal</code>(対內) <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# nmcli connection modify Eth0 connection.zone internal</span><br></pre></td></tr></table></figure></li>
+<li>Eth1:<code>external</code>(対外) <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# nmcli connection modify Eth1 connection.zone external</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li>転送設定 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# firewall-cmd --zone=external --permanent --add-masquerade</span><br><span class="line">//允許対外的固定ip位置可以連到192.168.x.1</span><br><span class="line">[root@localhost ~]# firewall-cmd --zone=external --permanent --add-forward-port=port=80:proto=tcp:toaddr=192.168.x.1</span><br></pre></td></tr></table></figure></li>
+<li>通過服務設定
+<ul>
+<li>允許対外能用內部的dns服務 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# firewall-cmd --zone=external --permanent --add-service=dns</span><br></pre></td></tr></table></figure></li>
+<li>不允許対外能用內部的ssh服務 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# firewall-cmd --zone=external --permanent --remove-service=ssh</span><br></pre></td></tr></table></figure></li>
+<li>檢視対外能連或拒絕連進內部的服務 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# firewall-cmd --zone=external --permanent --list-service</span><br></pre></td></tr></table></figure></li>
+<li>允許対內能用內部的dns服務 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# firewall-cmd --zone=internal --permanent --add-service=dns</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li>firewalld重新生效:
+<code>[root@localhost ~]# firewall-cmd --reload</code></li>
+</ol>
+<h3 id="檢視">檢視</h3>
+<ul>
+<li>檢視指向区域所能通過或不能通過的服務 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># firewall-cmd --info-zone=internal</span></span><br><span class="line">[root@localhost ~]<span class="comment"># firewall-cmd --info-zone=external</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="dns服務-dnsmasq">DNS服務-Dnsmasq</h2>
+<h3 id="設定-1">設定</h3>
+<ol type="1">
+<li>在本地的Hosts文件建立內部的解析:
+<code>[root@localhost ~]# nano /etc/hosts</code> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//增加內部的解析</span><br><span class="line">10.19.x.1      www.nhssc2019.edu</span><br><span class="line">192.168.x.1    www.nhssc2019.edu</span><br></pre></td></tr></table></figure></li>
+<li>讓dnsmasq用本地的Hosts的文件:
+<code>[root@localhost ~]# nano /etc/dnsmasq.conf</code>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//使用本地的Hosts</span><br><span class="line">localise-queries</span><br></pre></td></tr></table></figure></li>
+<li>檢查是否正常運作:
+<code>[root@localhost ~]# dnsmasq --test</code></li>
+<li>啟用dnsmasq:
+<code>[root@localhost ~]# systemctl enable --now dnsmasq</code></li>
+<li>檢視dnsmasq的狀態:
+<code>[root@localhost ~]# systemctl status dnsmasq</code></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>工科賽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nodejs-使用swagger快速產生API文件</title>
+    <url>/2023/09/24/node-swagger/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<p>swagger可提供自動化的互動式API文件於網頁上，使相關人員(ex:QA)輕鬆在上面進行測試&amp;查看API的相關參數&amp;路徑。</p>
+<span id="more"></span>
+<h2 id="環境建置">01 環境建置</h2>
+<ol type="1">
+<li>加入到NodeJS專案
+<ul>
+<li>安裝相関套件:
+<code>$ npm install swagger-autogen swagger-jsdoc swagger-ui-express --save</code></li>
+</ul></li>
+<li>請手動或使用<code>swagger-autogen</code>來建立<code>swagger.json</code>等檔案</li>
+<li>在負責express路由中加入如下程式碼 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var swaggerUi = require(&#x27;swagger-ui-express&#x27;);</span><br><span class="line">const swaggerDocument = require(&#x27;./config/swagger.json&#x27;);</span><br><span class="line">...</span><br><span class="line">express.use(&#x27;/docs&#x27;, swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //API Docs</span><br></pre></td></tr></table></figure></li>
+<li>打開<code>http://[IP Address]:[Port]/docs</code>來檢視生成結果</li>
+</ol>
+<h2 id="手動生成文件">02 手動生成文件</h2>
+<ul>
+<li>請手動建立供給swagger呈現的json檔案:
+<code>./config/swagger.json</code> <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">   <span class="attr">&quot;openapi&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;info&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;User API&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Simple RESTful API in Node.js with TypeScript&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;servers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:3000/api&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Local server&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">   <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="把寫好的api功能自動轉成文件">03 把寫好的API功能自動轉成文件</h2>
+<ol type="1">
+<li>建立自動建立的程式: <code>./swaggerAutoGen.js</code>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> const swaggerAutogen = require(&quot;swagger-autogen&quot;)();</span><br><span class="line"></span><br><span class="line"> /*需加入定義的API路由規則*/</span><br><span class="line"> const file1=&quot;./rules/crawler.js&quot;;</span><br><span class="line"> const file2=&quot;./rules/sensor.js&quot;;</span><br><span class="line"> const file3=&quot;./rules/test.js&quot;;</span><br><span class="line"> const file4=&quot;./rules/users.js&quot;;</span><br><span class="line"> const file5=&quot;./rules/switch.js&quot;;</span><br><span class="line"> const file6=&quot;./rules/customValue.js&quot;;</span><br><span class="line"> const file7=&quot;./rules/mqttPub.js&quot;;</span><br><span class="line"></span><br><span class="line">/*文件內部的相關說明*/</span><br><span class="line">const doc = &#123;</span><br><span class="line">    info: &#123;</span><br><span class="line">    &quot;version&quot;: &quot;1.0.5&quot;,</span><br><span class="line">    &quot;title&quot;: &quot;REST API Test Docs&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;該文件可提供在該專案中所需提供的功能&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    host: &#x27;localhost:3095&#x27;,</span><br><span class="line">    basePath: &quot;/&quot;,</span><br><span class="line">    schemes: [</span><br><span class="line">      &quot;http&quot;</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/*輸出對應文件*/</span><br><span class="line">const endpointsFiles = [file1,file2,file3,file4,file5,file6,file7];</span><br><span class="line">const outputFile = &quot;./modules/config/swagger.json&quot;; // 輸出的生成結果</span><br><span class="line">swaggerAutogen(outputFile, endpointsFiles,doc); </span><br></pre></td></tr></table></figure></li>
+<li>加入指定啟動的指令到<code>package.json</code>的scrpits
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node --max-semi-space-size=128 index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;swagger-autogen&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node ./tools/swagger.js&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure></li>
+<li>自動生成: <code>$ npm run swagger-autogen</code></li>
+</ol>
+<h2 id="ref">REF</h2>
+<ul>
+<li>https://jimmyswebnote.com/swagger-node-js-tutorial/</li>
+<li>https://jasmine880809.medium.com/swagger-%E8%87%AA%E5%8B%95%E7%94%A2%E7%94%9Fapi%E6%96%87%E4%BB%B6-node-js-%E5%AF%A6%E4%BD%9C-e39f2bde57ce</li>
+<li>https://israynotarray.com/nodejs/20201229/1974873838/</li>
+<li><a
+href="https://www.youtube.com/watch?v=L-MYeWFpXWE">開發同時附加文檔｜Node.js
+Swagger API 文件建置｜六角學院｜2023 鐵人賽 #5</a> <div class="video-container"><iframe src="https://www.youtube.com/embed/L-MYeWFpXWE" frameborder="0" loading="lazy" allowfullscreen></iframe></div></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>API</tag>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows-大量新增使用者且加入群組</title>
+    <url>/2023/09/16/windowsServer-base1In109/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<p>若不想要手動一個個進行建立使用者，則可選擇寫一個批次檔來處理大量建立使用者的部分。</p>
+<table>
+<tr>
+<td bgcolor="0000FF">
+<font color=white>請先建好相對的群組:ITGroups,RDGroups,FeGroups</font>
+</td>
+</tr>
+</table>
+<span id="more"></span>
+<h2 id="cmdbat">01 cmd+bat</h2>
+<h3 id="建立批次檔">1-1 建立批次檔</h3>
+<ul>
+<li>IT.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=IT0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid IT0<span class="variable">%%a</span> -email IT0<span class="variable">%%a</span>@sivs2020.edu -pwd IT@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">10</span>) <span class="keyword">do</span> dsadd user &quot;cn=IT<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid IT<span class="variable">%%a</span> -email IT<span class="variable">%%a</span>@sivs2020.edu -pwd IT@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
+<li>RD.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=RD0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid RD0<span class="variable">%%a</span> -email RD0<span class="variable">%%a</span>@sivs2020.edu -pwd <span class="built_in">RD</span>@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">50</span>) <span class="keyword">do</span> dsadd user &quot;cn=<span class="built_in">RD</span><span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid <span class="built_in">RD</span><span class="variable">%%a</span> -email <span class="built_in">RD</span><span class="variable">%%a</span>@sivs2020.edu -pwd <span class="built_in">RD</span>@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
+<li>Feusr.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=Feusr0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid Feusr0<span class="variable">%%a</span> -email Feusr0<span class="variable">%%a</span>@sivs2020.edu -pwd Fedora@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">50</span>) <span class="keyword">do</span> dsadd user &quot;cn=Feusr<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid Feusr<span class="variable">%%a</span> -email Feusr<span class="variable">%%a</span>@sivs2020.edu -pwd Fedora@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="powershell">02 powershell</h2>
+<h3 id="建立批次檔-1">2-1 建立批次檔</h3>
+<ul>
+<li>IT.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;IT&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;IT@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;ITGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">10</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>RD.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;RD&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;RD@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;RDGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">50</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Feusr.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;Feusr&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;Fedora@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;FeGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">50</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="運行">2-2 運行</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:&gt; powershell -executionpolicy bypass -file IT.ps1</span><br><span class="line">PS D:&gt; powershell -executionpolicy bypass -file RD.ps1</span><br><span class="line">PS D:&gt; powershell -executionpolicy bypass -file Feusr.ps1</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+        <tag>工科賽</tag>
+        <tag>Windows Server</tag>
       </tags>
   </entry>
 </search>
