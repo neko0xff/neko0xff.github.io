@@ -70,64 +70,6 @@ data-cites="stanley2058/ryULFm57D">@stanley2058/ryULFm57D</span></li>
       </tags>
   </entry>
   <entry>
-    <title>軟體開發-小黃鴨除錯法(Rubber Duck Debugging)</title>
-    <url>/2023/09/10/Rubber-Duck-Debugging/</url>
-    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
-<p>小黃鴨除錯法(Rubber Duck
-Debugging)是指在程式的除錯/測試過程中，<font color=red>耐心的向小黃鴨</font>解釋每一行程式的功能，以此來激發靈感&amp;發現自己的矛盾。</p>
-<span id="more"></span>
-<h2 id="線索的查找方式">01 線索的查找方式</h2>
-<p>當問題出現時，則可從幾個角度來看待</p>
-<ul>
-<li>發問人
-<ol type="1">
-<li>如果使用了別人的範例來修改，再思考是否比對過自己修改的是否和原本的有差異或漏寫</li>
-<li>若確認過無問題，可直接說「我每一個部分都確認過無問題且無漏寫」，至少可幫自己減少或者排除一個可能的情況。
-<table>
-<tr>
-<td bgcolor="#C0FF3E">
-懶的把問題說清楚明白 == 浪費雙方時間
-</td>
-</tr>
-</table></li>
-</ol></li>
-<li>解釋人
-<ul>
-<li>環境問題:
-當解釋人不在發問人旁邊時，只能不斷的猜問題&amp;提供可能的線索(不好處理)</li>
-<li>關鍵字等同於除錯過程所輸出的記錄，且是一個很重要且很有幫助的線索
-<table>
-<tr>
-<td bgcolor="#C0FF3E">
-試者「自己解釋問題」往往可以釐清問題=&gt;找出線索=&gt;自行求解
-</td>
-</tr>
-</table></li>
-</ul></li>
-</ul>
-<h2 id="結論">02 結論</h2>
-<ul>
-<li>問題模糊不清=&gt; 距離<font color=red>答案</font>越遙遠
-<ul>
-<li>如何把<font color=red>問題</font>問清楚?</li>
-<li>問題的<font color=red>關鍵字</font></li>
-</ul></li>
-<li>不發問 == 無答案</li>
-</ul>
-<h2 id="ref">REF</h2>
-<h3 id="黃色小鴨除錯法---程式初學者-必要的修練mis2000lab">黃色小鴨除錯法
-- 程式初學者 必要的修練,mis2000lab</h3>
-<ul>
-<li>https://dotblogs.com.tw/mis2000lab/2023/05/01/Rubber_Duck_Debugging_20230501</li>
-<li>相關影片: https://www.youtube.com/watch?v=ku61dWC5VvI
-<div class="video-container"><iframe src="https://www.youtube.com/embed/ku61dWC5VvI" frameborder="0" loading="lazy" allowfullscreen></iframe></div></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>軟體開發</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Arch-如何使用AUR(Arch User Repository)上套件包</title>
     <url>/2023/09/10/arch-AUR/</url>
     <content><![CDATA[<h2 id="緒論">00 緒論</h2>
@@ -907,20 +849,20 @@ Address</h2>
       </tags>
   </entry>
   <entry>
-    <title>nodejs-使用swagger快速產生API文件</title>
+    <title>node-使用swagger快速產生API文件</title>
     <url>/2023/09/24/node-swagger/</url>
     <content><![CDATA[<h2 id="緒論">00 緒論</h2>
 <p>swagger可提供自動化的互動式API文件於網頁上，使相關人員(ex:QA)輕鬆在上面進行測試&amp;查看API的相關參數&amp;路徑。</p>
 <span id="more"></span>
 <h2 id="環境建置">01 環境建置</h2>
 <ol type="1">
-<li>加入到NodeJS專案
+<li>加入到Node專案
 <ul>
 <li>安裝相関套件:
 <code>$ npm install swagger-autogen swagger-jsdoc swagger-ui-express --save</code></li>
 </ul></li>
 <li>請手動或使用<code>swagger-autogen</code>來建立<code>swagger.json</code>等檔案</li>
-<li>在負責express路由中加入如下程式碼 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var swaggerUi = require(&#x27;swagger-ui-express&#x27;);</span><br><span class="line">const swaggerDocument = require(&#x27;./config/swagger.json&#x27;);</span><br><span class="line">...</span><br><span class="line">express.use(&#x27;/docs&#x27;, swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //API Docs</span><br></pre></td></tr></table></figure></li>
+<li>在負責express路由中加入如下程式碼 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> swaggerUi = <span class="built_in">require</span>(<span class="string">&#x27;swagger-ui-express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> swaggerDocument = <span class="built_in">require</span>(<span class="string">&#x27;./config/swagger.json&#x27;</span>);</span><br><span class="line">...</span><br><span class="line">express.<span class="title function_">use</span>(<span class="string">&#x27;/docs&#x27;</span>, swaggerUi.<span class="property">serve</span>, swaggerUi.<span class="title function_">setup</span>(swaggerDocument)); <span class="comment">//API Docs</span></span><br></pre></td></tr></table></figure></li>
 <li>打開<code>http://[IP Address]:[Port]/docs</code>來檢視生成結果</li>
 </ol>
 <h2 id="手動生成文件">02 手動生成文件</h2>
@@ -931,7 +873,7 @@ Address</h2>
 <h2 id="把寫好的api功能自動轉成文件">03 把寫好的API功能自動轉成文件</h2>
 <ol type="1">
 <li>建立自動建立的程式: <code>./swaggerAutoGen.js</code>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> const swaggerAutogen = require(&quot;swagger-autogen&quot;)();</span><br><span class="line"></span><br><span class="line"> /*需加入定義的API路由規則*/</span><br><span class="line"> const file1=&quot;./rules/crawler.js&quot;;</span><br><span class="line"> const file2=&quot;./rules/sensor.js&quot;;</span><br><span class="line"> const file3=&quot;./rules/test.js&quot;;</span><br><span class="line"> const file4=&quot;./rules/users.js&quot;;</span><br><span class="line"> const file5=&quot;./rules/switch.js&quot;;</span><br><span class="line"> const file6=&quot;./rules/customValue.js&quot;;</span><br><span class="line"> const file7=&quot;./rules/mqttPub.js&quot;;</span><br><span class="line"></span><br><span class="line">/*文件內部的相關說明*/</span><br><span class="line">const doc = &#123;</span><br><span class="line">    info: &#123;</span><br><span class="line">    &quot;version&quot;: &quot;1.0.5&quot;,</span><br><span class="line">    &quot;title&quot;: &quot;REST API Test Docs&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;該文件可提供在該專案中所需提供的功能&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    host: &#x27;localhost:3095&#x27;,</span><br><span class="line">    basePath: &quot;/&quot;,</span><br><span class="line">    schemes: [</span><br><span class="line">      &quot;http&quot;</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/*輸出對應文件*/</span><br><span class="line">const endpointsFiles = [file1,file2,file3,file4,file5,file6,file7];</span><br><span class="line">const outputFile = &quot;./modules/config/swagger.json&quot;; // 輸出的生成結果</span><br><span class="line">swaggerAutogen(outputFile, endpointsFiles,doc); </span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">const</span> swaggerAutogen = <span class="built_in">require</span>(<span class="string">&quot;swagger-autogen&quot;</span>)();</span><br><span class="line"></span><br><span class="line"> <span class="comment">/*需加入定義的API路由規則*/</span></span><br><span class="line"> <span class="keyword">const</span> file1=<span class="string">&quot;./rules/crawler.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file2=<span class="string">&quot;./rules/sensor.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file3=<span class="string">&quot;./rules/test.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file4=<span class="string">&quot;./rules/users.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file5=<span class="string">&quot;./rules/switch.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file6=<span class="string">&quot;./rules/customValue.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file7=<span class="string">&quot;./rules/mqttPub.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*文件內部的相關說明*/</span></span><br><span class="line"><span class="keyword">const</span> doc = &#123;</span><br><span class="line">    <span class="attr">info</span>: &#123;</span><br><span class="line">    <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;REST API Test Docs&quot;</span>,</span><br><span class="line">    <span class="string">&quot;description&quot;</span>: <span class="string">&quot;該文件可提供在該專案中所需提供的功能&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">host</span>: <span class="string">&#x27;localhost:3095&#x27;</span>,</span><br><span class="line">    <span class="attr">basePath</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">schemes</span>: [</span><br><span class="line">      <span class="string">&quot;http&quot;</span></span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*輸出對應文件*/</span></span><br><span class="line"><span class="keyword">const</span> endpointsFiles = [file1,file2,file3,file4,file5,file6,file7];</span><br><span class="line"><span class="keyword">const</span> outputFile = <span class="string">&quot;./modules/config/swagger.json&quot;</span>; <span class="comment">// 輸出的生成結果</span></span><br><span class="line"><span class="title function_">swaggerAutogen</span>(outputFile, endpointsFiles,doc); </span><br></pre></td></tr></table></figure></li>
 <li>加入指定啟動的指令到<code>package.json</code>的scrpits
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node --max-semi-space-size=128 index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;swagger-autogen&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node ./tools/swagger.js&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure></li>
 <li>自動生成: <code>$ npm run swagger-autogen</code></li>
@@ -948,7 +890,6 @@ Swagger API 文件建置｜六角學院｜2023 鐵人賽 #5</a> <div class="vide
 ]]></content>
       <tags>
         <tag>node</tag>
-        <tag>API</tag>
       </tags>
   </entry>
   <entry>
@@ -1146,8 +1087,533 @@ href="https://aur.archlinux.org/packages/podman-desktop">AUR</a></li>
       </tags>
   </entry>
   <entry>
+    <title>Windows-大量新增使用者且加入群組</title>
+    <url>/2023/09/16/windowsServer-base1In109/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<p>若不想要手動一個個進行建立使用者，則可選擇寫一個批次檔來處理大量建立使用者的部分。</p>
+<table>
+<tr>
+<td bgcolor="0000FF">
+<font color=white>請先建好相對的群組:ITGroups,RDGroups,FeGroups</font>
+</td>
+</tr>
+</table>
+<span id="more"></span>
+<h2 id="cmdbat">01 cmd+bat</h2>
+<h3 id="建立批次檔">1-1 建立批次檔</h3>
+<ul>
+<li>IT.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=IT0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid IT0<span class="variable">%%a</span> -email IT0<span class="variable">%%a</span>@sivs2020.edu -pwd IT@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">10</span>) <span class="keyword">do</span> dsadd user &quot;cn=IT<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid IT<span class="variable">%%a</span> -email IT<span class="variable">%%a</span>@sivs2020.edu -pwd IT@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
+<li>RD.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=RD0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid RD0<span class="variable">%%a</span> -email RD0<span class="variable">%%a</span>@sivs2020.edu -pwd <span class="built_in">RD</span>@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">50</span>) <span class="keyword">do</span> dsadd user &quot;cn=<span class="built_in">RD</span><span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid <span class="built_in">RD</span><span class="variable">%%a</span> -email <span class="built_in">RD</span><span class="variable">%%a</span>@sivs2020.edu -pwd <span class="built_in">RD</span>@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
+<li>Feusr.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=Feusr0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid Feusr0<span class="variable">%%a</span> -email Feusr0<span class="variable">%%a</span>@sivs2020.edu -pwd Fedora@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">50</span>) <span class="keyword">do</span> dsadd user &quot;cn=Feusr<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid Feusr<span class="variable">%%a</span> -email Feusr<span class="variable">%%a</span>@sivs2020.edu -pwd Fedora@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="powershell">02 powershell</h2>
+<h3 id="建立批次檔-1">2-1 建立批次檔</h3>
+<ul>
+<li>IT.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;IT&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;IT@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;ITGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">10</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>RD.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;RD&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;RD@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;RDGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">50</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Feusr.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;Feusr&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;Fedora@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;FeGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">50</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="運行">2-2 運行</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:&gt; powershell -executionpolicy bypass -file IT.ps1</span><br><span class="line">PS D:&gt; powershell -executionpolicy bypass -file RD.ps1</span><br><span class="line">PS D:&gt; powershell -executionpolicy bypass -file Feusr.ps1</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>工科賽</tag>
+        <tag>Windows</tag>
+        <tag>Windows Server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ESPif-D1 Mini(ESP8266)+MicroPython筆記</title>
+    <url>/2023/10/08/ESPif-D1miniAndMicroPython/</url>
+    <content><![CDATA[<h2 id="安裝thonny">01 安裝Thonny</h2>
+<ol type="1">
+<li>安裝相関套件 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[zangmenhsu@E1304 ~]$ sudo pacman -S tk python-pip</span><br><span class="line">[zangmenhsu@E1304 ~]$ sudo pip3 install thonny</span><br></pre></td></tr></table></figure></li>
+<li>加入用Thonny連結自己板子連結埠的權限 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[zangmenhsu@E1304 ~]$ sudo nano /etc/udev/rules.d/70-ttyusb.rules</span><br><span class="line">KERNEL==&quot;ttyUSB[0-9]*&quot;,MODE=&quot;0666&quot;</span><br></pre></td></tr></table></figure></li>
+<li>請重啟系統</li>
+</ol>
+<span id="more"></span>
+<h2 id="手動查找自己的d1-mini">02 手動查找自己的D1 Mini</h2>
+<ul>
+<li>Windows: <code>COM*</code></li>
+<li>Linux: <code>/dev/ttyUSB*</code> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[zangmenhsu@E1304 ~]$ ls -l /dev/tty*</span><br><span class="line">crw-rw-rw- 1 root tty    5,  0  5月  8 13:29 /dev/tty</span><br><span class="line">....</span><br><span class="line">crw-rw---- 1 root uucp 188,  0  5月  8 13:43 /dev/ttyUSB0 //自己的板子的連結埠</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="使用串列通訊來連結自己板子">03 使用串列通訊來連結自己板子</h2>
+<h3 id="windows">Windows</h3>
+<p>會比較建議安裝<a href="https://www.putty.org/">PuTTY</a></p>
+<ul>
+<li>使用方式
+<ol type="1">
+<li>選擇<code>Serial</code></li>
+<li>輸入用來連結的通訊埠</li>
+<li>輸入通訊頻率</li>
+<li>再按下<code>Open</code></li>
+</ol></li>
+</ul>
+<h3 id="linux">Linux</h3>
+<ul>
+<li>相關軟體: screen
+<ul>
+<li>Arch: <code>$ sudo pacman -S screen</code></li>
+<li>Debian/Ubuntu: <code>$sudo apt install screen -y</code></li>
+<li>Fedora: <code>sudo dnf install screen -y</code></li>
+</ul></li>
+<li>使用方式: <code>screen 自己的板子的連結埠 通訊頻率</code>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[zangmenhsu@E1304 ~]$ screen /dev/ttyUSB0 115200</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="在終端下的動作">在終端下的動作</h3>
+<ul>
+<li><code>CTRL-D</code>: 直接重啟esp8266</li>
+<li><code>CTRL-B</code>: 離開終端模式</li>
+</ul>
+<h2 id="燒錄軔体">04 燒錄軔体</h2>
+<h3 id="安裝燒錄工具">安裝燒錄工具</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[zangmenhsu@E1304 ~]$ sudo pip3 install esptool</span><br></pre></td></tr></table></figure>
+<h3 id="燒錄軔体-1">燒錄軔体</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[zangmenhsu@E1304 ~]$ sudo esptool.py --port 連結埠 --baud 115200 write_flash --flash_size=detect -fm dio 0 軔体檔.bin</span><br></pre></td></tr></table></figure>
+<h2 id="上伝程式到esp8266">05 上伝程式到ESP8266</h2>
+<h3 id="安裝">安裝</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[zangmenhsu@E1304 ~]$ sudo pip3 install adafruit-ampy</span><br></pre></td></tr></table></figure>
+<h3 id="運行">運行</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[zangmenhsu@E1304 17-3]$ sudo ampy --port (你的板子連結埠) (指令) (檔案)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>相關指令
+<ul>
+<li>run : 立即運行</li>
+<li>put : 上伝到板子上</li>
+<li>ls : 列出板子上的檔案</li>
+<li>get : 檢視檔案上的內容或下戴到電腦(請在最後加上檔案路徑和檔名)</li>
+<li>rm : 刪掉板子上的檔案</li>
+</ul></li>
+</ul>
+<h2 id="ref">Ref</h2>
+<ul>
+<li>Getting started with the D1 mini (ESP8266)
+<ul>
+<li>https://gist.github.com/carljdp/e6a3f5a11edea63c2c14312b534f4e53</li>
+</ul></li>
+<li>https://github.com/thonny/thonny/issues/511</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ESPif</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ESPif-ESP32-CAM上手&amp;使用方式</title>
+    <url>/2023/10/08/ESPif-ESP32CAN/</url>
+    <content><![CDATA[<h2 id="datasheet">DataSheet</h2>
+<p><img src="https://i.imgur.com/udwjI57.png%20=50%x" /></p>
+<span id="more"></span>
+<h2 id="設置環境">設置環境</h2>
+<h3 id="所需部分">所需部分</h3>
+<ul>
+<li>Arduino IDE</li>
+<li>ESP32 函式庫</li>
+</ul>
+<h3 id="匯入函式庫來源">匯入函式庫來源</h3>
+<ol type="1">
+<li>開啟Arduino IDE後，選擇功能表的檔案/偏好設定，開啟偏好設定視窗</li>
+<li>在偏好設定視窗中下方的額外開發板管理員輸入以下網址後，按確定。
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://dl.espressif.com/dl/package_esp32_index.json</span><br></pre></td></tr></table></figure> <img src="https://i.imgur.com/kS8ghSc.png" /></li>
+</ol>
+<h3 id="下戴函式庫">下戴函式庫</h3>
+<ol type="1">
+<li>點選工具/開發板/開發板管理員，即會出現開發板管理員視窗</li>
+<li>在開發板管理員視窗中，輸入關鍵字ESP32後，即可篩選出ESP32核心套件</li>
+<li>直接點選右側的安裝按鈕，並等候5~10分鐘讓系統下載核心套件並完成安裝，最後再關閉開發板管理員視窗
+<img src="https://i.imgur.com/cbdQd9j.png" /></li>
+</ol>
+<h2 id="檢視是否連結">檢視是否連結</h2>
+<ul>
+<li>Windows(COMx): "裝置管理員/連結埠(<code>COM*</code>)"</li>
+<li>Linux/macOS(ttyUSB0): <code>ls /dev/tty*</code> <img
+src="https://i.imgur.com/JeDburH.png" /></li>
+</ul>
+<h2 id="燒錄">燒錄</h2>
+<ul>
+<li>方式:USB転TTL(CH340)串列通訊
+<ul>
+<li>連結接點
+<ol type="1">
+<li>TX(綠) =&gt; <code>GPIO3</code></li>
+<li>RX(白) =&gt; <code>GPIO1</code></li>
+<li>5V(紅) =&gt; <code>5V</code></li>
+<li>GND(黑) =&gt; <code>GND</code> <img
+src="https://i.imgur.com/S3IWXKA.png" /></li>
+</ol></li>
+</ul></li>
+<li>燒錄模式
+<ul>
+<li>進入燒錄模式: <code>IO0</code>+<code>GND</code></li>
+<li>離開燒錄模式:
+把<code>IO0</code>或<code>GND</code>其中一條拔掉且按下restart <img
+src="https://i.imgur.com/xXeNRUV.jpg" /></li>
+</ul></li>
+<li>在Arduino IDE的版子設置
+<ul>
+<li>Board: “ESP32 Wrover Module”</li>
+<li>Upload Speed: “921600”</li>
+<li>Flash Frequency: “80MHz”</li>
+<li>Partition Scheme: “Huge APP (3MB No OTA/1MB SPIFFS)”</li>
+<li>Core Debug Level: “None”</li>
+</ul></li>
+</ul>
+<h2 id="source">source</h2>
+<ul>
+<li>https://makerpro.cc/2020/06/how-to-install-and-configure-esp32-development-environment/</li>
+<li>https://hackmd.io/<span class="citation"
+data-cites="LHB-0222/Blynk_ESP32-Canm">@LHB-0222/Blynk_ESP32-Canm</span></li>
+<li>https://github.com/raphaelbs/esp32-cam-ai-thinker/blob/master/assets/ESP32-CAM_Product_Specification.pdf</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ESPif</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Server-虛擬化的介紹&amp;主流方案</title>
+    <url>/2023/10/13/Server-Hypervisor/</url>
+    <content><![CDATA[<h2 id="何為虛擬化">00 何為虛擬化？</h2>
+<h3 id="運作方式">運作方式</h3>
+<ol type="1">
+<li>先在宿主主機上模擬出一個接近實體的環境</li>
+<li>讓程式在不同硬體上執行時，都以為自己本身在同一個原始環境中執行 ###
+可能會遇到的問題
+由於每台機器的環境不同而寫好的程式可能剛好跟開發者的電腦上的環境相容或者不相容，可能需要有多個不同的測試環境(ex:相容性測試)來進行測試。</li>
+</ol>
+<p>其中會碰到的一些變因，進而需要一個不需花時間進行調整就能立即開箱即用的環境。</p>
+<ul>
+<li>變因
+<ul>
+<li>軟體: 不同作業系統的設置會有所不同(ex: Linux發行版)
+<ul>
+<li>環境變數</li>
+<li>軟體和函式庫(ex: Python,Node,PHP,...)</li>
+<li>系統設定(ex: 套件管理)</li>
+</ul></li>
+<li>硬體: 每台電腦規格都不同
+<ul>
+<li>CPU: 架構&amp;核心數</li>
+<li>RAM: 服務運行所需的占用量</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="特點">特點</h3>
+<ul>
+<li>降低資訊系統建置&amp;維護成本
+<ul>
+<li>人力
+<ol type="1">
+<li>可預先建立好己安裝好相關服務的模版，等到要建置新的服務時，則可復制一份進行需要的設定再進行佈署</li>
+<li>不用擔心某一台實體主機硬體的故障，而導致整個系統掛掉</li>
+<li>可進行集中管理:
+簡化管理複雜度與提高管理彈性，同時提升系統可用性</li>
+</ol></li>
+<li>硬體
+<ul>
+<li>減少需要的實體主機數量，節省採購成本</li>
+<li>減少多台主機的用電量，同時達成節能減碳的目標</li>
+<li>可使用P2V(實體機轉虛擬機)技術來解決無法升級老舊系統硬體&amp;軟體的問題，同時提升系統穩定性
+<span id="more"></span></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="日常中經常使用的種類">01 日常中經常使用的種類</h2>
+<ul>
+<li>祼機(Bare-Metal):
+在實體主機開機後,記憶體載入作業系統和相關服務，並且開始消耗CPU&amp;記憶體等系統硬體資源
+<ul>
+<li>活/死定義
+<ul>
+<li>活: 電源<font color=red>打開</font></li>
+<li>死: 電源關閉 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">   電源打開 --&gt; 戴入資源 --&gt; 消耗資源 --&gt; 電源關閉</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
+<li>虛擬機器(VM):
+從虛擬機器管理器(Hypervisor)分配到資源(CPU，記憶體)後，才會開始真正消耗實體伺服器的系統資源
+<ul>
+<li>活/死定義
+<ul>
+<li>活: 啟用後，<font color=red>開始</font>消耗</li>
+<li>死: 關閉後，停止消耗 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">   資源分配 --&gt; 啟用服務 --&gt; 停用服務</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
+<li>容器(Container): 容器從映像檔創建且正式執行後,才開始消耗系統資源
+<ul>
+<li>活/死定義
+<ul>
+<li>活: 創建/執行時</li>
+<li>死: 刪除/停止時</li>
+</ul></li>
+<li>存在定義
+<ul>
+<li>執行前:
+容器根本不存在於本機或者平台上，所以不會有活著或死掉的問題</li>
+<li>執行後: 容器才會誕生且存在於本機 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">   建立容器 --&gt; 啟用服務 --&gt; 停用服務&amp;容器 --&gt; 拾棄容器</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="vm虛擬機器-vs-container容器">02 VM(虛擬機器) vs
+Container(容器)</h2>
+<p><img src="https://i.imgur.com/WrvRUTd.png" /></p>
+<h3 id="virtual-machinevm虛擬機器">Virtual Machine(VM,虛擬機器)</h3>
+<p>在<font color=red>系統層</font>上虛擬化: 在本機作業系統(Host
+OS)上再裝一個獨立運行於本機的作業系統(Guest
+OS)，然後讓兩個作業系統彼此不會因環境不同而不相容。</p>
+<ul>
+<li>目標:
+將一個應用程式所需的執行環境打包起來，建立一個獨立環境，方便在不同的硬體中移動</li>
+<li>特點: 完全把系統的硬體資源隔離
+<ul>
+<li>優: 由於硬體資源己經完全隔離，相對資料保護的安全性高</li>
+<li>缺: 需佔用宿主的資源(ex:硬碟&amp;RAM)較多，所以效能會因此而影響</li>
+</ul></li>
+<li>其中的關係
+<ul>
+<li>Host: 需要在VM內裝作業系統(Guest OS)</li>
+<li>Guest OS: 開機需要花一點時間</li>
+</ul></li>
+</ul>
+<h3 id="container容器">Container(容器)</h3>
+<p>在<font color=red>作業系統層</font>上虛擬化:
+不需額外在容器安裝作業系統（Guest
+OS），而是透過容器管理工具直接將一個應用程式所需的程式碼和函式庫一同打包成容器，且同時建立資源控管機制直接隔離各個容器並分配宿主主機上的系統資源給容器使用。</p>
+<p>同時建立容器時所需的系統資源&amp;開機時間可大幅降低，進而改善虛擬機器因為需要裝
+Guest OS ,而會有啟動慢、佔較多的系統資源的問題。</p>
+<ul>
+<li>目標：提供一個不需自己花時間調整就能開箱即用的環境</li>
+<li>特點: 只需提供容器能運行的環境
+<ul>
+<li>優
+<ol type="1">
+<li>維護流程可大幅簡化:系統管理員只需替換鏡像檔，服務立即重新上線</li>
+<li>可輕易自動化部署: 方便管理多台伺服器</li>
+<li>容器所占用的宿主的資源(ex:硬碟&amp;RAM)可大幅度減少
+<ul>
+<li>使用精簡化的小型OS(ex: Windows nano Server,Ubuntu Core,Fedora Core
+OS)會是未來運行的方向</li>
+</ul></li>
+</ol></li>
+<li>缺
+<ol type="1">
+<li>改一行程式時就得重新建置一次image，除非重建與部署image容易且快速</li>
+<li>替換image時慢又麻煩，除非image部署容易</li>
+<li>只能更新己經產生差異的部分</li>
+<li>由於底層是和宿主OS共用同一個Kernel(隔離性不如VM),相對資料保護的安全性低</li>
+</ol></li>
+</ul></li>
+<li>其中的關係
+<ul>
+<li>Host: 管理&amp;運行本機的容器&amp;映像檔</li>
+<li>Guest
+<ul>
+<li>映像檔(Image):
+直接從<code>Docker Hub</code>或<code>私有的Registry</code>抓取開發者所建置完成的映像檔</li>
+<li>容器(Container):
+使用己抓取的映像檔進行配置,完成後啟動上線的速度比VM快</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="可建置的環境種類">03 可建置的環境種類</h2>
+<p>Docker &amp; VM 不只可單獨使用，也能互相搭配混合使用。</p>
+<ol type="1">
+<li>祼機(Bare-Metal):
+直接在實體伺服器安裝容器平台後，在其上運作數量眾多的容器以便提供應用程式及服務
+<ul>
+<li><a href="https://fedoraproject.org/coreos/">Fedora Core OS</a></li>
+<li><a href="https://ubuntu.com/core">Ubuntu Core</a></li>
+<li><a
+href="https://www.netadmin.com.tw/netadmin/zh-tw/feature/0AD8DFBB99D84786A1D13FCBE577F226">Windows
+Nano Server</a></li>
+<li><a href="https://vmware.github.io/photon/">VMware Photon OS</a></li>
+</ul></li>
+<li>VM平台:
+在實體伺服器建置虛擬主機,以硬體資源隔離的方式提供應用程式及服務
+<ul>
+<li><a
+href="https://www.vmware.com/tw/products/esxi-and-esx.html">VMware
+ESXI</a></li>
+<li>KVM</li>
+<li>Xen</li>
+</ul></li>
+<li>VM+Container混合使用:
+在虛擬主機中建置容器平台運作多個容器，同時提供正式營運所需的應用程式及服務，且能兼顧資料保護的安全性高&amp;效能好等特性
+<img src="https://i.imgur.com/MSFVC3o.png" /></li>
+</ol>
+<h2 id="ref">REF</h2>
+<ul>
+<li>Container的生命週期. (n.d.). 全面易懂的Docker指令大全.
+https://joshhu.gitbooks.io/dockercommands/content/Containers/concepts.html</li>
+<li>在公有雲、傳統主機左右為難？【裸機服務不失為兩全其美選項】. (2022,
+March 1). 數位通國際.
+https://www.easpnet.com/blog/bare-metal-server/</li>
+<li>臺中市政府資訊中心. (2012, May).
+雲端虛擬化平台於臺中市政府資訊中心之建置與應用-第295期(5月).
+政府機關資訊通報.
+https://www.dgbas.gov.tw/public/Data/24301042171.pdf</li>
+<li>花小錢辦大事，打造一台虛空電腦——實戰服務器虛擬化. 無情開評.
+https://www.youtube.com/watch?v=h1oZnncNSRA <div class="video-container"><iframe src="https://www.youtube.com/embed/h1oZnncNSRA" frameborder="0" loading="lazy" allowfullscreen></iframe></div></li>
+<li>王宏仁. (2015, May 15). Docker掀起微服務革命，廠商搶進Container
+OS競賽. IThome. https://www.ithome.com.tw/news/95752</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node-MQTT服務和環境</title>
+    <url>/2023/10/09/node-mqttService/</url>
+    <content><![CDATA[<h2 id="前置">00 前置</h2>
+<p>本文會教使用者用nodejs來建立MQTT所需的環境和功能測試。</p>
+<ul>
+<li>所需的函式庫
+<ul>
+<li>Client: <a href="https://www.npmjs.com/package/mqtt">mqtt.js</a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install mqtt --save</span><br></pre></td></tr></table></figure></li>
+<li>Server: <a href="https://www.npmjs.com/package/aedes">Aedes</a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install aedes --save</span><br></pre></td></tr></table></figure> <span id="more"></span></li>
+</ul></li>
+</ul>
+<h2 id="實做部分">01 實做部分</h2>
+<h3 id="server-mqtt-broker">1-1 Server: MQTT Broker</h3>
+<h4 id="功能">功能</h4>
+<ul>
+<li>主要管理己發布和訂閱的訊息
+<ul>
+<li>運作方式:
+暫時儲存發布者(publisher)的訊息直到下回發布，只要在發布者中斷連線的情況下，就能即時提供訂閱者最近發布的訊息。</li>
+</ul></li>
+</ul>
+<h4 id="程式實作">程式實作</h4>
+<ul>
+<li><code>mqttBroker.js</code> <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="comment">/*MQTT Broker lib*/</span></span><br><span class="line"> <span class="keyword">const</span> aedes = <span class="built_in">require</span>(<span class="string">&#x27;aedes&#x27;</span>)();</span><br><span class="line"> <span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&#x27;net&#x27;</span>).<span class="title function_">createServer</span>(aedes.<span class="property">handle</span>);</span><br><span class="line"> <span class="keyword">const</span> port=<span class="number">3094</span>; # 可自訂通訊埠 </span><br><span class="line"></span><br><span class="line"> <span class="comment">/*啟動伺服端*/</span></span><br><span class="line">server.<span class="title function_">listen</span>(port, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;MQTT Server Started!&#x27;</span>);</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;MQTT Server URL: http://[Server_IP]:&#x27;</span>+port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="client">1-2 Client</h3>
+<ul>
+<li>發布者（Publisher）: 向伺服器發送主題的一方 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mqtt = <span class="built_in">require</span>(<span class="string">&quot;mqtt&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Source</span>=<span class="string">&quot;mqtt://localhost:3094&quot;</span></span><br><span class="line"><span class="keyword">var</span> client = mqtt.<span class="title function_">connect</span>(<span class="title class_">Source</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*連結後,不停發布temp的topic內容*/</span></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&quot;connect&quot;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;success connect mqtt server&quot;</span>);</span><br><span class="line">   <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      client.<span class="title function_">publish</span>(<span class="string">&quot;temp&quot;</span>, <span class="string">&quot;25.6&quot;</span>)</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;send it&quot;</span>)</span><br><span class="line">   &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>訂閱者（Subscriber）: 從伺服器獲取主題的一方 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">var</span> mqtt = <span class="built_in">require</span>(<span class="string">&quot;mqtt&quot;</span>);</span><br><span class="line"> <span class="keyword">var</span> <span class="title class_">Source</span>= <span class="string">&quot;mqtt://localhost:3094&quot;</span>;</span><br><span class="line"> <span class="keyword">var</span> client = mqtt.<span class="title function_">connect</span>(<span class="title class_">Source</span>);</span><br><span class="line"></span><br><span class="line"> <span class="comment">/*連結後,開始訂閱temp的topic內容*/</span></span><br><span class="line"> client.<span class="title function_">on</span>(<span class="string">&#x27;connect&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;success connect mqtt server&quot;</span>);</span><br><span class="line">   client.<span class="title function_">subscribe</span>(<span class="string">&#x27;temp&#x27;</span>, <span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;subscribe temp topic&quot;</span>)</span><br><span class="line">   &#125;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 輸出訂閱的內容*/</span></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, <span class="keyword">function</span> (<span class="params">topic, message</span>) &#123;</span><br><span class="line">   <span class="comment">// message is Buffer</span></span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(topic + <span class="string">&quot;:\t&quot;</span> + message.<span class="title function_">toString</span>())</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="ref">REF</h2>
+<h3 id="csdn">CSDN</h3>
+<ul>
+<li>https://blog.csdn.net/qczxl520/article/details/115165285</li>
+<li>https://blog.csdn.net/dpjcn1990/article/details/129472214?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EYuanLiJiHua%7EPosition-3-129472214-blog-115165285.235%5Ev32%5Epc_relevant_increate_t0_download_v2&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EYuanLiJiHua%7EPosition-3-129472214-blog-115165285.235%5Ev32%5Epc_relevant_increate_t0_download_v2&amp;utm_relevant_index=6</li>
+</ul>
+<h3 id="other">Other</h3>
+<ul>
+<li>https://www.emqx.com/en/blog/how-to-use-mqtt-in-nodejs</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node-排程任務</title>
+    <url>/2023/10/09/node-taskSchedule/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<p>若需要一些定期定時的執行一些工作(ex:
+爬蟲&amp;測試服務功能是否正常)時，則可能需要加入相關的排程套件來進行協助操作。
+<span id="more"></span></p>
+<h2 id="node-cron">01 node-cron</h2>
+<h3 id="前置">前置</h3>
+<ol type="1">
+<li><a href="https://www.npmjs.com/package/node-cron">npm主頁</a></li>
+<li>安裝: <code>$npm install node-cron --save</code></li>
+</ol>
+<h3 id="範例">範例</h3>
+<ol type="1">
+<li>引用相關函式庫 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> cron = <span class="built_in">require</span>(<span class="string">&#x27;node-cron&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>寫成函數 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// task1: 每天08點00分執行一回</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">task1</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="keyword">const</span> task = schedule.<span class="title function_">scheduleJob</span>(<span class="string">&#x27;0 8 * * *&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">       <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`[<span class="subst">$&#123;clock.consoleTime()&#125;</span>] task is running`</span>);</span><br><span class="line">       crawler.<span class="title function_">getData</span>();</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="keyword">return</span> task;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>呼叫 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">task1</span>();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="node-schedule">02 node-schedule</h2>
+<h3 id="前置-1">前置</h3>
+<ol type="1">
+<li><a
+href="https://www.npmjs.com/search?q=node-schedule">npm主頁</a></li>
+<li>安裝: <code>$npm install node-schedule --save</code></li>
+</ol>
+<h3 id="範例-1">範例</h3>
+<ol type="1">
+<li>引用相關函式庫 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> schedule = <span class="built_in">require</span>(<span class="string">&#x27;node-schedule&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>寫成函數 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// task1: 每天08點00分執行一回</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">task1</span>(<span class="params"></span>)&#123;</span><br><span class="line">   cron.<span class="title function_">schedule</span>(<span class="string">&#x27;0 8 * * *&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`[<span class="subst">$&#123;clock.consoleTime()&#125;</span>] task is running`</span>);</span><br><span class="line">      crawler.<span class="title function_">getData</span>();</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>呼叫 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">task1</span>();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="ref">REF</h2>
+<h3 id="ithome">ithome</h3>
+<ul>
+<li>https://ithelp.ithome.com.tw/articles/10243928</li>
+<li>https://ithelp.ithome.com.tw/articles/10249462 ### Other</li>
+<li>https://pjchender.dev/npm/npm-node-cron/</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>軟體開發-小黃鴨除錯法(Rubber Duck Debugging)</title>
+    <url>/2023/09/10/softDev-RubberDuckDebugging/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<p>小黃鴨除錯法(Rubber Duck
+Debugging)是指在程式的除錯/測試過程中，<font color=red>耐心的向小黃鴨</font>解釋每一行程式的功能，以此來激發靈感&amp;發現自己的矛盾。</p>
+<span id="more"></span>
+<h2 id="線索的查找方式">01 線索的查找方式</h2>
+<p>當問題出現時，則可從幾個角度來看待</p>
+<ul>
+<li>發問人
+<ol type="1">
+<li>如果使用了別人的範例來修改，再思考是否比對過自己修改的是否和原本的有差異或漏寫</li>
+<li>若確認過無問題，可直接說「我每一個部分都確認過無問題且無漏寫」，至少可幫自己減少或者排除一個可能的情況。
+<table>
+<tr>
+<td bgcolor="#C0FF3E">
+<font color=red>懶的把問題說清楚明白 == 浪費雙方時間</font>
+</td>
+</tr>
+</table></li>
+</ol></li>
+<li>解釋人
+<ul>
+<li>環境問題:
+當解釋人不在發問人旁邊時，只能不斷的猜問題&amp;提供可能的線索(不好處理)</li>
+<li>關鍵字等同於除錯過程所輸出的記錄，且是一個很重要且很有幫助的線索
+<table>
+<tr>
+<td bgcolor="#C0FF3E">
+<font color=red>試者「自己解釋問題」往往可以釐清問題=&gt;找出線索=&gt;自行求解</font>
+</td>
+</tr>
+</table></li>
+</ul></li>
+</ul>
+<h2 id="結論">02 結論</h2>
+<ul>
+<li>問題模糊不清=&gt; 距離<font color=red>答案</font>越遙遠
+<ul>
+<li>如何把<font color=red>問題</font>問清楚?</li>
+<li>問題的<font color=red>關鍵字</font></li>
+</ul></li>
+<li>不發問 == 無答案</li>
+</ul>
+<h2 id="ref">REF</h2>
+<h3 id="黃色小鴨除錯法---程式初學者-必要的修練mis2000lab">黃色小鴨除錯法
+- 程式初學者 必要的修練,mis2000lab</h3>
+<ul>
+<li>https://dotblogs.com.tw/mis2000lab/2023/05/01/Rubber_Duck_Debugging_20230501</li>
+<li>相關影片: https://www.youtube.com/watch?v=ku61dWC5VvI
+<div class="video-container"><iframe src="https://www.youtube.com/embed/ku61dWC5VvI" frameborder="0" loading="lazy" allowfullscreen></iframe></div></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>SoftDev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows-如何在Windows7以上的系統運行16位元以下的老程式</title>
-    <url>/2023/09/10/windows7-16bit/</url>
+    <url>/2023/09/10/windows-16bit/</url>
     <content><![CDATA[<h2 id="緒論">00 緒論</h2>
 <p>由於萬惡的微軟在Windows
 7後拿掉16位元相容性的支持(提升系統本身的安全性)，則需要自行手動啟用/加入相關的支緩，使得一些在<code>M$-DOS</code>/<code>Windows 9x</code>的老程式(ex:
@@ -1207,42 +1673,6 @@ href="https://github.com/otya128/winevdm/releases">官方戴點</a></li>
 ]]></content>
       <tags>
         <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows-大量新增使用者且加入群組</title>
-    <url>/2023/09/16/windowsServer-base1In109/</url>
-    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
-<p>若不想要手動一個個進行建立使用者，則可選擇寫一個批次檔來處理大量建立使用者的部分。</p>
-<table>
-<tr>
-<td bgcolor="0000FF">
-<font color=white>請先建好相對的群組:ITGroups,RDGroups,FeGroups</font>
-</td>
-</tr>
-</table>
-<span id="more"></span>
-<h2 id="cmdbat">01 cmd+bat</h2>
-<h3 id="建立批次檔">1-1 建立批次檔</h3>
-<ul>
-<li>IT.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=IT0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid IT0<span class="variable">%%a</span> -email IT0<span class="variable">%%a</span>@sivs2020.edu -pwd IT@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">10</span>) <span class="keyword">do</span> dsadd user &quot;cn=IT<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid IT<span class="variable">%%a</span> -email IT<span class="variable">%%a</span>@sivs2020.edu -pwd IT@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
-<li>RD.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=RD0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid RD0<span class="variable">%%a</span> -email RD0<span class="variable">%%a</span>@sivs2020.edu -pwd <span class="built_in">RD</span>@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">50</span>) <span class="keyword">do</span> dsadd user &quot;cn=<span class="built_in">RD</span><span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid <span class="built_in">RD</span><span class="variable">%%a</span> -email <span class="built_in">RD</span><span class="variable">%%a</span>@sivs2020.edu -pwd <span class="built_in">RD</span>@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
-<li>Feusr.bat <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>) <span class="keyword">do</span> dsadd user &quot;cn=Feusr0<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid Feusr0<span class="variable">%%a</span> -email Feusr0<span class="variable">%%a</span>@sivs2020.edu -pwd Fedora@<span class="number">2020</span></span><br><span class="line"><span class="keyword">For</span> /L <span class="variable">%%a</span> <span class="keyword">in</span> (<span class="number">10</span>,<span class="number">1</span>,<span class="number">50</span>) <span class="keyword">do</span> dsadd user &quot;cn=Feusr<span class="variable">%%a</span>,cn=Users,dc=sivs2020,dc=edu&quot; -samid Feusr<span class="variable">%%a</span> -email Feusr<span class="variable">%%a</span>@sivs2020.edu -pwd Fedora@<span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="powershell">02 powershell</h2>
-<h3 id="建立批次檔-1">2-1 建立批次檔</h3>
-<ul>
-<li>IT.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;IT&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;IT@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;ITGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">10</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>RD.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;RD&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;RD@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;RDGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">50</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>Feusr.ps1 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$path</span>=<span class="string">&quot;CN=Users,DC=sivs2020,DC=edu&quot;</span></span><br><span class="line"><span class="variable">$d</span>=<span class="string">&quot;sivs2020.edu&quot;</span></span><br><span class="line"><span class="variable">$u</span>=<span class="string">&quot;Feusr&quot;</span></span><br><span class="line"><span class="variable">$p</span>=<span class="string">&quot;Fedora@2020&quot;</span></span><br><span class="line"><span class="variable">$g</span>=<span class="string">&quot;FeGroups&quot;</span></span><br><span class="line"><span class="variable">$count</span>=<span class="number">1</span>..<span class="number">50</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$i</span> <span class="keyword">in</span> <span class="variable">$count</span>)&#123;</span><br><span class="line">   <span class="variable">$j</span>=<span class="variable">$i</span>.ToString(<span class="string">&quot;00&quot;</span>)</span><br><span class="line">   <span class="built_in">New-AdUser</span> <span class="literal">-Name</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-SamAccountName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span> <span class="literal">-UserPrincipalName</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-EmailAddress</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>@<span class="variable">$d</span>&quot;</span> <span class="literal">-Path</span> <span class="variable">$path</span> <span class="literal">-Enabled</span> <span class="variable">$Ture</span> <span class="literal">-ChangePasswordAtLogon</span> <span class="variable">$false</span> <span class="literal">-PasswordNeverExpires</span> <span class="variable">$true</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;<span class="variable">$p</span>&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-force</span>)</span><br><span class="line">   <span class="built_in">Add-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;<span class="variable">$g</span>&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;<span class="variable">$u</span><span class="variable">$j</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="運行">2-2 運行</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:&gt; powershell -executionpolicy bypass -file IT.ps1</span><br><span class="line">PS D:&gt; powershell -executionpolicy bypass -file RD.ps1</span><br><span class="line">PS D:&gt; powershell -executionpolicy bypass -file Feusr.ps1</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>工科賽</tag>
-        <tag>Windows</tag>
-        <tag>Windows Server</tag>
       </tags>
   </entry>
 </search>

@@ -24,16 +24,15 @@
 
   <meta name="description" content="00 緒論 swagger可提供自動化的互動式API文件於網頁上，使相關人員(ex:QA)輕鬆在上面進行測試&amp;查看API的相關參數&amp;路徑。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nodejs-使用swagger快速產生API文件">
+<meta property="og:title" content="node-使用swagger快速產生API文件">
 <meta property="og:url" content="https://neko0xff.github.io/2023/09/24/node-swagger/index.html">
 <meta property="og:site_name" content="neko0xff techBlog">
 <meta property="og:description" content="00 緒論 swagger可提供自動化的互動式API文件於網頁上，使相關人員(ex:QA)輕鬆在上面進行測試&amp;查看API的相關參數&amp;路徑。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-09-24T04:22:17.000Z">
-<meta property="article:modified_time" content="2023-09-25T11:41:27.832Z">
+<meta property="article:modified_time" content="2023-10-14T08:52:26.131Z">
 <meta property="article:author" content="neko0xff">
 <meta property="article:tag" content="node">
-<meta property="article:tag" content="API">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://neko0xff.github.io/2023/09/24/node-swagger/">
@@ -49,7 +48,7 @@
   };
 </script>
 
-  <title>nodejs-使用swagger快速產生API文件 | neko0xff techBlog</title>
+  <title>node-使用swagger快速產生API文件 | neko0xff techBlog</title>
   
 
 
@@ -213,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          nodejs-使用swagger快速產生API文件
+          node-使用swagger快速產生API文件
         </h1>
 
         <div class="post-meta">
@@ -230,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-09-25 19:41:27" itemprop="dateModified" datetime="2023-09-25T19:41:27+08:00">2023-09-25</time>
+                <time title="修改時間：2023-10-14 16:52:26" itemprop="dateModified" datetime="2023-10-14T16:52:26+08:00">2023-10-14</time>
               </span>
 
           
@@ -249,13 +248,13 @@
 <span id="more"></span>
 <h2 id="環境建置">01 環境建置</h2>
 <ol type="1">
-<li>加入到NodeJS專案
+<li>加入到Node專案
 <ul>
 <li>安裝相関套件:
 <code>$ npm install swagger-autogen swagger-jsdoc swagger-ui-express --save</code></li>
 </ul></li>
 <li>請手動或使用<code>swagger-autogen</code>來建立<code>swagger.json</code>等檔案</li>
-<li>在負責express路由中加入如下程式碼 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var swaggerUi = require(&#x27;swagger-ui-express&#x27;);</span><br><span class="line">const swaggerDocument = require(&#x27;./config/swagger.json&#x27;);</span><br><span class="line">...</span><br><span class="line">express.use(&#x27;/docs&#x27;, swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //API Docs</span><br></pre></td></tr></table></figure></li>
+<li>在負責express路由中加入如下程式碼 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> swaggerUi = <span class="built_in">require</span>(<span class="string">&#x27;swagger-ui-express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> swaggerDocument = <span class="built_in">require</span>(<span class="string">&#x27;./config/swagger.json&#x27;</span>);</span><br><span class="line">...</span><br><span class="line">express.<span class="title function_">use</span>(<span class="string">&#x27;/docs&#x27;</span>, swaggerUi.<span class="property">serve</span>, swaggerUi.<span class="title function_">setup</span>(swaggerDocument)); <span class="comment">//API Docs</span></span><br></pre></td></tr></table></figure></li>
 <li>打開<code>http://[IP Address]:[Port]/docs</code>來檢視生成結果</li>
 </ol>
 <h2 id="手動生成文件">02 手動生成文件</h2>
@@ -266,7 +265,7 @@
 <h2 id="把寫好的api功能自動轉成文件">03 把寫好的API功能自動轉成文件</h2>
 <ol type="1">
 <li>建立自動建立的程式: <code>./swaggerAutoGen.js</code>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> const swaggerAutogen = require(&quot;swagger-autogen&quot;)();</span><br><span class="line"></span><br><span class="line"> /*需加入定義的API路由規則*/</span><br><span class="line"> const file1=&quot;./rules/crawler.js&quot;;</span><br><span class="line"> const file2=&quot;./rules/sensor.js&quot;;</span><br><span class="line"> const file3=&quot;./rules/test.js&quot;;</span><br><span class="line"> const file4=&quot;./rules/users.js&quot;;</span><br><span class="line"> const file5=&quot;./rules/switch.js&quot;;</span><br><span class="line"> const file6=&quot;./rules/customValue.js&quot;;</span><br><span class="line"> const file7=&quot;./rules/mqttPub.js&quot;;</span><br><span class="line"></span><br><span class="line">/*文件內部的相關說明*/</span><br><span class="line">const doc = &#123;</span><br><span class="line">    info: &#123;</span><br><span class="line">    &quot;version&quot;: &quot;1.0.5&quot;,</span><br><span class="line">    &quot;title&quot;: &quot;REST API Test Docs&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;該文件可提供在該專案中所需提供的功能&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    host: &#x27;localhost:3095&#x27;,</span><br><span class="line">    basePath: &quot;/&quot;,</span><br><span class="line">    schemes: [</span><br><span class="line">      &quot;http&quot;</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/*輸出對應文件*/</span><br><span class="line">const endpointsFiles = [file1,file2,file3,file4,file5,file6,file7];</span><br><span class="line">const outputFile = &quot;./modules/config/swagger.json&quot;; // 輸出的生成結果</span><br><span class="line">swaggerAutogen(outputFile, endpointsFiles,doc); </span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> swaggerAutogen = <span class="built_in">require</span>(<span class="string">&quot;swagger-autogen&quot;</span>)();</span><br><span class="line"></span><br><span class="line"> <span class="comment">/*需加入定義的API路由規則*/</span></span><br><span class="line"> <span class="keyword">const</span> file1=<span class="string">&quot;./rules/crawler.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file2=<span class="string">&quot;./rules/sensor.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file3=<span class="string">&quot;./rules/test.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file4=<span class="string">&quot;./rules/users.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file5=<span class="string">&quot;./rules/switch.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file6=<span class="string">&quot;./rules/customValue.js&quot;</span>;</span><br><span class="line"> <span class="keyword">const</span> file7=<span class="string">&quot;./rules/mqttPub.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*文件內部的相關說明*/</span></span><br><span class="line"><span class="keyword">const</span> doc = &#123;</span><br><span class="line">    <span class="attr">info</span>: &#123;</span><br><span class="line">    <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;REST API Test Docs&quot;</span>,</span><br><span class="line">    <span class="string">&quot;description&quot;</span>: <span class="string">&quot;該文件可提供在該專案中所需提供的功能&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">host</span>: <span class="string">&#x27;localhost:3095&#x27;</span>,</span><br><span class="line">    <span class="attr">basePath</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">schemes</span>: [</span><br><span class="line">      <span class="string">&quot;http&quot;</span></span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*輸出對應文件*/</span></span><br><span class="line"><span class="keyword">const</span> endpointsFiles = [file1,file2,file3,file4,file5,file6,file7];</span><br><span class="line"><span class="keyword">const</span> outputFile = <span class="string">&quot;./modules/config/swagger.json&quot;</span>; <span class="comment">// 輸出的生成結果</span></span><br><span class="line"><span class="title function_">swaggerAutogen</span>(outputFile, endpointsFiles,doc); </span><br></pre></td></tr></table></figure></li>
 <li>加入指定啟動的指令到<code>package.json</code>的scrpits
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node --max-semi-space-size=128 index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;swagger-autogen&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node ./tools/swagger.js&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure></li>
 <li>自動生成: <code>$ npm run swagger-autogen</code></li>
@@ -295,7 +294,7 @@ Swagger API 文件建置｜六角學院｜2023 鐵人賽 #5</a> <div class="vide
   </li>
   <li class="post-copyright-link">
     <strong>文章連結：</strong>
-    <a href="https://neko0xff.github.io/2023/09/24/node-swagger/" title="nodejs-使用swagger快速產生API文件">https://neko0xff.github.io/2023/09/24/node-swagger/</a>
+    <a href="https://neko0xff.github.io/2023/09/24/node-swagger/" title="node-使用swagger快速產生API文件">https://neko0xff.github.io/2023/09/24/node-swagger/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版權聲明： </strong>本網誌所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-TW" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 許可協議。轉載請註明出處！
@@ -337,7 +336,6 @@ Swagger API 文件建置｜六角學院｜2023 鐵人賽 #5</a> <div class="vide
           
           <div class="post-tags">
               <a href="/tags/node/" rel="tag"><i class="fa fa-tag"></i> node</a>
-              <a href="/tags/API/" rel="tag"><i class="fa fa-tag"></i> API</a>
           </div>
 
         
@@ -349,7 +347,10 @@ Swagger API 文件建置｜六角學院｜2023 鐵人賽 #5</a> <div class="vide
     <a href="/2023/09/16/windowsServer-base1In109/" rel="prev" title="Windows-大量新增使用者且加入群組">
       <i class="fa fa-chevron-left"></i> Windows-大量新增使用者且加入群組
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/08/ESPif-D1miniAndMicroPython/" rel="next" title="ESPif-D1 Mini(ESP8266)+MicroPython筆記">
+      ESPif-D1 Mini(ESP8266)+MicroPython筆記 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -424,14 +425,14 @@ Swagger API 文件建置｜六角學院｜2023 鐵人賽 #5</a> <div class="vide
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -502,6 +503,15 @@ Swagger API 文件建置｜六角學院｜2023 鐵人賽 #5</a> <div class="vide
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
   </div>
+
+
+  <script src='https://unpkg.com/mermaid@8.8.4/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize(JSON.stringify());
+    }
+  </script>
+
 
         
 

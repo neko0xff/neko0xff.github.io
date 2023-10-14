@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-TW,zh-HK,zh-CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"neko0xff.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="DataSheet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESPif-ESP32-CAM上手&amp;使用方式">
+<meta property="og:url" content="https://neko0xff.github.io/2023/10/08/ESPif-ESP32CAN/index.html">
+<meta property="og:site_name" content="neko0xff techBlog">
+<meta property="og:description" content="DataSheet">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/udwjI57.png%20=50%x">
+<meta property="og:image" content="https://i.imgur.com/kS8ghSc.png">
+<meta property="og:image" content="https://i.imgur.com/cbdQd9j.png">
+<meta property="article:published_time" content="2023-10-08T03:41:56.000Z">
+<meta property="article:modified_time" content="2023-10-14T08:52:26.130Z">
+<meta property="article:author" content="neko0xff">
+<meta property="article:tag" content="ESPif">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/udwjI57.png%20=50%x">
+
+<link rel="canonical" href="https://neko0xff.github.io/2023/10/08/ESPif-ESP32CAN/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>ESPif-ESP32-CAM上手&使用方式 | neko0xff techBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="neko0xff techBlog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">neko0xff techBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">該Blog會存放自己寫的技術文章</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-list fa-fw"></i>友站鏈結</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://neko0xff.github.io/2023/10/08/ESPif-ESP32CAN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="neko0xff">
+      <meta itemprop="description" content="Not Test & Study == Not Docs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="neko0xff techBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ESPif-ESP32-CAM上手&使用方式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-10-08 11:41:56" itemprop="dateCreated datePublished" datetime="2023-10-08T11:41:56+08:00">2023-10-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-10-14 16:52:26" itemprop="dateModified" datetime="2023-10-14T16:52:26+08:00">2023-10-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="datasheet">DataSheet</h2>
+<p><img src="https://i.imgur.com/udwjI57.png%20=50%x" /></p>
+<span id="more"></span>
+<h2 id="設置環境">設置環境</h2>
+<h3 id="所需部分">所需部分</h3>
+<ul>
+<li>Arduino IDE</li>
+<li>ESP32 函式庫</li>
+</ul>
+<h3 id="匯入函式庫來源">匯入函式庫來源</h3>
+<ol type="1">
+<li>開啟Arduino IDE後，選擇功能表的檔案/偏好設定，開啟偏好設定視窗</li>
+<li>在偏好設定視窗中下方的額外開發板管理員輸入以下網址後，按確定。
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dl.espressif.com/dl/package_esp32_index.json</span><br></pre></td></tr></table></figure> <img src="https://i.imgur.com/kS8ghSc.png" /></li>
+</ol>
+<h3 id="下戴函式庫">下戴函式庫</h3>
+<ol type="1">
+<li>點選工具/開發板/開發板管理員，即會出現開發板管理員視窗</li>
+<li>在開發板管理員視窗中，輸入關鍵字ESP32後，即可篩選出ESP32核心套件</li>
+<li>直接點選右側的安裝按鈕，並等候5~10分鐘讓系統下載核心套件並完成安裝，最後再關閉開發板管理員視窗
+<img src="https://i.imgur.com/cbdQd9j.png" /></li>
+</ol>
+<h2 id="檢視是否連結">檢視是否連結</h2>
+<ul>
+<li>Windows(COMx): "裝置管理員/連結埠(<code>COM*</code>)"</li>
+<li>Linux/macOS(ttyUSB0): <code>ls /dev/tty*</code> <img
+src="https://i.imgur.com/JeDburH.png" /></li>
+</ul>
+<h2 id="燒錄">燒錄</h2>
+<ul>
+<li>方式:USB転TTL(CH340)串列通訊
+<ul>
+<li>連結接點
+<ol type="1">
+<li>TX(綠) =&gt; <code>GPIO3</code></li>
+<li>RX(白) =&gt; <code>GPIO1</code></li>
+<li>5V(紅) =&gt; <code>5V</code></li>
+<li>GND(黑) =&gt; <code>GND</code> <img
+src="https://i.imgur.com/S3IWXKA.png" /></li>
+</ol></li>
+</ul></li>
+<li>燒錄模式
+<ul>
+<li>進入燒錄模式: <code>IO0</code>+<code>GND</code></li>
+<li>離開燒錄模式:
+把<code>IO0</code>或<code>GND</code>其中一條拔掉且按下restart <img
+src="https://i.imgur.com/xXeNRUV.jpg" /></li>
+</ul></li>
+<li>在Arduino IDE的版子設置
+<ul>
+<li>Board: “ESP32 Wrover Module”</li>
+<li>Upload Speed: “921600”</li>
+<li>Flash Frequency: “80MHz”</li>
+<li>Partition Scheme: “Huge APP (3MB No OTA/1MB SPIFFS)”</li>
+<li>Core Debug Level: “None”</li>
+</ul></li>
+</ul>
+<h2 id="source">source</h2>
+<ul>
+<li>https://makerpro.cc/2020/06/how-to-install-and-configure-esp32-development-environment/</li>
+<li>https://hackmd.io/<span class="citation"
+data-cites="LHB-0222/Blynk_ESP32-Canm">@LHB-0222/Blynk_ESP32-Canm</span></li>
+<li>https://github.com/raphaelbs/esp32-cam-ai-thinker/blob/master/assets/ESP32-CAM_Product_Specification.pdf</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>作者： </strong>neko0xff
+  </li>
+  <li class="post-copyright-link">
+    <strong>文章連結：</strong>
+    <a href="https://neko0xff.github.io/2023/10/08/ESPif-ESP32CAN/" title="ESPif-ESP32-CAM上手&amp;使用方式">https://neko0xff.github.io/2023/10/08/ESPif-ESP32CAN/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版權聲明： </strong>本網誌所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-TW" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 許可協議。轉載請註明出處！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>歡迎關注我的其它發布管道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/neko_0xff">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/zang_post">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/ESPif/" rel="tag"><i class="fa fa-tag"></i> ESPif</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/08/ESPif-D1miniAndMicroPython/" rel="prev" title="ESPif-D1 Mini(ESP8266)+MicroPython筆記">
+      <i class="fa fa-chevron-left"></i> ESPif-D1 Mini(ESP8266)+MicroPython筆記
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/09/node-taskSchedule/" rel="next" title="node-排程任務">
+      node-排程任務 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#datasheet"><span class="nav-number">1.</span> <span class="nav-text">DataSheet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%AD%E7%BD%AE%E7%92%B0%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">設置環境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%80%E9%9C%80%E9%83%A8%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">所需部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%AF%E5%85%A5%E5%87%BD%E5%BC%8F%E5%BA%AB%E4%BE%86%E6%BA%90"><span class="nav-number">2.2.</span> <span class="nav-text">匯入函式庫來源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%88%B4%E5%87%BD%E5%BC%8F%E5%BA%AB"><span class="nav-number">2.3.</span> <span class="nav-text">下戴函式庫</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AA%A2%E8%A6%96%E6%98%AF%E5%90%A6%E9%80%A3%E7%B5%90"><span class="nav-number">3.</span> <span class="nav-text">檢視是否連結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%87%92%E9%8C%84"><span class="nav-number">4.</span> <span class="nav-text">燒錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source"><span class="nav-number">5.</span> <span class="nav-text">source</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neko0xff"
+      src="/images/author.jpg">
+  <p class="site-author-name" itemprop="name">neko0xff</p>
+  <div class="site-description" itemprop="description">Not Test & Study == Not Docs</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/neko0xff" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;neko0xff" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chzang55@gmail.com" title="E-Mail → mailto:chzang55@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/neko_0xFF" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;neko_0xFF" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCfBR43eCo07mPWN6K-97TEA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCfBR43eCo07mPWN6K-97TEA" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/neko_0xff/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;neko_0xff&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-TW" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://neko0xff.github.io/" title="http:&#x2F;&#x2F;neko0xff.github.io">Main</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://t.me/zang_post" title="https:&#x2F;&#x2F;t.me&#x2F;zang_post" rel="noopener" target="_blank">Telegram</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mas.to/@neko_0xff" title="https:&#x2F;&#x2F;mas.to&#x2F;@neko_0xff" rel="noopener" target="_blank">Mastodon(mas.to)</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">若要轉載或者引用文章，麻煩請保留原作者名稱&原始連結。</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+
+  <script src='https://unpkg.com/mermaid@8.8.4/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize(JSON.stringify());
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://neko0xff.github.io/2023/10/08/ESPif-ESP32CAN/',]
+      });
+      });
+  </script>
+
+</body>
+</html>
