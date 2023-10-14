@@ -18,8 +18,8 @@
   
   <entry>
     <title>Server-虛擬化的介紹&amp;主流方案</title>
-    <link href="https://neko0xff.github.io/2023/10/13/Server-Hypervisor/"/>
-    <id>https://neko0xff.github.io/2023/10/13/Server-Hypervisor/</id>
+    <link href="https://neko0xff.github.io/2023/10/13/server-hypervisor/"/>
+    <id>https://neko0xff.github.io/2023/10/13/server-hypervisor/</id>
     <published>2023-10-13T00:39:01.000Z</published>
     <updated>2023-10-14T12:37:06.295Z</updated>
     
@@ -78,8 +78,8 @@
   
   <entry>
     <title>node-MQTT服務和環境</title>
-    <link href="https://neko0xff.github.io/2023/10/09/node-mqttService/"/>
-    <id>https://neko0xff.github.io/2023/10/09/node-mqttService/</id>
+    <link href="https://neko0xff.github.io/2023/10/09/node-mqttservice/"/>
+    <id>https://neko0xff.github.io/2023/10/09/node-mqttservice/</id>
     <published>2023-10-09T05:22:55.000Z</published>
     <updated>2023-10-14T08:52:26.131Z</updated>
     
@@ -90,9 +90,9 @@
 &lt;li&gt;所需的函式庫
 &lt;ul&gt;
 &lt;li&gt;Client: &lt;a href=&quot;https://www.npmjs.com/package/mqtt&quot;&gt;mqtt.js&lt;/a&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm install mqtt --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm install mqtt --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
 &lt;li&gt;Server: &lt;a href=&quot;https://www.npmjs.com/package/aedes&quot;&gt;Aedes&lt;/a&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm install aedes --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm install aedes --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
     
     
     
@@ -103,15 +103,15 @@
   
   <entry>
     <title>node-排程任務</title>
-    <link href="https://neko0xff.github.io/2023/10/09/node-taskSchedule/"/>
-    <id>https://neko0xff.github.io/2023/10/09/node-taskSchedule/</id>
+    <link href="https://neko0xff.github.io/2023/10/09/node-taskschedule/"/>
+    <id>https://neko0xff.github.io/2023/10/09/node-taskschedule/</id>
     <published>2023-10-09T04:22:51.000Z</published>
     <updated>2023-10-14T08:52:26.131Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;緒論&quot;&gt;00 緒論&lt;/h2&gt;
 &lt;p&gt;若需要一些定期定時的執行一些工作(ex:
-爬蟲&amp;amp;測試服務功能是否正常)時，則可能需要加入相關的排程套件來進行協助操作。</summary>
+爬蟲&amp;amp;測試服務功能是否正常)時，則可能需要加入相關的排程套件來進行協助操作。&lt;/p&gt;</summary>
     
     
     
@@ -122,14 +122,14 @@
   
   <entry>
     <title>ESPif-ESP32-CAM上手&amp;使用方式</title>
-    <link href="https://neko0xff.github.io/2023/10/08/ESPif-ESP32CAN/"/>
-    <id>https://neko0xff.github.io/2023/10/08/ESPif-ESP32CAN/</id>
+    <link href="https://neko0xff.github.io/2023/10/08/espif-esp32can/"/>
+    <id>https://neko0xff.github.io/2023/10/08/espif-esp32can/</id>
     <published>2023-10-08T03:41:56.000Z</published>
     <updated>2023-10-14T08:52:26.130Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;datasheet&quot;&gt;DataSheet&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/udwjI57.png%20=50%x&quot; /&gt;&lt;/p&gt;</summary>
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/udwjI57.png%20=50%x&quot;&gt;&lt;/p&gt;</summary>
     
     
     
@@ -140,16 +140,16 @@
   
   <entry>
     <title>ESPif-D1 Mini(ESP8266)+MicroPython筆記</title>
-    <link href="https://neko0xff.github.io/2023/10/08/ESPif-D1miniAndMicroPython/"/>
-    <id>https://neko0xff.github.io/2023/10/08/ESPif-D1miniAndMicroPython/</id>
+    <link href="https://neko0xff.github.io/2023/10/08/espif-d1miniandmicropython/"/>
+    <id>https://neko0xff.github.io/2023/10/08/espif-d1miniandmicropython/</id>
     <published>2023-10-08T03:34:45.000Z</published>
     <updated>2023-10-14T08:52:26.130Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;安裝thonny&quot;&gt;01 安裝Thonny&lt;/h2&gt;
 &lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;安裝相関套件 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[zangmenhsu@E1304 ~]$ sudo pacman -S tk python-pip&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[zangmenhsu@E1304 ~]$ sudo pip3 install thonny&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
-&lt;li&gt;加入用Thonny連結自己板子連結埠的權限 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[zangmenhsu@E1304 ~]$ sudo nano /etc/udev/rules.d/70-ttyusb.rules&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;KERNEL==&amp;quot;ttyUSB[0-9]*&amp;quot;,MODE=&amp;quot;0666&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;安裝相関套件 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[zangmenhsu@E1304 ~]$ sudo pacman -S tk python-pip&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[zangmenhsu@E1304 ~]$ sudo pip3 install thonny&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;加入用Thonny連結自己板子連結埠的權限 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[zangmenhsu@E1304 ~]$ sudo nano /etc/udev/rules.d/70-ttyusb.rules&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;KERNEL==&quot;ttyUSB[0-9]*&quot;,MODE=&quot;0666&quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
 &lt;li&gt;請重啟系統&lt;/li&gt;
 &lt;/ol&gt;</summary>
     
@@ -180,8 +180,8 @@
   
   <entry>
     <title>Windows-大量新增使用者且加入群組</title>
-    <link href="https://neko0xff.github.io/2023/09/16/windowsServer-base1In109/"/>
-    <id>https://neko0xff.github.io/2023/09/16/windowsServer-base1In109/</id>
+    <link href="https://neko0xff.github.io/2023/09/16/windowsserver-base1in109/"/>
+    <id>https://neko0xff.github.io/2023/09/16/windowsserver-base1in109/</id>
     <published>2023-09-16T02:58:51.000Z</published>
     <updated>2023-09-25T11:37:11.213Z</updated>
     
@@ -189,12 +189,12 @@
     <summary type="html">&lt;h2 id=&quot;緒論&quot;&gt;00 緒論&lt;/h2&gt;
 &lt;p&gt;若不想要手動一個個進行建立使用者，則可選擇寫一個批次檔來處理大量建立使用者的部分。&lt;/p&gt;
 &lt;table&gt;
-&lt;tr&gt;
+&lt;tbody&gt;&lt;tr&gt;
 &lt;td bgcolor=&quot;0000FF&quot;&gt;
-&lt;font color=white&gt;請先建好相對的群組:ITGroups,RDGroups,FeGroups&lt;/font&gt;
+&lt;font color=&quot;white&quot;&gt;請先建好相對的群組:ITGroups,RDGroups,FeGroups&lt;/font&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
-&lt;/table&gt;</summary>
+&lt;/tbody&gt;&lt;/table&gt;</summary>
     
     
     
@@ -209,8 +209,8 @@
   
   <entry>
     <title>109工科賽-Linx-xx(Fedora_1)</title>
-    <link href="https://neko0xff.github.io/2023/09/16/linux-base1In109/"/>
-    <id>https://neko0xff.github.io/2023/09/16/linux-base1In109/</id>
+    <link href="https://neko0xff.github.io/2023/09/16/linux-base1in109/"/>
+    <id>https://neko0xff.github.io/2023/09/16/linux-base1in109/</id>
     <published>2023-09-16T02:36:26.000Z</published>
     <updated>2023-09-25T11:46:57.400Z</updated>
     
@@ -244,8 +244,8 @@
   
   <entry>
     <title>108工科賽主機設定-vGate-xx(Fedora_2)</title>
-    <link href="https://neko0xff.github.io/2023/09/16/linux-base2In108/"/>
-    <id>https://neko0xff.github.io/2023/09/16/linux-base2In108/</id>
+    <link href="https://neko0xff.github.io/2023/09/16/linux-base2in108/"/>
+    <id>https://neko0xff.github.io/2023/09/16/linux-base2in108/</id>
     <published>2023-09-16T01:53:05.000Z</published>
     <updated>2023-09-25T11:37:11.212Z</updated>
     
@@ -273,8 +273,8 @@ Forwarding，使內部使用者可以正常與外部電腦通訊，外部使用�
   
   <entry>
     <title>108工科賽主機設定-vGate-xx(Fedora_1)</title>
-    <link href="https://neko0xff.github.io/2023/09/16/linux-base1In108/"/>
-    <id>https://neko0xff.github.io/2023/09/16/linux-base1In108/</id>
+    <link href="https://neko0xff.github.io/2023/09/16/linux-base1in108/"/>
+    <id>https://neko0xff.github.io/2023/09/16/linux-base1in108/</id>
     <published>2023-09-16T01:16:45.000Z</published>
     <updated>2023-09-25T11:39:19.517Z</updated>
     
@@ -314,8 +314,8 @@ Forwarding，使內部使用者可以正常與外部電腦通訊，外部使用�
   
   <entry>
     <title>docker-使用make簡化compose指令</title>
-    <link href="https://neko0xff.github.io/2023/09/16/docker-makeCompose/"/>
-    <id>https://neko0xff.github.io/2023/09/16/docker-makeCompose/</id>
+    <link href="https://neko0xff.github.io/2023/09/16/docker-makecompose/"/>
+    <id>https://neko0xff.github.io/2023/09/16/docker-makecompose/</id>
     <published>2023-09-15T23:11:53.000Z</published>
     <updated>2023-09-25T11:37:11.212Z</updated>
     
@@ -371,8 +371,8 @@ Forwarding，使內部使用者可以正常與外部電腦通訊，外部使用�
   
   <entry>
     <title>docker-使用網頁/移動端進行管理docker容器&amp;鏡像</title>
-    <link href="https://neko0xff.github.io/2023/09/13/docker-Portainer/"/>
-    <id>https://neko0xff.github.io/2023/09/13/docker-Portainer/</id>
+    <link href="https://neko0xff.github.io/2023/09/13/docker-portainer/"/>
+    <id>https://neko0xff.github.io/2023/09/13/docker-portainer/</id>
     <published>2023-09-13T02:33:41.000Z</published>
     <updated>2023-09-13T08:35:31.500Z</updated>
     
@@ -442,8 +442,8 @@ Docker鏡像＆容器&lt;/li&gt;
   
   <entry>
     <title>Linux-改變網卡的Mac Address</title>
-    <link href="https://neko0xff.github.io/2023/09/10/linux-macAddress/"/>
-    <id>https://neko0xff.github.io/2023/09/10/linux-macAddress/</id>
+    <link href="https://neko0xff.github.io/2023/09/10/linux-macaddress/"/>
+    <id>https://neko0xff.github.io/2023/09/10/linux-macaddress/</id>
     <published>2023-09-10T04:30:04.000Z</published>
     <updated>2023-09-13T08:35:31.500Z</updated>
     
@@ -469,8 +469,8 @@ Docker鏡像＆容器&lt;/li&gt;
   
   <entry>
     <title>Linux-設置DNS解析和測試</title>
-    <link href="https://neko0xff.github.io/2023/09/10/linux-DNStest/"/>
-    <id>https://neko0xff.github.io/2023/09/10/linux-DNStest/</id>
+    <link href="https://neko0xff.github.io/2023/09/10/linux-dnstest/"/>
+    <id>https://neko0xff.github.io/2023/09/10/linux-dnstest/</id>
     <published>2023-09-10T00:08:50.000Z</published>
     <updated>2023-09-13T08:35:31.500Z</updated>
     
@@ -487,15 +487,15 @@ Docker鏡像＆容器&lt;/li&gt;
   
   <entry>
     <title>Arch-如何使用AUR(Arch User Repository)上套件包</title>
-    <link href="https://neko0xff.github.io/2023/09/10/arch-AUR/"/>
-    <id>https://neko0xff.github.io/2023/09/10/arch-AUR/</id>
+    <link href="https://neko0xff.github.io/2023/09/10/arch-aur/"/>
+    <id>https://neko0xff.github.io/2023/09/10/arch-aur/</id>
     <published>2023-09-09T23:52:36.000Z</published>
     <updated>2023-09-13T08:35:31.498Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;緒論&quot;&gt;00 緒論&lt;/h2&gt;
 &lt;p&gt;當官方套件庫找不到需要的套件時，Arch則提供了AUR(Arch User
-Repository,AUR)這個由其它使用者維護的倉庫，讓需要的使用者可自行編譯且安裝所需的套件。</summary>
+Repository,AUR)這個由其它使用者維護的倉庫，讓需要的使用者可自行編譯且安裝所需的套件。&lt;/p&gt;</summary>
     
     
     
@@ -506,8 +506,8 @@ Repository,AUR)這個由其它使用者維護的倉庫，讓需要的使用者�
   
   <entry>
     <title>Linux-在Linux下連線到Forticlient VPN</title>
-    <link href="https://neko0xff.github.io/2023/09/10/Forticlien-VPN-Linux/"/>
-    <id>https://neko0xff.github.io/2023/09/10/Forticlien-VPN-Linux/</id>
+    <link href="https://neko0xff.github.io/2023/09/10/forticlien-vpn-linux/"/>
+    <id>https://neko0xff.github.io/2023/09/10/forticlien-vpn-linux/</id>
     <published>2023-09-09T23:43:47.000Z</published>
     <updated>2023-09-25T11:39:53.984Z</updated>
     
