@@ -218,10 +218,10 @@
 <h3 id="運作方式">運作方式</h3>
 <ol type="1">
 <li>先在宿主主機上模擬出一個接近實體的環境</li>
-<li>讓程式在不同硬體上執行時，都以為自己本身在同一個原始環境中執行</li>
+<li>讓程式在不同硬體上執行時，都以為自己本身在同一個原始環境中執行 ###
+可能會遇到的問題
+由於每台機器的環境不同而寫好的程式可能剛好跟開發者的電腦上的環境相容或者不相容，可能需要有多個不同的測試環境(ex:相容性測試)來進行測試。</li>
 </ol>
-<h3 id="可能會遇到的問題">可能會遇到的問題</h3>
-<p>由於每台機器的環境不同而寫好的程式可能剛好跟開發者的電腦上的環境相容或者不相容，可能需要有多個不同的測試環境(ex:相容性測試)來進行測試。</p>
 <p>其中會碰到的一些變因，進而需要一個不需花時間進行調整就能立即開箱即用的環境。</p>
 <ul>
 <li>變因
@@ -254,11 +254,11 @@
 <ul>
 <li>減少需要的實體主機數量，節省採購成本</li>
 <li>減少多台主機的用電量，同時達成節能減碳的目標</li>
-<li>可使用P2V(實體機轉虛擬機)技術來解決無法升級老舊系統硬體&amp;軟體的問題，同時提升系統穩定性</li>
+<li>可使用P2V(實體機轉虛擬機)技術來解決無法升級老舊系統硬體&amp;軟體的問題，同時提升系統穩定性
+<span id="more"></span></li>
 </ul></li>
 </ul></li>
 </ul>
-<span id="more"></span>
 <h2 id="日常中經常使用的種類">01 日常中經常使用的種類</h2>
 <ul>
 <li>祼機(Bare-Metal):
@@ -653,7 +653,7 @@ Play</a></li>
 <code>Dockerfile.env</code></li>
 <li>在<code>docker-compose.yml</code>加入相關的設置 <figure class="highlight yaml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">container_server:</span></span><br><span class="line">        <span class="attr">restart:</span> <span class="string">always</span> <span class="comment"># 跟系統服務一起重啟</span></span><br><span class="line">        <span class="attr">network_mode:</span> <span class="string">host</span> <span class="comment"># 網路: 使用實體機</span></span><br><span class="line">        <span class="comment"># 編譯時的設置</span></span><br><span class="line">        <span class="attr">build:</span> </span><br><span class="line">            <span class="attr">context:</span> <span class="string">.</span></span><br><span class="line">            <span class="attr">dockerfile:</span> <span class="string">Dockerfile.env</span></span><br></pre></td></tr></tbody></table></figure></li>
 <li>則可開始同時建置鏡像檔&amp;容器:
-<code>$ docker-compose up --build -d</code></li>
+<code>$ docker compose up -d</code></li>
 </ol>
 <h2 id="ref">REF</h2>
 <ul>
@@ -1381,134 +1381,6 @@ Swagger API 文件建置｜六角學院｜2023 鐵人賽 #5</a> <div class="vide
       </tags>
   </entry>
   <entry>
-    <title>podman-入門使用</title>
-    <url>/2023/09/11/podman-001/</url>
-    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
-<p>podman是由RedHat開發的一個無背景程序(Daemonless)的容器引擎，其中提供了和docker類似的功能&amp;相容的服務。</p>
-<ul>
-<li>提供的功能
-<ol type="1">
-<li>可管理&amp;運行任何符合 OCI（Open Container
-Initiative）規範的容器和容器鏡像</li>
-<li>提供了一個與 Docker 兼容的命令行前端&amp;功能來管理
-Docker鏡像＆容器</li>
-<li>不需要啟用任何背景(daemon)程序，且可在沒有root(管理者)權限的情況下運作
-<ul>
-<li>相對的容器在運行/構建容器鏡像時，可提升系統本身的安全性(減少系統安全性漏洞)</li>
-<li>原理:
-是透過<code>runC(run container)</code>等工具直接去跟Linux核心構通+建置/運行容器</li>
-</ul></li>
-</ol></li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>己收錄在套件庫的發行版
-<ul>
-<li>Red Hat系
-<ol type="1">
-<li>Fedora</li>
-<li>CentOS Stream</li>
-<li>RHEL(包含Rocky等變體)</li>
-</ol></li>
-<li>Debian系
-<ol type="1">
-<li>Debian</li>
-<li>Ubuntu</li>
-</ol></li>
-<li>其它
-<ol type="1">
-<li>Arch Linux</li>
-</ol></li>
-</ul></li>
-</ul>
-<h2 id="前置">01 前置</h2>
-<ol type="1">
-<li>使用者權限設置 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">$ sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 [username]</span><br></pre></td></tr></tbody></table></figure></li>
-<li>安裝相關套件
-<ul>
-<li>arch: <code>$ sudo pacman -S podman slirp4netns</code></li>
-<li>fedora/rhel: <code>$ sudo dnf install podman</code></li>
-<li>ubuntu/debian: <code>$ sudo apt install podman</code></li>
-</ul></li>
-<li>啟用相關服務: <code>$sudo systemctl enable --now podman</code></li>
-</ol>
-<h2 id="指令">02 指令</h2>
-<table>
-<tbody><tr>
-<td bgcolor="0000FF">
-<font color="white">大部分和<code>docker</code>指令操作一致</font>
-</td>
-</tr>
-</tbody></table>
-<ul>
-<li>run: Pull image + Create container <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">╭─zangmenhsu@Host-02 ~  </span><br><span class="line">╰─➤  podman run quay.io/podman/hello         </span><br><span class="line">   !... Hello Podman World ...!</span><br><span class="line"></span><br><span class="line">           .--"--.           </span><br><span class="line">         / -     - \         </span><br><span class="line">        / (O)   (O) \        </span><br><span class="line">     ~~~| -=(,Y,)=- |         </span><br><span class="line">      .---. /`  \   |~~      </span><br><span class="line">       ~/  o  o \~~~~.----. ~~   </span><br><span class="line">        | =(X)= |~  / (O (O) \   </span><br><span class="line">          ~~~~~~~  ~| =(Y_)=- |   </span><br><span class="line">         ~~~~    ~~~|   U     |~~ </span><br><span class="line"></span><br><span class="line">Project:   https://github.com/containers/podman</span><br><span class="line">Website:   https://podman.io</span><br><span class="line">Documents: https://docs.podman.io</span><br><span class="line">Twitter:   @Podman_io</span><br></pre></td></tr></tbody></table></figure></li>
-<li>重啟podman: <code>$ podman system reset</code></li>
-</ul>
-<h2 id="管理工具">03 管理工具</h2>
-<p>podman提供了一些管理Container&amp;Image的工具</p>
-<ul>
-<li>終端命令列: <code>podman-tui</code>
-<ul>
-<li>Arch: <a href="https://aur.archlinux.org/packages/podman-tui">AUR</a></li>
-</ul></li>
-<li>桌面端: <code>podman-desktop</code>
-<ul>
-<li>Arch: <a href="https://aur.archlinux.org/packages/podman-desktop">AUR</a></li>
-</ul></li>
-<li>Cockpit: <code>cockpit-podman</code></li>
-</ul>
-<h2 id="打包成容器">04 打包成容器</h2>
-<h3 id="安裝">4-1 安裝</h3>
-<table>
-<tbody><tr>
-<td bgcolor="0000FF">
-<font color="white"> 請確認是否安裝<code>python3</code> </font>
-</td>
-</tr>
-</tbody></table>
-<ul>
-<li>arch: <code>$ sudo pacman -S podman-compose</code></li>
-<li>pip: <code>$ sudo pip3 install podman-compose</code></li>
-</ul>
-<h3 id="指令操作">4-2 指令操作</h3>
-<p>podman-compose和docker-compose操作都大致相同,且podman-compose可同時使用docker-compose.yaml+Dockerfile的組合來進行自動建置容器的部分。</p>
-<ul>
-<li>指令
-<ul>
-<li>建置: <code>$ podman-compose up -d</code></li>
-<li>停止: <code>$ podman-compose down</code></li>
-<li>檢視運行的容器: <code>$ podman-compose ps</code></li>
-<li>檢視容器內的運行過程: <code>$ podman-compose logs</code></li>
-<li>檢視版本: <code>$ podman-compose version</code></li>
-<li>檢視相關指令說明: <code>$ podman-compose --help</code></li>
-</ul></li>
-</ul>
-<h3 id="注意部分">4-3 注意部分</h3>
-若<code>podman-compose</code>&amp;<code>docker-compose</code>都已安裝在相同的系統上，請注意二者無法以交替方式進行呼叫。
-<table>
-<tbody><tr>
-<td bgcolor="0000FF">
-<font color="white">
-容器若是由<code>podman-compose</code>啟動，相對的則無法使用
-<code>docker-compose</code>來查詢或停止</font>
-</td>
-</tr>
-</tbody></table>
-<h2 id="ref">REF</h2>
-<ul>
-<li>https://blog.while-true-do.io/podman-graphical-interfaces/</li>
-<li>https://wiki.archlinux.org/title/Podman</li>
-<li>https://docs.oracle.com/zh-tw/learn/podman-compose/index.html#confirm-podman-compose-is-working</li>
-<li>https://dywang.csie.cyut.edu.tw/dywang/download/pdf/docker-podman.pdf</li>
-<li>https://ithelp.ithome.com.tw/articles/10238749</li>
-<li>https://www.huweihuang.com/kubernetes-notes/runtime/runtime.html</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>podman</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>軟體開發-小黃鴨除錯法(Rubber Duck Debugging)</title>
     <url>/2023/09/10/softdev-rubberduckdebugging/</url>
     <content><![CDATA[<h2 id="緒論">00 緒論</h2>
@@ -1662,6 +1534,388 @@ Debugging)是指在程式的除錯/測試過程中，<font color="red">耐心的
         <tag>工科賽</tag>
         <tag>Windows</tag>
         <tag>Windows Server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker-介紹</title>
+    <url>/2023/10/15/docker-info/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<table>
+<tbody><tr>
+<td bgcolor="0000FF">
+<font color="white"> <code>Docker</code>翻成中文意思就是"碼頭工人" </font>
+</td></tr></tbody></table>
+<p>是以<font color="red">容器為核心</font>的資訊技術 (Information
+Technology, IT)交付與運行的標準化系統平台與生態體系。</p>
+<ul>
+<li>與現實所對應的角色(ex: 以海運為例)
+<ul>
+<li>容器(Container) == 傳統運輸領域的貨櫃</li>
+<li>雲端服務提供商 == 承載貨櫃的港口</li>
+<li>所提供的基礎架構即服務(Infrastructure as a Service, IaaS) ==
+運送貨櫃的輪船</li>
+</ul></li>
+</ul>
+<span id="more"></span>
+<h2 id="日常可實作案例">01 日常可實作案例</h2>
+<h3 id="原型開發">1-1 原型開發</h3>
+<ul>
+<li>可使用於
+<ol type="1">
+<li>原型的快速實現:
+只需在容器做出一些設置，就能提供基本的後端服務來進行測試</li>
+<li>和別人協同合作:
+建置相同的開發環境，使其它使用者可以在除錯開發時都不會出錯</li>
+</ol></li>
+<li>關於建置的部分，Docker可提供一些功能
+<ul>
+<li>從私有庫(registry)或者DockerHub進行上傳(push)/抓取(pull)需要的映像檔</li>
+<li>手動匯出/入本機的映像檔&amp;容器到別台機器上進行部署</li>
+<li>建立<code>Dockerfile</code>&amp;<code>docker-compose.yml</code>，來快速建置相關環境的映像檔</li>
+</ul></li>
+</ul>
+<h3 id="部署維運">1-2 部署&amp;維運</h3>
+<h4 id="cicd">2-1 CI/CD</h4>
+<p>何為CI/CD，其實就是將程式開發的流程進行<font color="red">大量的自動化運行</font>。</p>
+<blockquote>
+<p>每個自動化的環節，都可以進一步優化，一開始不必追求完美，先求有再求好並不是隨便，而是精實(lean)的體現
+- 謝宗穎</p>
+</blockquote>
+<p><img src="https://i.imgur.com/Sydfxcj.png"></p>
+<ul>
+<li>持續整合/改善(CI,continuous integration):
+透過自動化「軟體交付」和「架構變更」的流程，使軟體開發時能夠更加地快捷、頻繁和可靠(ex:
+構建、測試、發布)
+<ul>
+<li>流程：
+<ol type="1">
+<li>建置:
+開發者在每次提交後，都能在同個環境和套件版本下自動編譯所需的程式，同時避免因環境不同而造成服務異常無法運作</li>
+<li>測試:
+當程式編譯完成後，會測試新寫的功能是否正常運行或者影響到現有其它功能，同時避免遺忘在本機的自檢</li>
+</ol></li>
+<li>目的
+<ol type="1">
+<li>進行版本控管，使系統功能一致&amp;透明化
+<ul>
+<li>減少人工手動的反覆步驟,且同時降低人為疏失風險</li>
+<li>降低團隊負擔</li>
+</ul></li>
+<li>減少驗證和更新所需的時間</li>
+</ol></li>
+</ul></li>
+<li>持續交付(CD,continuous delivery):
+讓專案可以自動化部署後，隨時有穩定版本可以運作並且能加速驗證過程
+<ul>
+<li>流程:
+透過自動化方式，將寫好的程式碼更新到機器上，使得服務可以立即上線</li>
+<li>目的
+<ul>
+<li>需確保程式和套件的版本＆資料庫資料完整性，使每次更新程式時能順利完成</li>
+<li>透過監控系統來確保服務是否正常運行，若服務出問題時，則會即時發通知告知團隊進行處理</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="https://hackmd.io/_uploads/rkYtCCeFn.png"></p>
+<h4 id="devops">1-2-2 DevOps</h4>
+<p>DevOps是一種重視「軟體開發人員」和「IT運維技術人員」之間溝通合作的文化、運動或慣例。</p>
+<table>
+<tbody><tr>
+<td bgcolor="0000FF">
+<font color="white"> DevOps = <code>Dev</code>elopment (開發) +
+<code>Op</code>eration<code>s</code> (日常維護) </font>
+</td></tr></tbody></table>
+<ul>
+<li>會比較著重於
+<ul>
+<li>快速、更出色的應用程式開發:
+更快把最新的或己修正後的軟體功能或產品發佈給客戶使用
+<ul>
+<li>對於負責該位置的工程師，則會接手各個服務的建置和正式部署後的維運管理的相關業務，來確保環境運行時是穩定不出包。但是實際發生的情況<font color="red">絕對不是單單一個負責DevOps相關職位的人可完成所有的整合</font>！其中會遇到的最大障礙是在進行大量軟體部署時而不易管理。</li>
+</ul></li>
+<li>促進開發團隊(Dev)與其IT營運團隊(Ops)的合作夥伴之間更順暢、持續的溝通、協同作業、整合、可見度及通透性。
+<ul>
+<li>順暢進行的條件
+<ul>
+<li><font color="red">必須</font>時: 需要和該專案的相關人員進行配合</li>
+<li><font color="red">規劃</font>時:
+皆要有所考慮所發生的情況&amp;條件</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="paasplatform-as-a-service平台即服務">1-3 PaaS(platform as a
+service,平台即服務)</h3>
+<p>主要提供使用者將雲端基礎設施部署至使用者端，來藉此快速獲得使用程式語言、程式庫與服務等環境等提供運算平台與解決方案服務。</p>
+<ul>
+<li>組成架構
+<ol type="1">
+<li>雲端基礎架構
+<ul>
+<li>虛擬機器(VM)</li>
+<li>作業系統軟體(OS)</li>
+<li>儲存設備</li>
+<li>網路功能(防火牆)</li>
+</ul></li>
+<li>環境: 用於建置、部署與管理應用程式</li>
+<li>圖形使用者介面(GUI):
+其中開發者或團隊可在其中執行他們在整個應用程式生命週期中的所有工作</li>
+</ol></li>
+<li>特點
+<ul>
+<li>直接抽象掉了硬體和作業系統的細節，可無縫地擴大或縮編所需資源
+<ul>
+<li>開發者只需把心力放在自己的程式和資料端的優化與精進，而不需關注於管理與控制雲端基礎設施(需要控制上層的應用程式部署與應用代管環境)</li>
+</ul></li>
+<li>計價方式: 用了多少資源，則使用者就得課金課多少(和打手遊一樣)
+<ol type="1">
+<li>支付固定費用以指定特定數量的資源給特定數目的使用者運用。</li>
+<li>隨收隨付: 以使用該服務的時間來計價</li>
+</ol></li>
+<li>在雲端運算的典型層級中:
+PaaS層是介於<font color="green">SaaS(軟體即服務)</font>與<font color="green">IaaS(基礎設施即服務)</font>之間</li>
+</ul></li>
+</ul>
+<h2 id="ref">REF</h2>
+<h3 id="ithome">iThome</h3>
+<ul>
+<li>謝宗穎. (2015, September 1).
+【JSDC客座文章】企業端如何推動持續整合開發流程. IThome.
+https://www.ithome.com.tw/guest-post/98457</li>
+<li>Neil . (2019, September 27). Day12 什麼是
+CICD-就是「懶」才更需要重視DevOps. IThome.
+https://ithelp.ithome.com.tw/articles/10219083</li>
+</ul>
+<h3 id="wiki">Wiki</h3>
+<ul>
+<li>https://zh.m.wikipedia.org/zh-tw/%E5%B9%B3%E5%8F%B0%E5%8D%B3%E6%9C%8D%E5%8A%A1</li>
+</ul>
+<h3 id="other">Other</h3>
+<ul>
+<li>https://www.ibm.com/tw-zh/cloud/learn/paas</li>
+<li>https://www.netapp.com/zh-hant/devops-solutions/what-is-devops/</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker-安裝相關服務</title>
+    <url>/2023/10/15/docker-installing/</url>
+    <content><![CDATA[<h2 id="安裝需求">00 安裝需求</h2>
+<ul>
+<li>CPU指令集支緩:
+<ul>
+<li>虛擬化支援(VT-X &amp; VT-D)</li>
+<li>64bit CPU+OS
+<ul>
+<li>X86: Intel(EM64T)&amp;AMD(amd64)</li>
+<li>ARM: armv8之後(AArch64)</li>
+</ul></li>
+</ul></li>
+<li>RAM: 至少4GB以上</li>
+<li>OS
+<ul>
+<li>Linux: Kernel 3.8以上</li>
+<li>macOS: 10.14 以後</li>
+<li>Windows: 10/Server 2016以上 + Hyper-V支援 <span id="more"></span></li>
+</ul></li>
+</ul>
+<h2 id="安裝設定">01 安裝&amp;設定</h2>
+<h3 id="linux">1-1 Linux</h3>
+<h4 id="安裝套件包">01 安裝套件包</h4>
+<ul>
+<li>使用Linux發行版套件庫的版本
+<ul>
+<li>fedora/RHEL like: <code>$ sudo dnf install -y docker</code></li>
+<li>arch: <code>$ sudo pacman -S docker</code></li>
+<li>debian: <code>$ sudo apt install docker.io</code></li>
+</ul></li>
+<li>使用官方套件庫的版本
+<ul>
+<li>fedora/RHEL like
+<ul>
+<li>加入&amp;啟用來源套件庫:
+<code>$ sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</code></li>
+<li>開始安裝:
+<code>$ sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="開機自動啟用docker">02 開機自動啟用docker</h4>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">$ sudo systemctl enable --now docker.socket</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="提高當前使用者的權限讓非root帳戶來使用docker">03
+提高當前使用者的權限,讓非root帳戶來使用Docker</h4>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">$ sudo gpasswd -a $USER docker</span><br><span class="line">$ sudo newgrp docker</span><br><span class="line">$ sudo chmod 666 /var/run/docker.sock</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="macwindows">1-2 Mac&amp;Windows</h3>
+<p>由於macOS和Windows的內核架構不同，則有對應不同的解法。</p>
+<ol type="1">
+<li>安裝一台VM(ex: Ubuntu/Debian)，在其VM上安裝docker
+<ul>
+<li><a href="https://www.vmware.com/tw/products/workstation-player/workstation-player-evaluation.html">VMware</a></li>
+<li><a href="https://www.qemu.org/download/">QEMU</a></li>
+<li><a href="https://www.virtualbox.org/">VirtualBox</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Hyper-V</a>
+<ul>
+<li><a href="https://learn.microsoft.com/zh-tw/windows/wsl/install">WSL2</a></li>
+</ul></li>
+</ul></li>
+<li>使用Docker Desktop
+<ul>
+<li><a href="https://docs.docker.com/desktop/install/windows-install/">Windows</a></li>
+<li><a href="https://docs.docker.com/desktop/install/mac-install/">macOS</a></li>
+</ul></li>
+</ol>
+<h2 id="檢查docker是否正常安裝">02 檢查docker是否正常安裝</h2>
+<ul>
+<li>檢視docker運行狀態: <code>$ docker info</code>
+<ul>
+<li>輸出內容 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"> Client:</span><br><span class="line">    Version:    24.0.6</span><br><span class="line">    Context:    default</span><br><span class="line">    Debug Mode: <span class="literal">false</span></span><br><span class="line">    Plugins:</span><br><span class="line">      buildx: Docker Buildx (Docker Inc.)</span><br><span class="line">        Version:  0.11.2</span><br><span class="line">        Path:     /usr/lib/docker/cli-plugins/docker-buildx</span><br><span class="line">      compose: Docker Compose (Docker Inc.)</span><br><span class="line">        Version:  2.22.0</span><br><span class="line">        Path:     /usr/lib/docker/cli-plugins/docker-compose</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Containers: 3</span><br><span class="line">     Running: 3</span><br><span class="line">     Paused: 0</span><br><span class="line">     Stopped: 0</span><br><span class="line"> Images: 4</span><br><span class="line"> Server Version: 24.0.6</span><br><span class="line"> Storage Driver: overlay2</span><br><span class="line">  Backing Filesystem: extfs</span><br><span class="line">  Supports d_type: <span class="literal">true</span></span><br><span class="line">  Using metacopy: <span class="literal">true</span></span><br><span class="line">  Native Overlay Diff: <span class="literal">false</span></span><br><span class="line">  userxattr: <span class="literal">false</span></span><br><span class="line"> Logging Driver: json-file</span><br><span class="line"> Cgroup Driver: systemd</span><br><span class="line"> Cgroup Version: 2</span><br><span class="line"> Plugins:</span><br><span class="line">  Volume: <span class="built_in">local</span></span><br><span class="line">  Network: bridge host ipvlan macvlan null overlay</span><br><span class="line">  Log: awslogs fluentd gcplogs gelf journald json-file <span class="built_in">local</span> logentries splunk syslog</span><br><span class="line"> Swarm: inactive</span><br><span class="line"> Runtimes: io.containerd.runc.v2 runc</span><br><span class="line"> Default Runtime: runc</span><br><span class="line"> Init Binary: docker-init</span><br><span class="line"> containerd version: 8c087663b0233f6e6e2f4515cee61d49f14746a8.m</span><br><span class="line"> runc version: </span><br><span class="line"> init version: de40ad0</span><br><span class="line"> Security Options:</span><br><span class="line">  seccomp</span><br><span class="line">   Profile: <span class="built_in">builtin</span></span><br><span class="line">  cgroupns</span><br><span class="line"> Kernel Version: 6.5.7-zen1-1-zen</span><br><span class="line"> Operating System: Arch Linux</span><br><span class="line"> OSType: linux</span><br><span class="line"> Architecture: x86_64</span><br><span class="line"> CPUs: 4</span><br><span class="line"> Total Memory: 15.53GiB</span><br><span class="line"> Name: Host-02</span><br><span class="line"> ID: HCEI:MJBT:75N6:BTIY:EJUK:G2WU:WEUJ:AVAE:L5ZY:RFAM:O4KV:MRJP</span><br><span class="line"> Docker Root Dir: /var/lib/docker</span><br><span class="line"> Debug Mode: <span class="literal">false</span></span><br><span class="line"> Username: neko0xff</span><br><span class="line"> Experimental: <span class="literal">false</span></span><br><span class="line"> Insecure Registries:</span><br><span class="line">  127.0.0.0/8</span><br><span class="line"> Live Restore Enabled: <span class="literal">false</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ul></li>
+<li>檢視己安裝docker版本: <code>$ docker version</code>
+<ul>
+<li>輸出內容 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">Client: Docker Engine - Community</span><br><span class="line">Version:           20.10.22</span><br><span class="line">API version:       1.41</span><br><span class="line">Go version:        go1.18.9</span><br><span class="line">Git commit:        3a2c30b</span><br><span class="line">Built:             Thu Dec 15 22:28:22 2022</span><br><span class="line">OS/Arch:           linux/amd64</span><br><span class="line">Context:           default</span><br><span class="line">Experimental:      <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">Server: Docker Engine - Community</span><br><span class="line">Engine:</span><br><span class="line"> Version:          20.10.22</span><br><span class="line"> API version:      1.41 (minimum version 1.12)</span><br><span class="line"> Go version:       go1.18.9</span><br><span class="line"> Git commit:       42c8b31</span><br><span class="line">Built:            Thu Dec 15 22:26:06 2022</span><br><span class="line"> OS/Arch:          linux/amd64</span><br><span class="line"> Experimental:     <span class="literal">false</span></span><br><span class="line"> containerd:</span><br><span class="line"> Version:          1.6.14</span><br><span class="line"> GitCommit:        9ba4b250366a5ddde94bb7c9d1def331423aa323</span><br><span class="line">runc:</span><br><span class="line"> Version:          1.1.4</span><br><span class="line"> GitCommit:        v1.1.4-0-g5fd4c4d</span><br><span class="line">docker-init:</span><br><span class="line"> Version:          0.19.0</span><br><span class="line"> GitCommit:        de40ad0</span><br></pre></td></tr></tbody></table></figure></li>
+</ul></li>
+</ul>
+<h2 id="ref">REF</h2>
+<ul>
+<li>https://www.server-world.info/en/note?os=Debian_11&amp;p=docker&amp;f=1</li>
+<li>https://medium.com/%E5%AE%B8-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/mac-%E5%AE%89%E8%A3%9D-docker-%E5%8F%8A%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4-6a9cfaa55979</li>
+<li>https://wiki.archlinux.org/title/Docker_(%E6%AD%A3%E9%AB%94%E4%B8%AD%E6%96%87)</li>
+<li>https://docs.docker.com/engine/install/rhel/</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>podman-入門使用</title>
+    <url>/2023/09/11/podman-info/</url>
+    <content><![CDATA[<h2 id="緒論">00 緒論</h2>
+<p>podman是由RedHat開發的一個無背景程序(Daemonless)的容器引擎，其中提供了和docker類似的功能&amp;相容的服務。</p>
+<ul>
+<li>提供的功能
+<ol type="1">
+<li>可管理&amp;運行任何符合 OCI（Open Container
+Initiative）規範的容器和容器鏡像</li>
+<li>提供了一個與 Docker 兼容的命令行前端&amp;功能來管理
+Docker鏡像＆容器</li>
+<li>不需要啟用任何背景(daemon)程序，且可在沒有root(管理者)權限的情況下運作
+<ul>
+<li>相對的容器在運行/構建容器鏡像時，可提升系統本身的安全性(減少系統安全性漏洞)</li>
+<li>原理:
+是透過<code>runC(run container)</code>等工具直接去跟Linux核心構通+建置/運行容器</li>
+</ul></li>
+</ol></li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>己收錄在套件庫的發行版
+<ul>
+<li>Red Hat系
+<ol type="1">
+<li>Fedora</li>
+<li>CentOS Stream</li>
+<li>RHEL(包含Rocky等變體)</li>
+</ol></li>
+<li>Debian系
+<ol type="1">
+<li>Debian</li>
+<li>Ubuntu</li>
+</ol></li>
+<li>其它
+<ol type="1">
+<li>Arch Linux</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="前置">01 前置</h2>
+<ol type="1">
+<li>使用者權限設置 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">$ sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 [username]</span><br></pre></td></tr></tbody></table></figure></li>
+<li>安裝相關套件
+<ul>
+<li>arch: <code>$ sudo pacman -S podman slirp4netns</code></li>
+<li>fedora/rhel: <code>$ sudo dnf install podman</code></li>
+<li>ubuntu/debian: <code>$ sudo apt install podman</code></li>
+</ul></li>
+<li>啟用相關服務: <code>$sudo systemctl enable --now podman</code></li>
+</ol>
+<h2 id="指令">02 指令</h2>
+<table>
+<tbody><tr>
+<td bgcolor="0000FF">
+<font color="white">大部分和<code>docker</code>指令操作一致</font>
+</td>
+</tr>
+</tbody></table>
+<ul>
+<li>run: Pull image + Create container <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">╭─zangmenhsu@Host-02 ~  </span><br><span class="line">╰─➤  podman run quay.io/podman/hello         </span><br><span class="line">   !... Hello Podman World ...!</span><br><span class="line"></span><br><span class="line">           .--"--.           </span><br><span class="line">         / -     - \         </span><br><span class="line">        / (O)   (O) \        </span><br><span class="line">     ~~~| -=(,Y,)=- |         </span><br><span class="line">      .---. /`  \   |~~      </span><br><span class="line">       ~/  o  o \~~~~.----. ~~   </span><br><span class="line">        | =(X)= |~  / (O (O) \   </span><br><span class="line">          ~~~~~~~  ~| =(Y_)=- |   </span><br><span class="line">         ~~~~    ~~~|   U     |~~ </span><br><span class="line"></span><br><span class="line">Project:   https://github.com/containers/podman</span><br><span class="line">Website:   https://podman.io</span><br><span class="line">Documents: https://docs.podman.io</span><br><span class="line">Twitter:   @Podman_io</span><br></pre></td></tr></tbody></table></figure></li>
+<li>重啟podman: <code>$ podman system reset</code></li>
+</ul>
+<h2 id="管理工具">03 管理工具</h2>
+<p>podman提供了一些管理Container&amp;Image的工具</p>
+<ul>
+<li>終端命令列: <code>podman-tui</code>
+<ul>
+<li>Arch: <a href="https://aur.archlinux.org/packages/podman-tui">AUR</a></li>
+</ul></li>
+<li>桌面端: <code>podman-desktop</code>
+<ul>
+<li>Arch: <a href="https://aur.archlinux.org/packages/podman-desktop">AUR</a></li>
+</ul></li>
+<li>Cockpit: <code>cockpit-podman</code></li>
+</ul>
+<h2 id="打包成容器">04 打包成容器</h2>
+<h3 id="安裝">4-1 安裝</h3>
+<table>
+<tbody><tr>
+<td bgcolor="0000FF">
+<font color="white"> 請確認是否安裝<code>python3</code> </font>
+</td>
+</tr>
+</tbody></table>
+<ul>
+<li>arch: <code>$ sudo pacman -S podman-compose</code></li>
+<li>pip: <code>$ sudo pip3 install podman-compose</code></li>
+</ul>
+<h3 id="指令操作">4-2 指令操作</h3>
+<p>podman-compose和docker-compose操作都大致相同,且podman-compose可同時使用docker-compose.yaml+Dockerfile的組合來進行自動建置容器的部分。</p>
+<ul>
+<li>指令
+<ul>
+<li>建置: <code>$ podman-compose up -d</code></li>
+<li>停止: <code>$ podman-compose down</code></li>
+<li>檢視運行的容器: <code>$ podman-compose ps</code></li>
+<li>檢視容器內的運行過程: <code>$ podman-compose logs</code></li>
+<li>檢視版本: <code>$ podman-compose version</code></li>
+<li>檢視相關指令說明: <code>$ podman-compose --help</code></li>
+</ul></li>
+</ul>
+<h3 id="注意部分">4-3 注意部分</h3>
+若<code>podman-compose</code>&amp;<code>docker-compose</code>都已安裝在相同的系統上，請注意二者無法以交替方式進行呼叫。
+<table>
+<tbody><tr>
+<td bgcolor="0000FF">
+<font color="white">
+容器若是由<code>podman-compose</code>啟動，相對的則無法使用
+<code>docker-compose</code>來查詢或停止</font>
+</td>
+</tr>
+</tbody></table>
+<h2 id="ref">REF</h2>
+<ul>
+<li>https://blog.while-true-do.io/podman-graphical-interfaces/</li>
+<li>https://wiki.archlinux.org/title/Podman</li>
+<li>https://docs.oracle.com/zh-tw/learn/podman-compose/index.html#confirm-podman-compose-is-working</li>
+<li>https://dywang.csie.cyut.edu.tw/dywang/download/pdf/docker-podman.pdf</li>
+<li>https://ithelp.ithome.com.tw/articles/10238749</li>
+<li>https://www.huweihuang.com/kubernetes-notes/runtime/runtime.html</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>podman</tag>
       </tags>
   </entry>
 </search>
